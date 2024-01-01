@@ -1,0 +1,122 @@
+@use "../../styles/index" as *;
+
+.slide {
+  position: relative;
+  width: 100%;
+  max-height: 700px;
+  padding: 9rem 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    @include overlay();
+  }
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+    content: "";
+  }
+}
+
+.content {
+  @include flex(center, center);
+  position: relative;
+}
+
+.info {
+  position: relative;
+  width: 55%;
+  padding: 0 3rem;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  > * ~ * {
+    margin-top: 3rem;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 1;
+
+    @include tablet {
+      font-size: 4rem;
+    }
+  }
+
+  .overview {
+    font-weight: 700;
+  }
+
+  .btns {
+    z-index: 100;
+  }
+
+  .btns > * ~ * {
+    margin-left: 1rem;
+  }
+
+  //.btns,
+  //.title,
+  //.overview {transformtransform
+  //  transition: transform 0.5s ease, opacity 0.5s ease;transitiontransitionopacityopacity
+  //  transform: translateY(-100px);transformtransform
+  //  opacity: 0;opacityopacitytransitiontransition
+  //}
+}
+
+.poster {
+  position: relative;
+  flex: 1;
+  @include flex(center, flex-start);
+
+  img {
+    width: 400px;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    transform: scale(0);
+    transition: transform 0.7s ease;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.active> .content > .poster img {
+  transform: scale(1);
+}
+
+.active > .content > .info {
+  .btns,
+  .title,
+  .overview {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .title {
+    transition-delay: 0.3s, 0.3s;
+  }
+
+  .overview {
+    transition-delay: 0.6s, 0.6s;
+  }
+
+  .btns {
+    transition-delay: 0.9s, 0.9s;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "movie-app-nextron",
+  "version": "1.0.0",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "build:mac": "nextron build --mac",
+    "build:mac:universal": "nextron build --mac --universal",
+    "build:linux": "nextron build --linux",
+    "build:win32": "nextron build --win --ia32",
+    "build:win64": "nextron build --win --x64",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
+    "axios": "^1.6.3",
+    "dotenv": "^16.3.1",
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.1.0",
+    "framer-motion": "^10.16.16",
+    "i18next": "^23.7.13",
+    "react-hook-form": "^7.49.2",
+    "react-i18next": "^14.0.0",
+    "react-redux": "^9.0.4",
+    "swiper": "^11.0.5"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "@vitejs/plugin-react": "^4.0.4",
+    "electron": "^26.2.2",
+    "electron-builder": "^24.6.4",
+    "next": "^12.3.4",
+    "nextron": "^8.12.0",
+    "prettier": "3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "1.69.6",
+    "stylelint": "16.1.0",
+    "stylelint-config-rational-order": "0.1.2",
+    "stylelint-config-standard-scss": "12.0.0",
+    "typescript": "^5.2.2"
+  }
+}
