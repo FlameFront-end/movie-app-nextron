@@ -22,17 +22,11 @@ const HeroSlider: FC = () => {
 			</Swiper>
 
 			{movieItems.map((_item, index) => (
-				<TrailerModal key={index} />
+				<Modal key={index} active={false} id={`modal_1`}>
+					<iframe height='500px' title='trailer' width='100%'></iframe>
+				</Modal>
 			))}
 		</div>
-	)
-}
-
-const TrailerModal: FC = () => {
-	return (
-		<Modal active={false} id={`modal_1`}>
-			<iframe height='500px' title='trailer' width='100%'></iframe>
-		</Modal>
 	)
 }
 

@@ -1,6 +1,12 @@
+import { ReactNode } from 'react'
+
+import { NextPageWithLayout } from '../_app'
+
 import PageHeader from '../../components/PageHeader/PageHeader'
 
-const Index = () => {
+import Layout from '../../layouts/Layout'
+
+const CatalogPage: NextPageWithLayout = () => {
 	return (
 		<>
 			<PageHeader>Movies</PageHeader>
@@ -11,4 +17,8 @@ const Index = () => {
 	)
 }
 
-export default Index
+CatalogPage.getLayout = (page: ReactNode) => {
+	return <Layout title='Catalog'>{page}</Layout>
+}
+
+export default CatalogPage

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nextron",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "build": "nextron build --config ./electron-builder.yml",
     "build:mac": "nextron build --mac",
     "build:mac:universal": "nextron build --mac --universal",
     "build:linux": "nextron build --linux",

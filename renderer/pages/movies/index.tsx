@@ -1,7 +1,15 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 
-const index: FC = () => {
+import { NextPageWithLayout } from '../_app'
+
+import Layout from '../../layouts/Layout'
+
+const MoviesPage: NextPageWithLayout = () => {
 	return <div>movies</div>
 }
 
-export default index
+MoviesPage.getLayout = (page: ReactNode) => {
+	return <Layout title='Movies'>{page}</Layout>
+}
+
+export default MoviesPage

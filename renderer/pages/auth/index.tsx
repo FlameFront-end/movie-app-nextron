@@ -1,23 +1,26 @@
-import { FC, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+
+import { NextPageWithLayout } from '../_app'
 
 import Header from '../../components/Header/Header'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import MyButton from '../../components/ui/MyButton/MyButton'
 import MyInput from '../../components/ui/MyInput/MyInput'
 
+import Layout from '../../layouts/Layout'
+
 import s from './Auth.module.scss'
 
-const Index: FC = () => {
+const AuthPage: NextPageWithLayout = () => {
 	const { t } = useTranslation()
+	const [isRegister] = useState(false)
 
 	const {
 		register,
 		formState: { errors }
 	} = useForm<{ username: string; email: string; password: string }>()
-
-	const [isRegister] = useState(false)
 
 	return (
 		<>
@@ -65,4 +68,8 @@ const Index: FC = () => {
 	)
 }
 
-export default Index
+AuthPage.getLayout = (page: ReactNode) => {
+	return <Layout title='Authorization'>{page}</Layout>
+}
+
+export default AuthPage

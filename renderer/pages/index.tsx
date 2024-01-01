@@ -1,16 +1,17 @@
 import Link from 'next/link'
-import { FC } from 'react'
+import { ReactNode } from 'react'
 
-import Footer from '../components/Footer/Footer'
-import Header from '../components/Header/Header'
+import { NextPageWithLayout } from './_app'
+
 import HeroSlider from '../components/HeroSlider/HeroSlider'
 import MovieList from '../components/MovieList/MovieList'
 import { OutlineButton } from '../components/ui/MyButton/MyButton'
 
-const Index: FC = () => {
+import Layout from '../layouts/Layout'
+
+const HomePage: NextPageWithLayout = () => {
 	return (
 		<>
-			<Header />
 			<HeroSlider />
 			<section>
 				<div className='container'>
@@ -55,9 +56,11 @@ const Index: FC = () => {
 					</div>
 				</div>
 			</section>
-			<Footer />
 		</>
 	)
 }
 
-export default Index
+HomePage.getLayout = (page: ReactNode) => {
+	return <Layout title='Home'>{page}</Layout>
+}
+export default HomePage

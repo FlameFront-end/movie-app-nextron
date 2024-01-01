@@ -1,7 +1,15 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 
-const Index: FC = () => {
-	return <div>ErrorPage</div>
+import { NextPageWithLayout } from './_app'
+
+import Layout from '../layouts/Layout'
+
+const ErrorPage: NextPageWithLayout = () => {
+	return <div>404 Not Found</div>
 }
 
-export default Index
+ErrorPage.getLayout = (page: ReactNode) => {
+	return <Layout title='404 Not Found'>{page}</Layout>
+}
+
+export default ErrorPage
