@@ -14,9 +14,7 @@ const HeroSlider: FC = () => {
 			<Swiper grabCursor={true} spaceBetween={0} slidesPerView={1}>
 				{movieItems.map(i => (
 					<SwiperSlide key={i} className={s.slide}>
-						{({ isActive }) => (
-							<HeroSlide className={`${isActive ? 'active' : ''}`} />
-						)}
+						{({ isActive }) => <HeroSlide isActive={isActive} />}
 					</SwiperSlide>
 				))}
 			</Swiper>
