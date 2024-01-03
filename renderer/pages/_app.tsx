@@ -7,6 +7,7 @@ import '../assets/boxicons-2.0.7/css/boxicons.min.css'
 import '../styles/App.scss'
 import '../styles/index.scss'
 
+import 'react-toastify/dist/ReactToastify.css'
 import 'swiper/css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

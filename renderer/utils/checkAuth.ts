@@ -2,7 +2,8 @@ import { GetServerSidePropsContext } from 'next'
 import nookies from 'nookies'
 
 import * as Api from '../api'
-import axios from '../core/axios'
+
+import axios from './axios'
 
 export const checkAuth = async (ctx: GetServerSidePropsContext) => {
 	const { _token } = nookies.get(ctx)

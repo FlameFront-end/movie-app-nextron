@@ -1,91 +1,84 @@
-import { Button, Form, Input, notification } from 'antd'
-import { setCookie } from 'nookies'
-import { FC } from 'react'
+import { useFormik } from 'formik'
+import React from 'react'
+import * as yup from 'yup'
 
 import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
+import { handleError, handleSuccess } from '../../utils/authHandlers'
+import MyButton from '../ui/MyButton/MyButton'
 
 import s from './Auth.module.scss'
 
-const RegisterForm: FC = () => {
-	const handleSuccess = (data: any) => {
-		notification.success({
-			message: 'Успешно!',
-			description: 'Переходим на домашнюю страницу...',
-			duration: 2
-		})
-
-		setCookie(null, '_token', data.token, {
-			path: '/'
-		})
-
-		location.href = '/'
-	}
-
-	const handleError = (err: Error) => {
-		const errorMessage = err.message || 'Ошибка при регистрации'
-		notification.error({
-			message: 'Ошибка!',
-			description: errorMessage,
-			duration: 2
-		})
-	}
-
-	const onSubmit = async (values: RegisterFormDTO) => {
+const RegisterForm: React.FC = () => {
+	const handleSubmit = async (values: RegisterFormDTO) => {
 		try {
 			const data = await Api.auth.register(values)
-			handleSuccess(data)
+			handleSuccess(data, 'Account has been created')
 		} catch (err) {
 			handleError(err as Error)
 		}
 	}
 
+	const formik = useFormik({
+		initialValues: {
+			email: '',
+			password: ''
+		},
+		validationSchema: yup.object({
+			email: yup
+				.string()
+				.email('Некорректный адрес электронной почты')
+				.required('Обязательное поле'),
+			password: yup
+				.string()
+				.min(6, 'Пароль должен содержать не менее 6 символов')
+				.required('Обязательное поле')
+		}),
+		onSubmit: values => {
+			handleSubmit(values)
+		}
+	})
+
 	return (
-		<div className={s.formBlock}>
-			<Form
-				name='basic'
-				labelCol={{
-					span: 8
-				}}
-				onFinish={onSubmit}
-			>
-				<Form.Item
-					label='E-Mail'
-					name='email'
-					rules={[
-						{
-							required: true,
-							message: 'Укажите почту'
-						}
-					]}
-				>
-					<Input />
-				</Form.Item>
-
-				<Form.Item
-					label='Пароль'
-					name='password'
-					rules={[
-						{
-							required: true,
-							message: 'Укажите пароль'
-						}
-					]}
-				>
-					<Input.Password />
-				</Form.Item>
-
-				<Form.Item
-					wrapperCol={{
-						offset: 8,
-						span: 16
-					}}
-				>
-					<Button type='primary' htmlType='submit'>
-						Регистрация
-					</Button>
-				</Form.Item>
-			</Form>
+		<div className={s.container}>
+			<h1 className={s.title}>Регистрация</h1>
+			<form onSubmit={formik.handleSubmit} className={s.form}>
+				<div className={s.formGroup}>
+					<label htmlFor='email' className={s.label}>
+						Email:
+					</label>
+					<input
+						type='text'
+						id='email'
+						name='email'
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						value={formik.values.email}
+						className={s.input}
+					/>
+					{formik.touched.email && formik.errors.email && (
+						<div className={s.error}>{formik.errors.email}</div>
+					)}
+				</div>
+				<div className={s.formGroup}>
+					<label htmlFor='password' className={s.label}>
+						Пароль:
+					</label>
+					<input
+						type='password'
+						id='password'
+						name='password'
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						value={formik.values.password}
+						className={s.input}
+					/>
+					{formik.touched.password && formik.errors.password && (
+						<div className={s.error}>{formik.errors.password}</div>
+					)}
+				</div>
+				<MyButton type='submit'>Зарегистрироваться</MyButton>
+			</form>
 		</div>
 	)
 }

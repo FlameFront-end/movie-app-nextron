@@ -1,7 +1,7 @@
-import { AxiosError, isAxiosError } from 'axios'
+import { isAxiosError } from 'axios'
 import { destroyCookie } from 'nookies'
 
-import axios from '../core/axios'
+import axios from '../utils/axios'
 
 import {
 	LoginFormDTO,

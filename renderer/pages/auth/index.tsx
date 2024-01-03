@@ -1,5 +1,5 @@
 import { Tabs } from 'antd'
-import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
 
 import { NextPageWithLayout } from '../_app'
 
@@ -10,13 +10,12 @@ import Layout from '../../layouts/Layout'
 
 import s from './Auth.module.scss'
 
+import 'react-toastify/dist/ReactToastify.min.css'
+
 const AuthPage: NextPageWithLayout = () => {
 	return (
 		<>
-			<Head>
-				<title>Auth</title>
-			</Head>
-			<main style={{ width: 400, margin: '50px auto' }}>
+			<div className={s.wrapper}>
 				<Tabs
 					items={[
 						{
@@ -31,13 +30,14 @@ const AuthPage: NextPageWithLayout = () => {
 						}
 					]}
 				/>
-			</main>
+			</div>
+			<ToastContainer position='bottom-left' autoClose={2000} />
 		</>
 	)
 }
 
-// AuthPage.getLayout = page => {
-// 	return <Layout title='Authorization'>{page}</Layout>
-// }
+AuthPage.getLayout = page => {
+	return <Layout title='Authorization'>{page}</Layout>
+}
 
 export default AuthPage

@@ -1,16 +1,6 @@
-.login {
-  height: auto;
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-    height: auto;
-  }
-  .item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-

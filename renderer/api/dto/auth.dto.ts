@@ -7,7 +7,7 @@ export interface LoginResponseDTO {
 	token: string
 }
 
-export type RegisterFormDTO = LoginFormDTO & { fullName: string }
+export type RegisterFormDTO = LoginFormDTO
 export type RegisterResponseDTO = LoginResponseDTO
 
 export interface User {
