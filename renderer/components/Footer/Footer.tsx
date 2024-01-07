@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
 import bg from '../../public/images/footer-bg.jpg'
-import tmovie from '../../public/images/tmovie.png'
 
 import s from './Footer.module.scss'
 

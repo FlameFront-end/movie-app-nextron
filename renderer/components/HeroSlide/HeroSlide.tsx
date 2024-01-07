@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { log } from 'node:util'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 

@@ -13,13 +13,7 @@ interface MovieCardProps {
 	title?: string
 }
 
-const MovieCard: FC<MovieCardProps> = ({
-	backgroundImgUrl,
-	category,
-	id,
-	name,
-	title
-}) => {
+const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, name, title }) => {
 	return (
 		<Link href='/movies'>
 			<>

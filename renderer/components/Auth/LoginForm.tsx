@@ -1,9 +1,5 @@
-import { notification } from 'antd'
-import { AxiosError } from 'axios'
 import { useFormik } from 'formik'
-import { setCookie } from 'nookies'
 import { FC } from 'react'
-import { toast } from 'react-toastify'
 import * as yup from 'yup'
 
 import * as Api from '../../api'
