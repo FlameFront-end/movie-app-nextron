@@ -1,39 +1,94 @@
-import React, { useEffect, useState } from 'react'
+import React, {
+	MouseEvent,
+	ReactNode,
+	useCallback,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
 
-import { useOutsideClick } from '../../../hooks/useOutsideClick'
+import { classNames } from '../../../utils/classNames'
+import Portal from '../Portal/Portal'
 
 import s from './Modal.module.scss'
 
 interface ModalProps {
-	active: boolean
-	children: React.ReactNode
-	id: string
+	className?: string
+	children?: ReactNode
+	isOpen: boolean
+	onClose?: () => void
 }
 
-const Modal: React.FC<ModalProps> = ({ active, children, id }) => {
-	const [activeState, setActiveState] = useState(false)
+const ANIMATION_DELAY = 300
+
+const Modal: React.FC<ModalProps> = ({
+	className,
+	children,
+	isOpen,
+	onClose
+}) => {
+	const [isClosing, setIsClosing] = useState(false)
+	const [domLoaded, setDomLoaded] = useState(false)
 
 	useEffect(() => {
-		setActiveState(active)
-	}, [active])
+		setDomLoaded(true)
+	}, [])
 
-	const closeModal = () => {
-		setActiveState(false)
+	const timeRef = useRef<ReturnType<typeof setTimeout>>()
+
+	const closeHandler = useCallback(() => {
+		if (onClose) {
+			setIsClosing(true)
+			timeRef.current = setTimeout(() => {
+				onClose()
+				setIsClosing(false)
+			}, ANIMATION_DELAY)
+		}
+	}, [onClose])
+	const onContentClick = (e: MouseEvent) => {
+		e.stopPropagation()
 	}
 
-	const ref = useOutsideClick(() => {
-		closeModal()
-	})
+	const onKeyDown = useCallback(
+		(e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				closeHandler()
+			}
+		},
+		[closeHandler]
+	)
 
+	useEffect(() => {
+		if (isOpen) {
+			window.addEventListener('keydown', onKeyDown)
+		}
+		return () => {
+			clearTimeout(timeRef.current)
+			window.removeEventListener('keydown', onKeyDown)
+		}
+	}, [isOpen, onKeyDown])
+
+	const mods: Record<string, boolean> = {
+		[s.opened]: isOpen,
+		[s.closing]: isClosing
+	}
 	return (
-		<div className={`${s.modal} ${activeState ? `${s.active}` : ''}`} id={id}>
-			<div className={s.modal__content} ref={ref}>
-				{children}
-				<div className={s.modal__content__close} onClick={closeModal}>
-					<i className='bx bx-x'></i>
-				</div>
-			</div>
-		</div>
+		<>
+			{domLoaded && (
+				<Portal>
+					<div className={classNames(s.modal, mods, [className])}>
+						<div className={s.overlay} onClick={closeHandler}>
+							<div className={s.content} onClick={onContentClick}>
+								{children}
+								<div className={s.close} onClick={closeHandler}>
+									<i className='bx bx-x'></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Portal>
+			)}
+		</>
 	)
 }
 

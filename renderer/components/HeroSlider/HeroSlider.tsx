@@ -29,16 +29,16 @@ const HeroSlider: FC = () => {
 				))}
 			</Swiper>
 
-			{movieItems.map((_item, index) => (
-				<Modal key={index} active={false} id={`modal_1`}>
-					<iframe
-						height='500px'
-						title='trailer'
-						width='100%'
-						src='https://www.youtube.com/watch?v=AkW_ce3pgeA'
-					></iframe>
-				</Modal>
-			))}
+			{/*{movieItems.map((_item, index) => (*/}
+			{/*	<Modal key={index} active={false} id={`modal_1`}>*/}
+			{/*		<iframe*/}
+			{/*			height='500px'*/}
+			{/*			title='trailer'*/}
+			{/*			width='100%'*/}
+			{/*			src='https://www.youtube.com/watch?v=AkW_ce3pgeA'*/}
+			{/*		></iframe>*/}
+			{/*	</Modal>*/}
+			{/*))}*/}
 		</div>
 	)
 }
