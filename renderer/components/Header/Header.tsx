@@ -26,8 +26,12 @@ const Header = () => {
 			path: '/tv'
 		},
 		{
-			display: t('Auth'),
-			path: '/auth'
+			display: 'Login',
+			path: '/login'
+		},
+		{
+			display: 'Registration',
+			path: '/register'
 		}
 	]
 

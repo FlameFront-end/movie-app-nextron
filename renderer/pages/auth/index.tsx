@@ -1,15 +1,10 @@
 import { Tabs } from 'antd'
 import { ToastContainer } from 'react-toastify'
-
 import { NextPageWithLayout } from '../_app'
-
-import { LoginForm } from '../../components/Auth/LoginForm'
-import RegisterForm from '../../components/Auth/RegisterForm'
-
 import Layout from '../../layouts/Layout'
-
+import { Index } from '../login'
+import RegisterForm from '../register/RegisterForm'
 import s from './Auth.module.scss'
-
 import 'react-toastify/dist/ReactToastify.min.css'
 
 const AuthPage: NextPageWithLayout = () => {
@@ -21,7 +16,7 @@ const AuthPage: NextPageWithLayout = () => {
 						{
 							label: 'Войти',
 							key: '1',
-							children: <LoginForm />
+							children: <Index />
 						},
 						{
 							label: 'Регистрация',

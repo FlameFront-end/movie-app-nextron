@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  width: 500px;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  color: white;
+}
+
+.input {
+  padding: 8px;
+  color: white;
+  background: black;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.error {
+  margin-top: 5px;
+  color: red;
+}

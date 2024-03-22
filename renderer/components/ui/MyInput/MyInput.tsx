@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react'
-
 import s from './MyInput.module.scss'
 
 interface MyInputProps {
@@ -11,6 +10,7 @@ interface MyInputProps {
 	name: string
 	className: string
 	value: string
+	label?: string
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -21,19 +21,27 @@ const MyInput: React.FC<MyInputProps> = ({
 	id,
 	name,
 	className,
-	value
+	value,
+	label
 }) => {
 	return (
-		<input
-			onChange={onChange}
-			onBlur={onBlur}
-			placeholder={placeholder}
-			type={type ? type : 'text'}
-			id={id}
-			name={name}
-			value={value}
-			className={s.input + ' ' + className}
-		/>
+		<div className={s.wrapper}>
+			{label && (
+				<label htmlFor={id} className={s.label}>
+					{label}
+				</label>
+			)}
+			<input
+				onChange={onChange}
+				onBlur={onBlur}
+				placeholder={placeholder}
+				type={type ? type : 'text'}
+				id={id}
+				name={name}
+				value={value}
+				className={s.input + ' ' + className}
+			/>
+		</div>
 	)
 }
 
