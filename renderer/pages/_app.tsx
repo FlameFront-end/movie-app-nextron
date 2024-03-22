@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 			maxSnack={2}
 			autoHideDuration={2000}
 		>
-			<Component {...pageProps} />{' '}
+			<Component {...pageProps} />
 		</SnackbarProvider>
 	)
 }
