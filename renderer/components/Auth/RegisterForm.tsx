@@ -6,6 +6,7 @@ import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import { handleError, handleSuccess } from '../../utils/authHandlers'
 import MyButton from '../ui/MyButton/MyButton'
+import MyInput from '../ui/MyInput/MyInput'
 
 import s from './Auth.module.scss'
 
@@ -47,7 +48,7 @@ const RegisterForm: React.FC = () => {
 					<label htmlFor='email' className={s.label}>
 						Email:
 					</label>
-					<input
+					<MyInput
 						type='text'
 						id='email'
 						name='email'
@@ -64,7 +65,7 @@ const RegisterForm: React.FC = () => {
 					<label htmlFor='password' className={s.label}>
 						Пароль:
 					</label>
-					<input
+					<MyInput
 						type='password'
 						id='password'
 						name='password'

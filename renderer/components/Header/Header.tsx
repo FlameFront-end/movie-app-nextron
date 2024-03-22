@@ -2,16 +2,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-
+import { useSnapshot } from 'valtio'
 import tmovie from '../../public/images/tmovie.png'
-
+import { state } from '../../state'
 import s from './Header.module.scss'
 
 const Header = () => {
+	const snap = useSnapshot(state)
 	const headerRef = useRef<HTMLDivElement | null>(null)
 	const { t } = useTranslation()
 
-	const headerNav = [
+	const headerNavNoAuth = [
 		{
 			display: t('Home'),
 			path: '/'
@@ -27,6 +28,25 @@ const Header = () => {
 		{
 			display: t('Auth'),
 			path: '/auth'
+		}
+	]
+
+	const headerNavAuth = [
+		{
+			display: t('Home'),
+			path: '/'
+		},
+		{
+			display: t('Movies'),
+			path: '/catalog'
+		},
+		{
+			display: t('TV Series'),
+			path: '/tv'
+		},
+		{
+			display: 'Profile',
+			path: '/profile'
 		}
 	]
 
@@ -57,11 +77,23 @@ const Header = () => {
 					<Link href='/'>MovieHub</Link>
 				</div>
 				<ul className={s.header__nav}>
-					{headerNav.map((e, i) => (
-						<li key={i}>
-							<Link href={e.path}>{e.display}</Link>
-						</li>
-					))}
+					{snap.user ? (
+						<>
+							{headerNavAuth.map((e, i) => (
+								<li key={i}>
+									<Link href={e.path}>{e.display}</Link>
+								</li>
+							))}
+						</>
+					) : (
+						<>
+							{headerNavNoAuth.map((e, i) => (
+								<li key={i}>
+									<Link href={e.path}>{e.display}</Link>
+								</li>
+							))}
+						</>
+					)}
 				</ul>
 			</div>
 		</div>

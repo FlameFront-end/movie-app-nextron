@@ -14,7 +14,8 @@ import {
 export const login = async (
 	values: LoginFormDTO
 ): Promise<LoginResponseDTO> => {
-	return (await axios.post('/auth/login', values)).data
+	const response = await axios.post('/auth/login', values)
+	return response.data
 }
 
 export const register = async (

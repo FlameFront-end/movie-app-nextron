@@ -8,8 +8,9 @@
 	"arrowParens": "avoid",
 	"importOrder": [
 		"<THIRD_PARTY_MODULES>",
-		"hooks/",
 		"app",
+		"redux/",
+		"hooks/",
 		"pages/",
 		"entities/*",
 		"shared/lib",
@@ -23,7 +24,6 @@
 		".(s)?css"
 	],
 	"plugins": ["@trivago/prettier-plugin-sort-imports"],
-	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,
 	"importOrderCaseInsensitive": true
 }
