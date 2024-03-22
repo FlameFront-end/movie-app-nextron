@@ -3,11 +3,16 @@ export interface LoginFormDTO {
 	password: string
 }
 
+export interface RegisterFormDTO {
+	email: string
+	password: string
+	image: []
+}
+
 export interface LoginResponseDTO {
 	token: string
 }
 
-export type RegisterFormDTO = LoginFormDTO
 export type RegisterResponseDTO = LoginResponseDTO
 
 export type User = {

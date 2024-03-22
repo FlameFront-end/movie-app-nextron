@@ -1,49 +1,38 @@
-import { useFormik } from 'formik'
-import React from 'react'
-import * as yup from 'yup'
-
+import React, { useState } from 'react'
 import * as Api from '../../api'
-import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import { handleError, handleSuccess } from '../../utils/authHandlers'
 import MyButton from '../ui/MyButton/MyButton'
 import MyInput from '../ui/MyInput/MyInput'
-
+import UploadImage from '../UploadImage/UploadImage'
 import s from './Auth.module.scss'
 
 const RegisterForm: React.FC = () => {
-	const handleSubmit = async (values: RegisterFormDTO) => {
+	const [data, setData] = useState({
+		email: '',
+		password: '',
+		image: null
+	})
+
+	const handleSubmit = async () => {
 		try {
-			const data = await Api.auth.register(values)
+			const data = await Api.auth.register([])
 			handleSuccess(data, 'Account has been created')
 		} catch (err) {
 			handleError(err as Error)
 		}
 	}
 
-	const formik = useFormik({
-		initialValues: {
-			email: '',
-			password: ''
-		},
-		validationSchema: yup.object({
-			email: yup
-				.string()
-				.email('Некорректный адрес электронной почты')
-				.required('Обязательное поле'),
-			password: yup
-				.string()
-				.min(6, 'Пароль должен содержать не менее 6 символов')
-				.required('Обязательное поле')
-		}),
-		onSubmit: values => {
-			handleSubmit(values)
-		}
-	})
+	const onHandleChange = (value, key) => {
+		setData(prevData => ({
+			...prevData,
+			[key]: value
+		}))
+	}
 
 	return (
 		<div className={s.container}>
 			<h1 className={s.title}>Регистрация</h1>
-			<form onSubmit={formik.handleSubmit} className={s.form}>
+			<form onSubmit={handleSubmit} className={s.form}>
 				<div className={s.formGroup}>
 					<label htmlFor='email' className={s.label}>
 						Email:
@@ -52,15 +41,12 @@ const RegisterForm: React.FC = () => {
 						type='text'
 						id='email'
 						name='email'
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.email}
+						onChange={e => onHandleChange(e.target.value, 'email')}
+						value={data.email}
 						className={s.input}
 					/>
-					{formik.touched.email && formik.errors.email && (
-						<div className={s.error}>{formik.errors.email}</div>
-					)}
 				</div>
+				<UploadImage setData={setData} image={data.image} />
 				<div className={s.formGroup}>
 					<label htmlFor='password' className={s.label}>
 						Пароль:
@@ -69,14 +55,10 @@ const RegisterForm: React.FC = () => {
 						type='password'
 						id='password'
 						name='password'
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.password}
+						onChange={e => onHandleChange(e.target.value, 'password')}
+						value={data.password}
 						className={s.input}
 					/>
-					{formik.touched.password && formik.errors.password && (
-						<div className={s.error}>{formik.errors.password}</div>
-					)}
 				</div>
 				<MyButton type='submit'>Зарегистрироваться</MyButton>
 			</form>
