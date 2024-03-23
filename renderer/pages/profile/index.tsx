@@ -1,4 +1,3 @@
-import argon2 from 'argon2-browser'
 import Image from 'next/image'
 import { ReactNode, useState } from 'react'
 import { useSnapshot } from 'valtio'
@@ -6,7 +5,6 @@ import { NextPageWithLayout } from '../_app'
 import Modal from '../../components/ui/Modal/Modal'
 import MyInput from '../../components/ui/MyInput/MyInput'
 import * as Api from '../../api'
-import { resetPassword } from '../../api/auth'
 import Layout from '../../layouts/Layout'
 import { state } from '../../state'
 import { handleSuccess } from '../../utils/authHandlers'
@@ -35,11 +33,20 @@ const Profile: NextPageWithLayout = () => {
 				tryAgainMessage: ', пожалуйста, повторите попытку.'
 			})
 		}
-		const res = await Api.auth.resetPassword({
-			old_password: oldPassword,
-			new_password: newPassword
-		})
-		handleSuccess(res, 'Successful reset password')
+		await Api.auth
+			.resetPassword({
+				old_password: oldPassword,
+				new_password: newPassword
+			})
+			.then(res => {
+				handleSuccess(res, 'Successful reset password')
+			})
+			.catch(e => {
+				return showErrorSnackbar({
+					message: 'Старый пароль не верный',
+					tryAgainMessage: ', пожалуйста, повторите попытку.'
+				})
+			})
 	}
 
 	return (

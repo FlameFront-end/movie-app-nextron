@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 	useEffect(() => {
 		const token = getCookie('_token')
 
-		if (token) {
+		if (token && token !== 'undefined') {
 			Api.auth.getMe().then(user => {
 				state.user = user
 			})
