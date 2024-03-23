@@ -11,6 +11,11 @@ export interface RegisterFormDTO {
 	ava: File
 }
 
+export interface ResetPasswordDto {
+	old_password: string
+	new_password: string
+}
+
 export interface LoginResponseDTO {
 	token: string
 }
