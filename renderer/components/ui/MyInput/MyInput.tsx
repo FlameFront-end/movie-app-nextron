@@ -11,6 +11,7 @@ interface MyInputProps {
 	className: string
 	value: string
 	label?: string
+	width?: string
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -22,16 +23,18 @@ const MyInput: React.FC<MyInputProps> = ({
 	name,
 	className,
 	value,
-	label
+	label,
+	width
 }) => {
 	return (
-		<div className={s.wrapper}>
+		<div style={{ width: width }} className={s.wrapper}>
 			{label && (
 				<label htmlFor={id} className={s.label}>
 					{label}
 				</label>
 			)}
 			<input
+				style={{ width: width }}
 				onChange={onChange}
 				onBlur={onBlur}
 				placeholder={placeholder}

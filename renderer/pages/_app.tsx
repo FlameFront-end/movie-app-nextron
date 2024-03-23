@@ -22,7 +22,6 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
 	useEffect(() => {
 		const token = getCookie('_token')
-		console.log('token', token)
 
 		if (token) {
 			Api.auth.getMe().then(user => {

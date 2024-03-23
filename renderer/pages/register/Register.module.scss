@@ -21,14 +21,15 @@
   gap: 30px;
 }
 
-.formGroup {
+.row {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  gap: 20px;
+  align-items: center;
 
-.label {
-  color: white;
+  input {
+    width: 100%;
+  }
 }
 
 .input {
@@ -37,9 +38,4 @@
   background: black;
   border: 1px solid white;
   border-radius: 5px;
-}
-
-.error {
-  margin-top: 5px;
-  color: red;
 }

@@ -17,6 +17,17 @@
   }
 }
 
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
 
 
 .header {

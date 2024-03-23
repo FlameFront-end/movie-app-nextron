@@ -4,9 +4,11 @@ export interface LoginFormDTO {
 }
 
 export interface RegisterFormDTO {
+	nick: string
 	email: string
 	password: string
-	image: []
+	password_confir: string
+	ava: File
 }
 
 export interface LoginResponseDTO {
@@ -18,4 +20,6 @@ export type RegisterResponseDTO = LoginResponseDTO
 export type User = {
 	id: number
 	email: string
+	nick: string
+	ava: string
 }

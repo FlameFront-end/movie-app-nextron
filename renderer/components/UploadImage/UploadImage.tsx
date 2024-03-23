@@ -1,11 +1,13 @@
 import React from 'react'
+import { RegisterFormDTO } from '../../api/dto/auth.dto'
+import s from './UploadImage.module.scss'
 
 interface UploadImageProps {
-	setData: React.Dispatch<React.SetStateAction<{ image: any }>>
-	image: any
+	setData: React.Dispatch<React.SetStateAction<RegisterFormDTO>>
+	ava: File
 }
 
-const UploadImage: React.FC<UploadImageProps> = ({ setData, image }) => {
+const UploadImage: React.FC<UploadImageProps> = ({ setData, ava }) => {
 	const handleImageChange = e => {
 		const file = e.target.files[0]
 		if (file) {
@@ -13,7 +15,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ setData, image }) => {
 			reader.onload = () => {
 				setData(prevData => ({
 					...prevData,
-					image: reader.result
+					ava: file
 				}))
 			}
 			reader.readAsDataURL(file)
@@ -23,9 +25,13 @@ const UploadImage: React.FC<UploadImageProps> = ({ setData, image }) => {
 	return (
 		<div>
 			<input type='file' accept='image/*' onChange={handleImageChange} />
-			{image && (
+			{ava && (
 				<div>
-					<img src={image} alt='Uploaded' style={{ maxWidth: '100%' }} />
+					<img
+						src={URL.createObjectURL(ava)}
+						alt='Uploaded image'
+						className={s.image}
+					/>
 				</div>
 			)}
 		</div>

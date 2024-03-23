@@ -1,8 +1,6 @@
 import { isAxiosError } from 'axios'
 import { destroyCookie } from 'nookies'
-
 import axios from '../utils/axios'
-
 import {
 	LoginFormDTO,
 	LoginResponseDTO,
@@ -18,11 +16,13 @@ export const login = async (
 	return response.data
 }
 
-export const register = async (
-	values: RegisterFormDTO
-): Promise<RegisterResponseDTO> => {
+export const register = async (values: any): Promise<RegisterResponseDTO> => {
 	try {
-		const response = await axios.post('/user', values)
+		const response = await axios.post('/user', values, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		})
 		return response.data
 	} catch (error) {
 		if (isAxiosError(error)) {
