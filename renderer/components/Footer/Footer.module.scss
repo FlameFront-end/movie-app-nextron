@@ -1,50 +1,33 @@
-@use '../../styles/index' as *;
-
-.test {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
-
 .footerWrapper {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
   margin-top: 2rem;
-  padding: 6rem 2rem;
+  padding: 2rem 2rem;
 }
 
 .footer {
-  &__content {
-    max-width: 1000px;
+  width: 100% ;
+  max-width: 1000px;
+  .menus {
+    width: 100%;
+    display: flex;
+    align-items: self-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-    &__logo {
-      @include flex(center, center);
-
-      margin-bottom: 3rem;
-    }
-
-    &__menus {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-
-      @include mobile {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    &__menu {
-      @include flex(flex-start, flex-start);
-
-      flex-direction: column;
-      margin-top: 1rem;
-      font-weight: 600;
-      font-size: 1.5rem;
-
-      & > * ~ * {
-        margin-top: 1rem;
-      }
-    }
+  .menu {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
   }
 }

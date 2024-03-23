@@ -1,10 +1,8 @@
 import { FC } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import HeroSlide from '../HeroSlide/HeroSlide'
 import Modal from '../ui/Modal/Modal'
-
 import s from './HeroSlider.module.scss'
 
 const movieItems = [1, 2, 3, 4]
@@ -13,9 +11,9 @@ const HeroSlider: FC = () => {
 	return (
 		<div className={s.heroSlider}>
 			<Swiper
-				// autoplay={{
-				// 	delay: 4000,
-				// }}
+				autoplay={{
+					delay: 4000
+				}}
 				loop={true}
 				grabCursor={true}
 				spaceBetween={0}

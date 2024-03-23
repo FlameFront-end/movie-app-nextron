@@ -8,7 +8,7 @@ interface MyInputProps {
 	type?: string
 	id?: string
 	name: string
-	className: string
+	className?: string
 	value: string
 	label?: string
 	width?: string

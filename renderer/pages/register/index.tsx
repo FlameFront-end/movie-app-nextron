@@ -74,13 +74,7 @@ const RegisterPage: NextPageWithLayout = () => {
 			})
 		}
 
-		const formData = new FormData()
-		formData.append('ava', preparedData.ava as Blob)
-		formData.append('nick', preparedData.nick)
-		formData.append('email', preparedData.email)
-		formData.append('password', preparedData.password)
-
-		const res = await Api.auth.register(formData)
+		const res = await Api.auth.register(data)
 		handleSuccess(res, 'Successful account login')
 	}
 

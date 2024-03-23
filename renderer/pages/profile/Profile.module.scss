@@ -1,0 +1,62 @@
+@use '../../styles/index' as *;
+
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 100px;
+}
+
+.ava {
+  border-radius: 20px;
+}
+
+.edit {
+  padding: 10px;
+  color: black;
+  font-weight: 600;
+  background-color: $white;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+.edit_password {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+  .title_edit {
+    text-align: center;
+  }
+  input {
+    border: 1px solid $white;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.row {
+  display: flex;
+  gap: 30px;
+}
+
+.item {
+  .label {
+    font-size: 15px;
+  }
+  .content {
+    font-weight: 700;
+    font-size: 30px;
+  }
+}

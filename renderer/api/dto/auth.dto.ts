@@ -27,4 +27,5 @@ export type User = {
 	email: string
 	nick: string
 	ava: string
+	password: string
 }
