@@ -56,7 +56,7 @@ const LoginPage: NextPageWithLayout = () => {
 		}
 	}
 
-	const onHandleChange = (value, key) => {
+	const onHandleChange = (value: string, key: any) => {
 		setData(prevData => ({
 			...prevData,
 			[key]: value

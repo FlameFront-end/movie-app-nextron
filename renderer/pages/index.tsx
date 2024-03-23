@@ -1,19 +1,16 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
-
 import { NextPageWithLayout } from './_app'
-
 import HeroSlider from '../components/HeroSlider/HeroSlider'
 import MovieList from '../components/MovieList/MovieList'
 import { OutlineButton } from '../components/ui/MyButton/MyButton'
-
 import Layout from '../layouts/Layout'
 
 const HomePage: NextPageWithLayout = () => {
 	return (
 		<>
-			<HeroSlider />
 			<section>
+				<HeroSlider />
 				<div className='container'>
 					<div className='section mb-3'>
 						<div className='section__header mb-2'>

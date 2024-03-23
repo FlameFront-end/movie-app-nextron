@@ -6,6 +6,7 @@ import {
 	LoginResponseDTO,
 	RegisterFormDTO,
 	RegisterResponseDTO,
+	ResetPasswordDto,
 	User
 } from './dto/auth.dto'
 
@@ -16,7 +17,9 @@ export const login = async (
 	return response.data
 }
 
-export const register = async (values: any): Promise<RegisterResponseDTO> => {
+export const register = async (
+	values: RegisterFormDTO
+): Promise<RegisterResponseDTO> => {
 	try {
 		const response = await axios.post('/user', values, {
 			headers: {
@@ -48,4 +51,29 @@ export const getMe = async (): Promise<User> => {
 
 export const logout = () => {
 	destroyCookie(null, '_token', { path: '/' })
+}
+
+export const resetPassword = async (
+	values: ResetPasswordDto
+): Promise<User> => {
+	try {
+		const response = await axios.patch('/user/reset-password', values)
+		destroyCookie(null, '_token', { path: '/' })
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
 }
