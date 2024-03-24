@@ -4,9 +4,9 @@
 .container {
   display: flex;
   align-items: center;
+  max-width: 800px;
   height: 100%;
   margin: 0 auto;
-  max-width: 800px;
 }
 
 .wrapper {
@@ -47,9 +47,9 @@
 }
 
 .row {
-  width: max-content;
   display: flex;
   gap: 30px;
+  width: max-content;
 }
 
 .item {

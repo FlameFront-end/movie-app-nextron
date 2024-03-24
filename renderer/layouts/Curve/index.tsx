@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { curve, text, translate } from './anim'
 import s from './Curve.module.scss'
 
@@ -13,7 +13,7 @@ const routes = {
 	'/admin-dashboard': 'Admin Dashboard'
 }
 
-const anim = variants => {
+const anim = (variants: any) => {
 	return {
 		variants,
 		initial: 'initial',
@@ -22,7 +22,11 @@ const anim = variants => {
 	}
 }
 
-export default function Curve({ children }: any) {
+interface CurveProps {
+	children: React.ReactNode
+}
+
+const Curve: FC<CurveProps> = ({ children }) => {
 	const router = useRouter()
 	const [dimensions, setDimensions] = useState({
 		width: null,
@@ -61,7 +65,12 @@ export default function Curve({ children }: any) {
 	)
 }
 
-const SVG = ({ height, width }) => {
+interface SVGProps {
+	height: number
+	width: number
+}
+
+const SVG: FC<SVGProps> = ({ height, width }) => {
 	const initialPath = `
         M0 300 
         Q${width / 2} 0 ${width} 300

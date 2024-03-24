@@ -1,13 +1,13 @@
 .curve{
   svg, .background{
     position: fixed;
-    height: calc(100vh + 600px);
-    width: 100vw;
-    pointer-events: none;
-    left: 0;
     top: 0;
+    left: 0;
 
     z-index: 1000;
+    width: 100vw;
+    height: calc(100vh + 600px);
+    pointer-events: none;
   }
 
   .background{
@@ -17,13 +17,13 @@
 
   .route{
     position: absolute;
-    left: 50%;
     top: 40%;
+    left: 50%;
+    z-index: 1001;
     color: white;
     font-size: 46px;
-    z-index: 1001;
-    transform: translateX(-50%);
     text-align: center;
+    transform: translateX(-50%);
 
   }
 

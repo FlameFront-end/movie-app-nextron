@@ -15,7 +15,7 @@ export const text = {
 	}
 }
 
-export const curve = (initialPath, targetPath) => {
+export const curve = (initialPath: string, targetPath: string) => {
 	return {
 		initial: {
 			d: initialPath
