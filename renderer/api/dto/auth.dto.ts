@@ -28,4 +28,5 @@ export type User = {
 	nick: string
 	ava: string
 	password: string
+	isAdmin: boolean
 }

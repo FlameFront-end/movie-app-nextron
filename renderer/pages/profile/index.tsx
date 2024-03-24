@@ -68,9 +68,21 @@ const Profile: NextPageWithLayout = () => {
 					</button>
 				</div>
 				<div className={s.column}>
-					<div className={s.item}>
-						<div className={s.label}>Nickname</div>
-						<div className={s.content}>{snap.user?.nick}</div>
+					<div className={s.row}>
+						<div className={s.item}>
+							<div className={s.label}>Nickname</div>
+							<div className={s.content}>{snap.user?.nick}</div>
+						</div>
+						<div className={s.item}>
+							<div className={s.label}>Admin</div>
+							<div
+								className={`${s.content} ${
+									snap.user?.isAdmin ? 'green' : 'red'
+								}`}
+							>
+								{snap.user?.isAdmin ? 'Yes' : 'No'}
+							</div>
+						</div>
 					</div>
 					<div className={s.item}>
 						<div className={s.label}>Email</div>

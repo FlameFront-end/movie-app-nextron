@@ -1,7 +1,11 @@
-
 .main {
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+
   padding-top: 150px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .main_content {

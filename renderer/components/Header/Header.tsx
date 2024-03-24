@@ -48,6 +48,14 @@ const Header = () => {
 			display: t('TV Series'),
 			path: '/tv'
 		},
+		...(snap.user?.isAdmin
+			? [
+					{
+						display: t('Admin Panel'),
+						path: '/admin-dashboard'
+					}
+				]
+			: []),
 		{
 			display: (
 				<div className={s.profile}>
@@ -62,6 +70,8 @@ const Header = () => {
 			path: '/profile'
 		}
 	]
+
+	console.log('snap', snap.user.isAdmin)
 
 	useEffect(() => {
 		const shrinkHeader = () => {
