@@ -1,15 +1,14 @@
 .footerWrapper {
+  grid-row-start: 2;
+  grid-row-end: 3;
   display: flex;
   justify-content: center;
-  bottom: 0;
-  width: 100%;
-  position: absolute;
   margin-top: 2rem;
   padding: 2rem 2rem;
 }
 
 .footer {
-  width: 100% ;
+  width: 100%;
   max-width: 1000px;
   .menus {
     width: 100%;
