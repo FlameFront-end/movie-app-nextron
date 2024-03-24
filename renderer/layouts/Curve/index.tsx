@@ -93,3 +93,5 @@ const SVG: FC<SVGProps> = ({ height, width }) => {
 		</motion.svg>
 	)
 }
+
+export default Curve
