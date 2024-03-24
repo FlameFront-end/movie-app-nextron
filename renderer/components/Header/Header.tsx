@@ -19,7 +19,7 @@ const Header = () => {
 		},
 		{
 			display: t('Movies'),
-			path: '/catalog'
+			path: '/movies'
 		},
 		{
 			display: t('TV Series'),
@@ -42,7 +42,7 @@ const Header = () => {
 		},
 		{
 			display: t('Movies'),
-			path: '/catalog'
+			path: '/movies'
 		},
 		{
 			display: t('TV Series'),
@@ -51,7 +51,7 @@ const Header = () => {
 		...(snap.user?.isAdmin
 			? [
 					{
-						display: t('Admin Panel'),
+						display: t('Admin Dashboard'),
 						path: '/admin-dashboard'
 					}
 				]
@@ -70,8 +70,6 @@ const Header = () => {
 			path: '/profile'
 		}
 	]
-
-	console.log('snap', snap.user.isAdmin)
 
 	useEffect(() => {
 		const shrinkHeader = () => {

@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import HeroSlide from '../HeroSlide/HeroSlide'
-import Modal from '../ui/Modal/Modal'
 import s from './HeroSlider.module.scss'
 
 const movieItems = [1, 2, 3, 4]

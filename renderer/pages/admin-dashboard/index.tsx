@@ -1,12 +1,12 @@
-import { NextPageWithLayout } from '../_app'
-import Layout from '../../layouts/Layout'
+import { NextPage } from 'next'
+import Curve from '../../layouts/Curve'
 
-const AdminDashboard: NextPageWithLayout = () => {
-	return <div>AdminDashboard</div>
-}
-
-AdminDashboard.getLayout = page => {
-	return <Layout title='Admin Dashboard'>{page}</Layout>
+const AdminDashboard: NextPage = () => {
+	return (
+		<Curve>
+			<div>AdminDashboard</div>
+		</Curve>
+	)
 }
 
 export default AdminDashboard

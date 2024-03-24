@@ -1,7 +1,8 @@
-import type { NextPage } from 'next'
-import { SnackbarProvider } from 'notistack'
-import { ReactElement, ReactNode, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
+import Footer from '../components/Footer/Footer'
+import Header from '../components/Header/Header'
 import * as Api from '../api'
 import '../assets/boxicons-2.0.7/css/boxicons.min.css'
 import { state } from '../state'
@@ -11,15 +12,7 @@ import { getCookie } from '../utils/getCookie'
 import 'react-toastify/dist/ReactToastify.css'
 import 'swiper/css'
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-	getLayout?: (page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-	Component: NextPageWithLayout
-}
-
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps, router }: AppProps) {
 	useEffect(() => {
 		const token = getCookie('_token')
 
@@ -30,18 +23,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 		}
 	}, [])
 
-	const getLayout = Component.getLayout ?? (page => page)
-
-	return getLayout(
-		<SnackbarProvider
-			anchorOrigin={{
-				vertical: 'top',
-				horizontal: 'right'
-			}}
-			maxSnack={2}
-			autoHideDuration={2000}
-		>
-			<Component {...pageProps} />
-		</SnackbarProvider>
+	return (
+		<div className='main'>
+			<Header />
+			<AnimatePresence mode='wait'>
+				<Component key={router.route} {...pageProps} />
+			</AnimatePresence>
+			<Footer />
+		</div>
 	)
 }

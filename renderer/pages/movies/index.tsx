@@ -1,15 +1,12 @@
-import { ReactNode } from 'react'
+import { NextPage } from 'next'
+import Curve from '../../layouts/Curve'
 
-import { NextPageWithLayout } from '../_app'
-
-import Layout from '../../layouts/Layout'
-
-const MoviesPage: NextPageWithLayout = () => {
-	return <div>movies</div>
-}
-
-MoviesPage.getLayout = (page: ReactNode) => {
-	return <Layout title='Movies'>{page}</Layout>
+const MoviesPage: NextPage = () => {
+	return (
+		<Curve>
+			<div>MoviesPage</div>
+		</Curve>
+	)
 }
 
 export default MoviesPage

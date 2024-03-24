@@ -1,17 +1,17 @@
+import { NextPage } from 'next'
 import Image from 'next/image'
-import { ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { useSnapshot } from 'valtio'
-import { NextPageWithLayout } from '../_app'
 import Modal from '../../components/ui/Modal/Modal'
 import MyInput from '../../components/ui/MyInput/MyInput'
 import * as Api from '../../api'
-import Layout from '../../layouts/Layout'
+import Curve from '../../layouts/Curve'
 import { state } from '../../state'
 import { handleSuccess } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
 import s from './Profile.module.scss'
 
-const Profile: NextPageWithLayout = () => {
+const Profile: NextPage = () => {
 	const snap = useSnapshot(state)
 	const [isEditAva, setIsEditAva] = useState(false)
 	const [isEditPassword, setIsEditPassword] = useState(false)
@@ -50,85 +50,83 @@ const Profile: NextPageWithLayout = () => {
 	}
 
 	return (
-		<div className={s.container}>
-			<div className={s.wrapper}>
-				<div className={s.column}>
-					<Image
-						className={s.ava}
-						src={`http://localhost:4000/uploads/ava/${snap.user?.ava}`}
-						alt='ava'
-						width={200}
-						height={200}
-					/>
-					<button
-						onClick={() => setIsEditAva(prevState => !prevState)}
-						className={s.edit}
-					>
-						Edit avatar
-					</button>
-				</div>
-				<div className={s.column}>
-					<div className={s.row}>
-						<div className={s.item}>
-							<div className={s.label}>Nickname</div>
-							<div className={s.content}>{snap.user?.nick}</div>
-						</div>
-						<div className={s.item}>
-							<div className={s.label}>Admin</div>
-							<div
-								className={`${s.content} ${
-									snap.user?.isAdmin ? 'green' : 'red'
-								}`}
-							>
-								{snap.user?.isAdmin ? 'Yes' : 'No'}
-							</div>
-						</div>
-					</div>
-					<div className={s.item}>
-						<div className={s.label}>Email</div>
-						<div className={s.content}>{snap.user?.email}</div>
-					</div>
-					<div className={s.item}>
+		<Curve>
+			<div className={s.container}>
+				<div className={s.wrapper}>
+					<div className={s.column}>
+						<Image
+							className={s.ava}
+							src={`http://localhost:4000/uploads/ava/${snap.user?.ava}`}
+							alt='ava'
+							width={200}
+							height={200}
+						/>
 						<button
-							onClick={() => setIsEditPassword(prevState => !prevState)}
+							onClick={() => setIsEditAva(prevState => !prevState)}
 							className={s.edit}
 						>
+							Edit avatar
+						</button>
+					</div>
+					<div className={s.column}>
+						<div className={s.row}>
+							<div className={s.item}>
+								<div className={s.label}>Nickname</div>
+								<div className={s.content}>{snap.user?.nick}</div>
+							</div>
+							<div className={s.item}>
+								<div className={s.label}>Admin</div>
+								<div
+									className={`${s.content} ${
+										snap.user?.isAdmin ? 'green' : 'red'
+									}`}
+								>
+									{snap.user?.isAdmin ? 'Yes' : 'No'}
+								</div>
+							</div>
+						</div>
+						<div className={s.item}>
+							<div className={s.label}>Email</div>
+							<div className={s.content}>{snap.user?.email}</div>
+						</div>
+						<div className={s.item}>
+							<button
+								onClick={() => setIsEditPassword(prevState => !prevState)}
+								className={s.edit}
+							>
+								Edit password
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<Modal isOpen={isEditPassword} onClose={() => setIsEditPassword(false)}>
+					<div className={s.edit_password}>
+						<h2 className={s.title_edit}>Edit password</h2>
+						<div className={s.row}>
+							<MyInput
+								onChange={e => setOldPassword(e.target.value)}
+								name='old_password'
+								type='password'
+								value={oldPassword}
+								label='Old password'
+							/>
+							<MyInput
+								onChange={e => setNewPassword(e.target.value)}
+								name='new_password'
+								type='password'
+								value={newPassword}
+								label='New password'
+							/>
+						</div>
+						<button onClick={handleEditPassword} className={s.edit}>
 							Edit password
 						</button>
 					</div>
-				</div>
+				</Modal>
 			</div>
-
-			<Modal isOpen={isEditPassword} onClose={() => setIsEditPassword(false)}>
-				<div className={s.edit_password}>
-					<h2 className={s.title_edit}>Edit password</h2>
-					<div className={s.row}>
-						<MyInput
-							onChange={e => setOldPassword(e.target.value)}
-							name='old_password'
-							type='password'
-							value={oldPassword}
-							label='Old password'
-						/>
-						<MyInput
-							onChange={e => setNewPassword(e.target.value)}
-							name='new_password'
-							type='password'
-							value={newPassword}
-							label='New password'
-						/>
-					</div>
-					<button onClick={handleEditPassword} className={s.edit}>
-						Edit password
-					</button>
-				</div>
-			</Modal>
-		</div>
+		</Curve>
 	)
-}
-
-Profile.getLayout = (page: ReactNode) => {
-	return <Layout title='Profile'>{page}</Layout>
 }
 
 export default Profile
