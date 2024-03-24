@@ -9,6 +9,7 @@ const routes = {
 	'/movies': 'Movies',
 	'/tv': 'TV Series',
 	'/login': 'Login',
+	'/profile': 'Profile',
 	'/register': 'Registration',
 	'/admin-dashboard': 'Admin Dashboard'
 }
