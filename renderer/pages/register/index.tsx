@@ -1,13 +1,12 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { ToastContainer } from 'react-toastify'
 import MyButton from '../../components/ui/MyButton/MyButton'
 import MyInput from '../../components/ui/MyInput/MyInput'
 import UploadImage from '../../components/UploadImage/UploadImage'
 import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
-import { handleSuccess } from '../../utils/authHandlers'
+import { handleSuccessLogin } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
 import s from './Register.module.scss'
 
@@ -75,7 +74,7 @@ const RegisterPage: NextPage = () => {
 		}
 
 		const res = await Api.auth.register(data)
-		handleSuccess(res, 'Successful account login')
+		handleSuccessLogin(res)
 	}
 
 	const onHandleChange = (value, key) => {
@@ -137,11 +136,10 @@ const RegisterPage: NextPage = () => {
 								className={s.input}
 							/>
 						</div>
-						<UploadImage setData={setData} ava={data.ava} />
+						<UploadImage setData={setData} image={data.ava} />
 						<MyButton type='submit'>Зарегистрироваться</MyButton>
 					</form>
 				</div>
-				<ToastContainer position='bottom-left' autoClose={2000} />
 			</div>
 		</Curve>
 	)

@@ -1,5 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
-import { useEffect } from 'react'
+import { SnackbarProvider } from 'notistack'
+import React, { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
 import type { AppProps } from 'next/app'
 import Footer from '../components/Footer/Footer'
 import Header from '../components/Header/Header'
@@ -27,7 +29,16 @@ export default function App({ Component, pageProps, router }: AppProps) {
 		<div className='main'>
 			<Header />
 			<AnimatePresence mode='wait'>
-				<Component key={router.route} {...pageProps} />
+				<SnackbarProvider
+					anchorOrigin={{
+						vertical: 'top',
+						horizontal: 'right'
+					}}
+					maxSnack={2}
+					autoHideDuration={2000}
+				>
+					<Component {...pageProps} />
+				</SnackbarProvider>
 			</AnimatePresence>
 			<Footer />
 		</div>

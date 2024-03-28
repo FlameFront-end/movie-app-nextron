@@ -6,7 +6,7 @@ import MyInput from '../../components/ui/MyInput/MyInput'
 import * as Api from '../../api'
 import { LoginFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
-import { handleError, handleSuccess } from '../../utils/authHandlers'
+import { handleSuccessLogin } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
 import s from './Login.module.scss'
 
@@ -50,9 +50,9 @@ const LoginPage: NextPage = () => {
 			}
 
 			const res = await Api.auth.login(data)
-			handleSuccess(res, 'Successful account login')
+			handleSuccessLogin(res)
 		} catch (err) {
-			handleError(err as Error)
+			console.error(err)
 		}
 	}
 

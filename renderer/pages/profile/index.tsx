@@ -7,7 +7,6 @@ import MyInput from '../../components/ui/MyInput/MyInput'
 import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
-import { handleSuccess } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
 import s from './Profile.module.scss'
 
@@ -39,7 +38,7 @@ const Profile: NextPage = () => {
 				new_password: newPassword
 			})
 			.then(res => {
-				handleSuccess(res, 'Successful reset password')
+				console.log('success')
 			})
 			.catch(e => {
 				return showErrorSnackbar({
