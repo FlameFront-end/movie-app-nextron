@@ -79,6 +79,15 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 			.create(data)
 			.then(() => {
 				showSuccessSnackbar(`Фильм ${data.title} успешно создан`)
+				setData({
+					title: '',
+					description: '',
+					actors: [],
+					mainImage: null,
+					mainVideo: null,
+					posterImage: null,
+					trailerVideo: null
+				})
 			})
 			.catch(err => {
 				showErrorSnackbar({ message: 'Что-то пошло не так' })

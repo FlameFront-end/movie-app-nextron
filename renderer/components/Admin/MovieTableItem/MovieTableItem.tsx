@@ -21,22 +21,16 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie }) => {
 	return (
 		<tr className={s.wrapper}>
 			<td>
-				<div className='image_block'>
-					<img
-						src={movie.mainImage}
-						width={40}
-						height={40}
-						className='image'
-						alt='main'
-					/>
+				<div className={s.image_block}>
+					<img src={movie.mainImage} className={s.image} alt='main' />
 				</div>
 			</td>
 			<td>{movie.title}</td>
 			<td>{movie.description}</td>
 			<td>
-				<div className={s.tagsBlock}>
+				<div className={s.actors}>
 					{movie.actors?.map((item, index) => (
-						<div className={s.tag} key={index}>
+						<div className={s.actor} key={index}>
 							{item}
 						</div>
 					))}

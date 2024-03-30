@@ -14,6 +14,8 @@ const MoviesTable: FC = () => {
 		})
 	}, [])
 
+	console.log('movies', movies)
+
 	return (
 		<div className={s.wrapper}>
 			<Table
