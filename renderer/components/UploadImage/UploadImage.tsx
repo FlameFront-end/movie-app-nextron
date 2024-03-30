@@ -7,6 +7,7 @@ interface UploadImageProps {
 	placeholder?: string
 	maxWidth?: string
 	maxHeight?: string
+	id: string
 }
 
 const UploadImage: React.FC<UploadImageProps> = ({
@@ -14,7 +15,8 @@ const UploadImage: React.FC<UploadImageProps> = ({
 	image,
 	placeholder,
 	maxWidth,
-	maxHeight
+	maxHeight,
+	id
 }) => {
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
@@ -45,7 +47,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
 				)}
 			</label>
 			<input
-				id='upload-input'
+				id={id}
 				type='file'
 				accept='image/*'
 				onChange={handleImageChange}

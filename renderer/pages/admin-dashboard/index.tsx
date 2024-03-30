@@ -14,7 +14,7 @@ const AdminDashboard: NextPage = () => {
 	const [data, setData] = useState<CreateFormMovieDto>({
 		title: '',
 		description: '',
-		actors: [],
+		actors: ['sdfsdf', 'sdfsdfsdf'],
 		mainImage: null,
 		mainVideo: null,
 		posterImage: null,
@@ -124,18 +124,18 @@ const AdminDashboard: NextPage = () => {
 							</div>
 							<div className={s.row}>
 								<UploadImage
-									key={1}
 									setValue={(value: File) => onHandleChange(value, 'mainImage')}
 									image={data.mainImage}
 									placeholder='Главное изображение'
+									id='mainImage'
 								/>
 								<UploadImage
-									key={2}
 									setValue={(value: File) =>
 										onHandleChange(value, 'posterImage')
 									}
 									image={data.posterImage}
 									placeholder='Постер'
+									id='posterImage'
 								/>
 							</div>
 							<div className={s.row}>
@@ -144,6 +144,7 @@ const AdminDashboard: NextPage = () => {
 									setValue={(value: File) => onHandleChange(value, 'mainVideo')}
 									image={data.mainVideo}
 									placeholder='Главное видео'
+									id='mainVideo'
 								/>
 								<UploadImage
 									key={2}
@@ -152,6 +153,7 @@ const AdminDashboard: NextPage = () => {
 									}
 									image={data.trailerVideo}
 									placeholder='Трейлер'
+									id='trailerVideo'
 								/>
 							</div>
 						</div>
