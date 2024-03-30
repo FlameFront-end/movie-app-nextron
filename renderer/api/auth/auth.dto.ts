@@ -22,7 +22,7 @@ export interface LoginResponseDTO {
 
 export type RegisterResponseDTO = LoginResponseDTO
 
-export type User = {
+export interface User {
 	id: number
 	email: string
 	nick: string

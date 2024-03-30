@@ -23,6 +23,21 @@ const ActorsTable: FC = () => {
 		})
 	}, [])
 
+	const handleDelete = (id: number) => {
+		Api.actor
+			.remove(id)
+			.then(() => {
+				Api.actor.getAll().then(res => {
+					setAllActors(res)
+				})
+				showSuccessSnackbar(`Актёр был успешно удалён`)
+			})
+			.catch(err => {
+				showErrorSnackbar({ message: 'Что-то пошло не так' })
+				console.error(err)
+			})
+	}
+
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
 
@@ -98,7 +113,11 @@ const ActorsTable: FC = () => {
 				]}
 			>
 				{allActors.map((item, index) => (
-					<ActorTableItem actor={item} key={index} />
+					<ActorTableItem
+						handleDelete={handleDelete}
+						actor={item}
+						key={index}
+					/>
 				))}
 			</Table>
 		</div>

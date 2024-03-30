@@ -5,9 +5,10 @@ import s from './MovieTableItem.module.scss'
 
 interface MovieTableItem {
 	movie: CreateResponseMovieDto
+	handleDelete: (id: number) => void
 }
 
-const MovieTableItem: FC<MovieTableItem> = ({ movie }) => {
+const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 	return (
 		<tr className={s.wrapper}>
 			<td>
@@ -29,7 +30,7 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie }) => {
 			<td>{formatDate(movie.createdAt)}</td>
 			<td>
 				<div className={s.actions_block}>
-					<button>Удалить</button>
+					<button onClick={() => handleDelete(movie.id)}>Удалить</button>
 					<button>Редактировать</button>
 				</div>
 			</td>

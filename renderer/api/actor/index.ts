@@ -49,3 +49,25 @@ export const getAll = async (): Promise<Actor[]> => {
 		}
 	}
 }
+
+export const remove = async (id: number): Promise<Actor> => {
+	try {
+		const response = await axios.delete(`/actors/${id}`)
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
+}
