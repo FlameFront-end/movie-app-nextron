@@ -1,0 +1,51 @@
+.wrapper {
+  margin: 0 auto;
+  thead {
+    td:first-of-type {
+      p {
+        justify-content: start;
+      }
+    }
+    .sortable p {
+      cursor: pointer;
+    }
+    td {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 14px;
+      color: #a0a0ae;
+      padding-right: 5px;
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+      }
+      .active img {
+        transform: scaleY(-1);
+      }
+    }
+  }
+  tbody {
+    tr {
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+    td {
+      min-width: 100px;
+      padding: 15px 5px 15px 0;
+      border-bottom: 1px solid #eaecf1;
+      text-align: center;
+      font-size: 14px;
+      line-height: 15px;
+      &:first-child {
+        text-align: left;
+      }
+    }
+  }
+  .sort_arrow {
+    width: 20px;
+    height: 20px;
+  }
+}
