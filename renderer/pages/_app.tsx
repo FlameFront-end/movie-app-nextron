@@ -1,7 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
 import { SnackbarProvider } from 'notistack'
 import React, { useEffect } from 'react'
-import { ToastContainer } from 'react-toastify'
 import type { AppProps } from 'next/app'
 import Footer from '../components/Footer/Footer'
 import Header from '../components/Header/Header'
@@ -11,7 +10,6 @@ import { state } from '../state'
 import '../styles/App.scss'
 import '../styles/index.scss'
 import { getCookie } from '../utils/getCookie'
-import 'react-toastify/dist/ReactToastify.css'
 import 'swiper/css'
 
 export default function App({ Component, pageProps, router }: AppProps) {
