@@ -85,7 +85,7 @@ const AdminDashboard: NextPage = () => {
 		await Api.movie.create(data)
 	}
 
-	const onHandleChange = (value: any, key: string) => {
+	const onHandleChange = (value: File | string, key: string) => {
 		console.log('key', key)
 		setData(prevData => ({
 			...prevData,

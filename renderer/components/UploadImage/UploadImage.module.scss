@@ -1,6 +1,8 @@
+@use '../../styles/variables' as *;
+
+
 .uploadImageContainer {
   width: 100%;
-
   position: relative;
 }
 
@@ -14,6 +16,7 @@
   width: auto;
   height: auto;
   max-height: 200px;
+  border-radius: $border-radius;
 }
 
 .uploadImagePlaceholder {
@@ -21,9 +24,10 @@
   height: 200px;
   display: flex;
   justify-content: center;
-  border: 2px solid white;
   align-items: center;
-  color: white;
+  color: $txt-color;
+  background-color: $black;
+  border-radius: $border-radius;
 }
 
 .uploadInput {
