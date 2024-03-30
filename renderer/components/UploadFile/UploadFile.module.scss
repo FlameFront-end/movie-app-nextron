@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
 
-  img {
+  img, video {
     width: auto;
     height: auto;
     max-height: 200px;
@@ -38,4 +38,5 @@
 }
 
 .uploadInput {
+  display: none;
 }

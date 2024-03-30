@@ -1,22 +1,24 @@
 import React from 'react'
-import s from './UploadImage.module.scss'
+import s from './UploadFile.module.scss'
 
-interface UploadImageProps {
+interface UploadFileProps {
 	setValue: Function
-	image: File | null
+	file: File | null
 	placeholder?: string
 	maxWidth?: string
 	maxHeight?: string
 	id: string
+	type?: 'image' | 'video'
 }
 
-const UploadImage: React.FC<UploadImageProps> = ({
+const UploadFile: React.FC<UploadFileProps> = ({
 	setValue,
-	image,
+	file,
 	placeholder,
 	maxWidth,
 	maxHeight,
-	id
+	id,
+	type = 'image'
 }) => {
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
@@ -31,14 +33,18 @@ const UploadImage: React.FC<UploadImageProps> = ({
 
 	return (
 		<div className={s.uploadImageContainer}>
-			<label htmlFor='upload-input' className={s.uploadInputLabel}>
-				{image ? (
+			<label htmlFor={id} className={s.uploadInputLabel}>
+				{file ? (
 					<div className={s.imageWrapper}>
-						<img
-							style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
-							src={URL.createObjectURL(image)}
-							alt='Uploaded'
-						/>
+						{type === 'image' ? (
+							<img
+								style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
+								src={URL.createObjectURL(file)}
+								alt='Uploaded'
+							/>
+						) : (
+							<video src={URL.createObjectURL(file)}></video>
+						)}
 					</div>
 				) : (
 					<div className={s.uploadImagePlaceholder}>
@@ -57,4 +63,4 @@ const UploadImage: React.FC<UploadImageProps> = ({
 	)
 }
 
-export default UploadImage
+export default UploadFile

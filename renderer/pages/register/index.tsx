@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import MyButton from '../../components/ui/MyButton/MyButton'
 import MyInput from '../../components/ui/MyInput/MyInput'
-import UploadImage from '../../components/UploadImage/UploadImage'
+import UploadFile from '../../components/UploadFile/UploadFile'
 import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
@@ -136,7 +136,12 @@ const RegisterPage: NextPage = () => {
 								className={s.input}
 							/>
 						</div>
-						<UploadImage setData={setData} image={data.ava} valueName='ava' />
+						<UploadFile
+							setValue={(value: File) => onHandleChange(value, 'ava')}
+							file={data.ava}
+							id='ava'
+							placeholder='Аватарка'
+						/>
 						<MyButton type='submit'>Зарегистрироваться</MyButton>
 					</form>
 				</div>

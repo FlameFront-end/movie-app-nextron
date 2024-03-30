@@ -3,7 +3,7 @@ import React, { FormEvent, useState } from 'react'
 import MyButton from '../../components/ui/MyButton/MyButton'
 import MyInput from '../../components/ui/MyInput/MyInput'
 import TextArea from '../../components/ui/TextArea/TextArea'
-import UploadImage from '../../components/UploadImage/UploadImage'
+import UploadFile from '../../components/UploadFile/UploadFile'
 import * as Api from '../../api'
 import { CreateFormMovieDto } from '../../api/dto/movie.dto'
 import Curve from '../../layouts/Curve'
@@ -123,35 +123,37 @@ const AdminDashboard: NextPage = () => {
 								/>
 							</div>
 							<div className={s.row}>
-								<UploadImage
+								<UploadFile
 									setValue={(value: File) => onHandleChange(value, 'mainImage')}
-									image={data.mainImage}
+									file={data.mainImage}
 									placeholder='Главное изображение'
 									id='mainImage'
 								/>
-								<UploadImage
+								<UploadFile
 									setValue={(value: File) =>
 										onHandleChange(value, 'posterImage')
 									}
-									image={data.posterImage}
+									file={data.posterImage}
 									placeholder='Постер'
 									id='posterImage'
 								/>
 							</div>
 							<div className={s.row}>
-								<UploadImage
+								<UploadFile
 									key={1}
 									setValue={(value: File) => onHandleChange(value, 'mainVideo')}
-									image={data.mainVideo}
+									file={data.mainVideo}
 									placeholder='Главное видео'
+									type='video'
 									id='mainVideo'
 								/>
-								<UploadImage
+								<UploadFile
 									key={2}
 									setValue={(value: File) =>
 										onHandleChange(value, 'trailerVideo')
 									}
-									image={data.trailerVideo}
+									type='video'
+									file={data.trailerVideo}
 									placeholder='Трейлер'
 									id='trailerVideo'
 								/>
