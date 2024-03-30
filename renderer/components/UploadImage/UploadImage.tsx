@@ -2,30 +2,27 @@ import React from 'react'
 import s from './UploadImage.module.scss'
 
 interface UploadImageProps {
-	setData: Function
+	setValue: Function
 	image: File | null
-	valueName: string
+	placeholder?: string
+	maxWidth?: string
+	maxHeight?: string
 }
 
 const UploadImage: React.FC<UploadImageProps> = ({
-	setData,
+	setValue,
 	image,
-	valueName
+	placeholder,
+	maxWidth,
+	maxHeight
 }) => {
-	const onHandleChange = (value: any) => {
-		console.log('valueName', valueName)
-		setData(prevData => ({
-			...prevData,
-			[valueName]: value
-		}))
-	}
-
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
+		console.log('file', file)
 		if (file) {
 			const reader = new FileReader()
 			reader.onload = () => {
-				onHandleChange(file)
+				setValue(file)
 			}
 			reader.readAsDataURL(file)
 		}
@@ -36,12 +33,15 @@ const UploadImage: React.FC<UploadImageProps> = ({
 			<label htmlFor='upload-input' className={s.uploadInputLabel}>
 				{image ? (
 					<img
+						style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
 						src={URL.createObjectURL(image)}
 						alt='Uploaded'
 						className={s.uploadedImage}
 					/>
 				) : (
-					<div className={s.uploadImagePlaceholder}>Upload Image</div>
+					<div className={s.uploadImagePlaceholder}>
+						{placeholder ? placeholder : 'Upload image'}
+					</div>
 				)}
 			</label>
 			<input
