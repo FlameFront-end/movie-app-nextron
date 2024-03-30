@@ -13,7 +13,7 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 		<tr className={s.wrapper}>
 			<td>
 				<div className={s.image_block}>
-					<img src={movie.mainImage} className={s.image} alt='main' />
+					<img src={movie.posterImage} className={s.image} alt='poster' />
 				</div>
 			</td>
 			<td>{movie.title}</td>

@@ -14,13 +14,7 @@ const ActorTableItem: FC<MovieTableItem> = ({ actor, handleDelete }) => {
 		<tr className={s.wrapper}>
 			<td>
 				<div className={s.image_block}>
-					<Image
-						src={actor.ava}
-						width={50}
-						height={50}
-						className={s.image}
-						alt='ava'
-					/>
+					<img src={actor.ava} className={s.image} alt='ava' />
 				</div>
 			</td>
 			<td>{actor.fullName}</td>

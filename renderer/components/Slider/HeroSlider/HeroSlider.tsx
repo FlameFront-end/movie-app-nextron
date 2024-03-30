@@ -1,12 +1,24 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import * as Api from '../../../api'
+import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
+import Modal from '../../ui/Modal/Modal'
 import HeroSlide from '../HeroSlide/HeroSlide'
 import s from './HeroSlider.module.scss'
 
-const movieItems = [1, 2, 3, 4]
-
 const HeroSlider: FC = () => {
+	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
+	const [activeModal, setActiveModal] = useState(false)
+
+	useEffect(() => {
+		Api.movie.getAll().then(res => {
+			setMovies(res)
+		})
+	}, [])
+
+	console.log('activeModal', activeModal)
+
 	return (
 		<div className={s.heroSlider}>
 			<Swiper
@@ -19,23 +31,34 @@ const HeroSlider: FC = () => {
 				slidesPerView={1}
 				modules={[Autoplay]}
 			>
-				{movieItems.map(i => (
-					<SwiperSlide key={i} className={s.slide}>
-						{({ isActive }) => <HeroSlide isActive={isActive} />}
+				{movies.map((movie, index) => (
+					<SwiperSlide key={index} className={s.slide}>
+						{({ isActive }) => (
+							<HeroSlide
+								setActiveModal={setActiveModal}
+								movie={movie}
+								isActive={isActive}
+							/>
+						)}
 					</SwiperSlide>
 				))}
 			</Swiper>
 
-			{/*{movieItems.map((_item, index) => (*/}
-			{/*	<Modal key={index} active={false} id={`modal_1`}>*/}
-			{/*		<iframe*/}
-			{/*			height='500px'*/}
-			{/*			title='trailer'*/}
-			{/*			width='100%'*/}
-			{/*			src='https://www.youtube.com/watch?v=AkW_ce3pgeA'*/}
-			{/*		></iframe>*/}
-			{/*	</Modal>*/}
-			{/*))}*/}
+			{movies.map((item, index) => (
+				<Modal
+					key={index}
+					isOpen={activeModal}
+					className={s.modal}
+					onClose={() => setActiveModal(false)}
+				>
+					<iframe
+						height='500px'
+						title='trailer'
+						width='100%'
+						src={item.trailerVideo}
+					></iframe>
+				</Modal>
+			))}
 		</div>
 	)
 }

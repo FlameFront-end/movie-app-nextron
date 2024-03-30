@@ -2,8 +2,10 @@
 
 
 .wrapper {
-  .image {
-    border-radius: 50%;
+  img {
+    border-radius: 5px;
+    max-height: 100px;
+    width: auto;
   }
   .actions_block {
     display: flex;

@@ -74,9 +74,12 @@ const Modal: React.FC<ModalProps> = ({
 		<>
 			{domLoaded && (
 				<Portal>
-					<div className={classNames(s.modal, mods, [className])}>
+					<div className={classNames(s.modal, mods, [])}>
 						<div className={s.overlay} onClick={closeHandler}>
-							<div className={s.content} onClick={onContentClick}>
+							<div
+								className={`${s.content} ${className}`}
+								onClick={onContentClick}
+							>
 								{children}
 								<div className={s.close} onClick={closeHandler}>
 									<i className='bx bx-x'></i>
