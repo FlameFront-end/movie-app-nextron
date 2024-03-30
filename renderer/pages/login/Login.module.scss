@@ -6,6 +6,7 @@
 }
 
 .container {
+  max-width: 500px;
   width: 100%
 }
 
@@ -41,22 +42,6 @@
   gap: 10px;
 }
 
-.label {
-  color: white;
-}
-
-.input {
-  padding: 8px;
-  color: white;
-  background: black;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-.error {
-  margin-top: 5px;
-  color: red;
-}
 
 .btn {
   max-width: 300px;

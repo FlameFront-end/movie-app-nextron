@@ -99,7 +99,6 @@ const RegisterPage: NextPage = () => {
 								name='email'
 								onChange={e => onHandleChange(e.target.value, 'email')}
 								value={data.email}
-								className={s.input}
 							/>
 							<Input
 								width='100%'
@@ -109,7 +108,6 @@ const RegisterPage: NextPage = () => {
 								name='nick'
 								onChange={e => onHandleChange(e.target.value, 'nick')}
 								value={data.nick}
-								className={s.input}
 							/>
 						</div>
 						<div className={s.row}>
@@ -121,7 +119,6 @@ const RegisterPage: NextPage = () => {
 								name='password'
 								onChange={e => onHandleChange(e.target.value, 'password')}
 								value={data.password}
-								className={s.input}
 							/>
 							<Input
 								width='100%'
@@ -133,7 +130,6 @@ const RegisterPage: NextPage = () => {
 									onHandleChange(e.target.value, 'password_confir')
 								}
 								value={data.password_confir}
-								className={s.input}
 							/>
 						</div>
 						<UploadFile
