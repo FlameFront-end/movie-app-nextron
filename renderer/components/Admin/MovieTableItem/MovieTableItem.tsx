@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { CreateResponseMovieDto } from '../../../api/dto/movie.dto'
+import { formatDate } from '../../../utils/formatDate'
 import s from './MovieTableItem.module.scss'
 
 interface MovieTableItem {
@@ -7,17 +8,6 @@ interface MovieTableItem {
 }
 
 const MovieTableItem: FC<MovieTableItem> = ({ movie }) => {
-	function formatDate(dateString: string) {
-		const date = new Date(dateString)
-		const day = date.getDate()
-		const month = date.getMonth() + 1
-		const year = date.getFullYear()
-
-		return `${day < 10 ? '0' + day : day}.${
-			month < 10 ? '0' + month : month
-		}.${year}`
-	}
-
 	return (
 		<tr className={s.wrapper}>
 			<td>

@@ -1,0 +1,21 @@
+@use '../../../styles/variables' as *;
+
+
+.wrapper {
+  .image {
+    border-radius: 50%;
+  }
+  .actions_block {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    a,
+    button {
+      padding: 10px;
+      color: $txt-color;
+      background: $black;
+      border: none;
+      border-radius: 8px;
+    }
+  }
+}

@@ -45,7 +45,7 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 			})
 		}
 
-		if (!actors.length) {
+		if (!actors?.length) {
 			return showErrorSnackbar({
 				message: 'Актёры не указаны'
 			})

@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
+import ActorsTable from '../../components/Admin/ActorsTable/ActorsTable'
 import CreateMovie from '../../components/Admin/CreateMovie/CreateMovie'
 import MoviesTable from '../../components/Admin/MoviesTable/MoviesTable'
 import Tabs from '../../components/Tabs/Tabs'
@@ -11,7 +12,7 @@ const AdminDashboard: NextPage = () => {
 	const [data, setData] = useState<CreateFormMovieDto>({
 		title: '',
 		description: '',
-		actors: ['sdfsdf', 'sdfsdfsdf'],
+		actors: null,
 		mainImage: null,
 		mainVideo: null,
 		posterImage: null,
@@ -26,11 +27,13 @@ const AdminDashboard: NextPage = () => {
 			case 1:
 				return <MoviesTable />
 			case 2:
-				return <CreateMovie data={data} setData={setData} />
+				return <ActorsTable />
+			case 4:
+				return <ActorsTable />
 		}
 	}
 
-	const tabs = ['Создать фильм', 'Все фильмы', 'Аккаунты']
+	const tabs = ['Создать фильм', 'Все фильмы', 'Актёры', 'Аккаунты']
 
 	return (
 		<Curve>

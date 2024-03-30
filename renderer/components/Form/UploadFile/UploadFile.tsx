@@ -5,10 +5,11 @@ interface UploadFileProps {
 	setValue: Function
 	file: File | null
 	placeholder?: string
-	maxWidth?: string
-	maxHeight?: string
+	maxWidth?: number
+	maxHeight?: number
 	id: string
 	type?: 'image' | 'video'
+	className?: string
 }
 
 const UploadFile: React.FC<UploadFileProps> = ({
@@ -18,7 +19,8 @@ const UploadFile: React.FC<UploadFileProps> = ({
 	maxWidth,
 	maxHeight,
 	id,
-	type = 'image'
+	type = 'image',
+	className
 }) => {
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
@@ -35,10 +37,13 @@ const UploadFile: React.FC<UploadFileProps> = ({
 		<div className={s.uploadImageContainer}>
 			<label htmlFor={id} className={s.uploadInputLabel}>
 				{file ? (
-					<div className={s.fileWrapper}>
+					<div
+						className={`${s.fileWrapper}`}
+						style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
+					>
 						{type === 'image' ? (
 							<img
-								style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
+								className={className}
 								src={URL.createObjectURL(file)}
 								alt='Uploaded'
 							/>
@@ -47,7 +52,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
 						)}
 					</div>
 				) : (
-					<div className={s.uploadImagePlaceholder}>
+					<div className={`${s.uploadImagePlaceholder} ${className}`}>
 						{placeholder ? placeholder : 'Upload image'}
 					</div>
 				)}
