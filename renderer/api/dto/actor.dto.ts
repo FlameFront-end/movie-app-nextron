@@ -4,7 +4,7 @@ export interface CreateActorDTO {
 }
 
 export interface Actor {
-	id: string
+	id: number
 	fullName: string
 	ava: string
 	createdAt: string

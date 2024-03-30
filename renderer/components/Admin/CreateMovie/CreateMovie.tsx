@@ -1,5 +1,6 @@
-import React, { FC, FormEvent } from 'react'
+import React, { FC, FormEvent, useEffect, useState } from 'react'
 import * as Api from '../../../api'
+import { Actor } from '../../../api/dto/actor.dto'
 import { showErrorSnackbar } from '../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../utils/successSnackbar'
 import Input from '../../Form/Input/Input'
@@ -14,6 +15,17 @@ interface CreateMovieProps {
 }
 
 const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
+	const [allActors, setAllActors] = useState<Actor[]>([])
+
+	const [selectedActorsId, setSelectedActorsId] = useState<number[]>([])
+	const [selectedActors, setSelectedActors] = useState<Actor[]>([])
+
+	useEffect(() => {
+		Api.actor.getAll().then(res => {
+			setAllActors(res)
+		})
+	}, [])
+
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
 
@@ -88,6 +100,8 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 					posterImage: null,
 					trailerVideo: null
 				})
+				setSelectedActors([])
+				setSelectedActorsId([])
 			})
 			.catch(err => {
 				showErrorSnackbar({ message: 'Что-то пошло не так' })
@@ -95,16 +109,55 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 			})
 	}
 
-	const onHandleChange = (value: File | string, key: string) => {
+	const onHandleChange = (value: any, key: string) => {
 		setData(prevData => ({
 			...prevData,
 			[key]: value
 		}))
 	}
 
+	useEffect(() => {
+		onHandleChange(selectedActorsId, 'actors')
+	}, [selectedActorsId])
+
+	console.log('data', data)
+
+	const handleActorSelection = (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		const selectedActorId = parseInt(event.target.value)
+		const selectedActor = allActors.find(actor => actor.id === selectedActorId)
+		if (selectedActor) {
+			setSelectedActors(prevActors => [...prevActors, selectedActor])
+			setSelectedActorsId(prevActors => [...prevActors, selectedActor.id])
+			setAllActors(prevActors =>
+				prevActors.filter(actor => actor.id !== selectedActorId)
+			)
+		}
+	}
+
 	return (
 		<form onSubmit={handleSubmit} className={s.form}>
 			<div className={s.content}>
+				<div className={s.column}>
+					<label>Выберите актера:</label>
+					<select onChange={handleActorSelection}>
+						<option value=''>Выберите актера</option>
+						{allActors.map(actor => (
+							<option key={actor.id} value={actor.id}>
+								{actor.fullName}
+							</option>
+						))}
+					</select>
+					<div>
+						<label>Выбранные актеры:</label>
+						<ul>
+							{selectedActors.map(actor => (
+								<li key={actor.id}>{actor.fullName}</li>
+							))}
+						</ul>
+					</div>
+				</div>
 				<div className={s.column}>
 					<Input
 						label='Название'

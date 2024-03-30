@@ -19,9 +19,9 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie }) => {
 			<td>{movie.description}</td>
 			<td>
 				<div className={s.actors}>
-					{movie.actors?.map((item, index) => (
+					{movie.actors?.map((actor, index) => (
 						<div className={s.actor} key={index}>
-							{item}
+							{actor.fullName}
 						</div>
 					))}
 				</div>

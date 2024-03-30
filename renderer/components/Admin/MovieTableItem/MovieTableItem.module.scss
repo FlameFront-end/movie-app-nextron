@@ -17,22 +17,17 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
   }
 
   .actor {
-    background-color: #5f9cf7;
     width: 110px;
-    padding: 10px;
-    border-radius: 300px;
-    margin-bottom: 2px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
     font-weight: 600;
     font-size: 14px;
-    color: #fff;
   }
 
   .actions_block {

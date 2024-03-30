@@ -20,6 +20,7 @@
 }
 
 .row {
+  width: 100%;
   display: flex;
   gap: 30px;
 }
@@ -32,9 +33,11 @@
 
 .label {
   color: white;
+  width: 100%;
 }
 
 .input {
+  width: 100%;
   padding: 8px;
   color: white;
   background: black;

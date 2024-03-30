@@ -1,3 +1,5 @@
+import { Actor } from './actor.dto'
+
 export interface CreateFormMovieDto {
 	title: string
 	description: string
@@ -5,13 +7,13 @@ export interface CreateFormMovieDto {
 	mainImage: File
 	trailerVideo: File
 	mainVideo: File
-	actors: string[]
+	actors: number[]
 }
 
 export interface CreateResponseMovieDto {
 	title: string
 	description: string
-	actors: string[]
+	actors: Actor[]
 	posterImage: string
 	mainImage: string
 	trailerVideo: string
