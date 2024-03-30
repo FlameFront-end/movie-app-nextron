@@ -29,3 +29,25 @@ export const create = async (
 		}
 	}
 }
+
+export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
+	try {
+		const response = await axios.get('/movies')
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
+}

@@ -1,10 +1,18 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
+import * as Api from '../../../api'
+import { CreateResponseMovieDto } from '../../../api/dto/movie.dto'
 import Table from '../../ui/Table/Table'
 import MovieTableItem from '../MovieTableItem/MovieTableItem'
 import s from './MoviesTable.module.scss'
 
 const MoviesTable: FC = () => {
-	const arrTest = [1, 2, 3, 4]
+	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
+
+	useEffect(() => {
+		Api.movie.getAll().then(res => {
+			setMovies(res)
+		})
+	}, [])
 
 	return (
 		<div className={s.wrapper}>
@@ -14,11 +22,12 @@ const MoviesTable: FC = () => {
 					{ title: 'Название' },
 					{ title: 'Описание' },
 					{ title: 'Актёры' },
+					{ title: 'Дата создания' },
 					{ title: 'Действия' }
 				]}
 			>
-				{arrTest.map((item, index) => (
-					<MovieTableItem item={item} key={index} />
+				{movies.map((item, index) => (
+					<MovieTableItem movie={item} key={index} />
 				))}
 			</Table>
 		</div>

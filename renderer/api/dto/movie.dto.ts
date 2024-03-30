@@ -11,7 +11,7 @@ export interface CreateFormMovieDto {
 export interface CreateResponseMovieDto {
 	title: string
 	description: string
-	actors: string
+	actors: string[]
 	posterImage: string
 	mainImage: string
 	trailerVideo: string
