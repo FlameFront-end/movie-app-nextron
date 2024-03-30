@@ -1,5 +1,8 @@
-import { User } from '../api/auth/auth.dto'
+import { proxy } from 'valtio'
+import { StateProps } from '../types/state'
 
-export interface StateProps {
-	user: User
-}
+const state = proxy<StateProps>({
+	user: null
+})
+
+export { state }
