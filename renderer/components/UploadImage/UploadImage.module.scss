@@ -12,12 +12,19 @@
   cursor: pointer;
 }
 
-.uploadedImage {
-  width: auto;
-  height: auto;
-  max-height: 200px;
-  border-radius: $border-radius;
+.imageWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: auto;
+    height: auto;
+    max-height: 200px;
+    border-radius: $border-radius;
+  }
 }
+
 
 .uploadImagePlaceholder {
   width: 100%;

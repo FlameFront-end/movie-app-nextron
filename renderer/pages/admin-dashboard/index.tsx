@@ -8,7 +8,7 @@ import * as Api from '../../api'
 import { CreateFormMovieDto } from '../../api/dto/movie.dto'
 import Curve from '../../layouts/Curve'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
-import s from '../login/Login.module.scss'
+import s from './AdminDashboard.module.scss'
 
 const AdminDashboard: NextPage = () => {
 	const [data, setData] = useState<CreateFormMovieDto>({
@@ -108,10 +108,13 @@ const AdminDashboard: NextPage = () => {
 									type='text'
 									id='title'
 									name='title'
+									placeholder='Название фильма'
 									onChange={e => onHandleChange(e.target.value, 'title')}
 									value={data.title}
 									className={s.input}
 								/>
+							</div>
+							<div className={s.column}>
 								<TextArea
 									placeholder='Описание фильма'
 									label='Описание'
@@ -119,7 +122,7 @@ const AdminDashboard: NextPage = () => {
 									value={data.description}
 								/>
 							</div>
-							<div className={s.column}>
+							<div className={s.row}>
 								<UploadImage
 									key={1}
 									setValue={(value: File) => onHandleChange(value, 'mainImage')}
@@ -133,6 +136,22 @@ const AdminDashboard: NextPage = () => {
 									}
 									image={data.posterImage}
 									placeholder='Постер'
+								/>
+							</div>
+							<div className={s.row}>
+								<UploadImage
+									key={1}
+									setValue={(value: File) => onHandleChange(value, 'mainVideo')}
+									image={data.mainVideo}
+									placeholder='Главное видео'
+								/>
+								<UploadImage
+									key={2}
+									setValue={(value: File) =>
+										onHandleChange(value, 'trailerVideo')
+									}
+									image={data.trailerVideo}
+									placeholder='Трейлер'
 								/>
 							</div>
 						</div>

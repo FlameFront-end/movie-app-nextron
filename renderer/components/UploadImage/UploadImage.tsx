@@ -18,7 +18,6 @@ const UploadImage: React.FC<UploadImageProps> = ({
 }) => {
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
-		console.log('file', file)
 		if (file) {
 			const reader = new FileReader()
 			reader.onload = () => {
@@ -32,12 +31,13 @@ const UploadImage: React.FC<UploadImageProps> = ({
 		<div className={s.uploadImageContainer}>
 			<label htmlFor='upload-input' className={s.uploadInputLabel}>
 				{image ? (
-					<img
-						style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
-						src={URL.createObjectURL(image)}
-						alt='Uploaded'
-						className={s.uploadedImage}
-					/>
+					<div className={s.imageWrapper}>
+						<img
+							style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
+							src={URL.createObjectURL(image)}
+							alt='Uploaded'
+						/>
+					</div>
 				) : (
 					<div className={s.uploadImagePlaceholder}>
 						{placeholder ? placeholder : 'Upload image'}
