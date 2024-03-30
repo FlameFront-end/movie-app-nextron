@@ -6,8 +6,8 @@ import UploadImage from '../../components/UploadImage/UploadImage'
 import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
-import { handleSuccessLogin } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
+import { showSuccessSnackbar } from '../../utils/successSnackbar'
 import s from './Register.module.scss'
 
 const RegisterPage: NextPage = () => {
@@ -33,48 +33,48 @@ const RegisterPage: NextPage = () => {
 
 		if (!email.trim()) {
 			return showErrorSnackbar({
-				message: 'Почта не указана',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Почта не указана'
 			})
 		}
 
 		if (!(email.indexOf('@') >= 0)) {
 			return showErrorSnackbar({
-				message: 'Почта указана некорретно',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Почта указана некорретно'
 			})
 		}
 
 		if (!nick.trim()) {
 			return showErrorSnackbar({
-				message: 'Никнейм не указан',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Никнейм не указан'
 			})
 		}
 
 		if (!password.trim()) {
 			return showErrorSnackbar({
-				message: 'Пароль не указан',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Пароль не указан'
 			})
 		}
 
 		if (password !== password_confir) {
 			return showErrorSnackbar({
-				message: 'Пароли не совпадают',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Пароли не совпадают'
 			})
 		}
 
 		if (password.trim().length < 6) {
 			return showErrorSnackbar({
-				message: 'Пароль не может быть меньше 6 симолов',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Пароль не может быть меньше 6 симолов'
 			})
 		}
 
-		const res = await Api.auth.register(data)
-		handleSuccessLogin(res)
+		await Api.auth
+			.register(data)
+			.then(() => {
+				showSuccessSnackbar('Аккаунт зарегистрован успешно')
+			})
+			.catch(() => {
+				showErrorSnackbar({ message: 'Что-то пошло не так' })
+			})
 	}
 
 	const onHandleChange = (value, key) => {
@@ -136,7 +136,7 @@ const RegisterPage: NextPage = () => {
 								className={s.input}
 							/>
 						</div>
-						<UploadImage setData={setData} image={data.ava} />
+						<UploadImage setData={setData} image={data.ava} valueName='ava' />
 						<MyButton type='submit'>Зарегистрироваться</MyButton>
 					</form>
 				</div>

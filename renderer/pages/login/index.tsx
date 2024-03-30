@@ -8,6 +8,7 @@ import { LoginFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
 import { handleSuccessLogin } from '../../utils/authHandlers'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
+import { showSuccessSnackbar } from '../../utils/successSnackbar'
 import s from './Login.module.scss'
 
 const LoginPage: NextPage = () => {
@@ -30,28 +31,33 @@ const LoginPage: NextPage = () => {
 
 			if (!email.trim()) {
 				return showErrorSnackbar({
-					message: 'Почта не указана',
-					tryAgainMessage: ', пожалуйста, повторите попытку.'
+					message: 'Почта не указана'
 				})
 			}
 
 			if (!(email.indexOf('@') >= 0)) {
 				return showErrorSnackbar({
-					message: 'Почта указана некорретно',
-					tryAgainMessage: ', пожалуйста, повторите попытку.'
+					message: 'Почта указана некорретно'
 				})
 			}
 
 			if (!password.trim()) {
 				return showErrorSnackbar({
-					message: 'Пароль не указан',
-					tryAgainMessage: ', пожалуйста, повторите попытку.'
+					message: 'Пароль не указан'
 				})
 			}
 
-			const res = await Api.auth.login(data)
-			handleSuccessLogin(res)
+			await Api.auth
+				.login(data)
+				.then(res => {
+					showSuccessSnackbar('Успешный вход в аккаунт')
+					handleSuccessLogin(res)
+				})
+				.catch(() => {
+					showErrorSnackbar({ message: 'Что-то пошло не так' })
+				})
 		} catch (err) {
+			showErrorSnackbar({ message: 'Что-то пошло не так' })
 			console.error(err)
 		}
 	}

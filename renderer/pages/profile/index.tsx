@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSnapshot } from 'valtio'
 import Modal from '../../components/ui/Modal/Modal'
@@ -8,9 +9,11 @@ import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
 import { showErrorSnackbar } from '../../utils/errorSnackBar'
+import { showSuccessSnackbar } from '../../utils/successSnackbar'
 import s from './Profile.module.scss'
 
 const Profile: NextPage = () => {
+	const { push } = useRouter()
 	const snap = useSnapshot(state)
 	const [isEditAva, setIsEditAva] = useState(false)
 	const [isEditPassword, setIsEditPassword] = useState(false)
@@ -21,15 +24,13 @@ const Profile: NextPage = () => {
 	const handleEditPassword = async () => {
 		if (!newPassword.trim()) {
 			return showErrorSnackbar({
-				message: 'Пароль не указан',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Пароль не указан'
 			})
 		}
 
 		if (newPassword.trim().length < 6) {
 			return showErrorSnackbar({
-				message: 'Пароль не может быть меньше 6 симолов',
-				tryAgainMessage: ', пожалуйста, повторите попытку.'
+				message: 'Пароль не может быть меньше 6 симолов'
 			})
 		}
 		await Api.auth
@@ -37,17 +38,26 @@ const Profile: NextPage = () => {
 				old_password: oldPassword,
 				new_password: newPassword
 			})
-			.then(res => {
-				console.log('success')
+			.then(() => {
+				showSuccessSnackbar('Пароль изменён успешно')
 			})
-			.catch(e => {
+			.catch(() => {
 				return showErrorSnackbar({
-					message: 'Старый пароль не верный',
-					tryAgainMessage: ', пожалуйста, повторите попытку.'
+					message: 'Старый пароль не верный'
 				})
 			})
 	}
 
+	const handleLogout = () => {
+		push('/login')
+
+		showSuccessSnackbar('Успешный выход из аккаунта')
+
+		setTimeout(() => {
+			Api.auth.logout()
+			state.user = null
+		}, 500)
+	}
 	return (
 		<Curve>
 			<div className={s.container}>
@@ -89,12 +99,18 @@ const Profile: NextPage = () => {
 							<div className={s.content}>{snap.user?.email}</div>
 						</div>
 						<div className={s.item}>
-							<button
-								onClick={() => setIsEditPassword(prevState => !prevState)}
-								className={s.edit}
-							>
-								Edit password
-							</button>
+							<div className={s.row}>
+								<button
+									onClick={() => setIsEditPassword(prevState => !prevState)}
+									className={s.edit}
+								>
+									Edit password
+								</button>
+
+								<button onClick={handleLogout} className={s.edit}>
+									Logout
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
