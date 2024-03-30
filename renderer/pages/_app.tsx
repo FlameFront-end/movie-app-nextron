@@ -28,18 +28,18 @@ export default function App({ Component, pageProps, router }: AppProps) {
 	return (
 		<div className='main'>
 			<Header />
-			<AnimatePresence mode='wait'>
-				<SnackbarProvider
-					anchorOrigin={{
-						vertical: 'top',
-						horizontal: 'right'
-					}}
-					maxSnack={2}
-					autoHideDuration={2000}
-				>
-					<Component {...pageProps} />
-				</SnackbarProvider>
-			</AnimatePresence>
+			<SnackbarProvider
+				anchorOrigin={{
+					vertical: 'top',
+					horizontal: 'right'
+				}}
+				maxSnack={2}
+				autoHideDuration={2000}
+			>
+				<AnimatePresence mode='wait'>
+					<Component key={router.route} {...pageProps} />
+				</AnimatePresence>
+			</SnackbarProvider>
 			<Footer />
 		</div>
 	)
