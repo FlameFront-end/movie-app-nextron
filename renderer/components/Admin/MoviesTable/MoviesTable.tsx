@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import * as Api from '../../../api'
-import { CreateResponseMovieDto } from '../../../api/dto/movie.dto'
+import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
 import Table from '../../ui/Table/Table'
 import MovieTableItem from '../MovieTableItem/MovieTableItem'
 import s from './MoviesTable.module.scss'

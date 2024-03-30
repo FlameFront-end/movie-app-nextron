@@ -1,10 +1,12 @@
 import { isAxiosError } from 'axios'
-import axios from '../utils/axios'
-import { Actor, CreateActorDTO } from './dto/actor.dto'
+import axios from '../../utils/axios'
+import { CreateFormMovieDto, CreateResponseMovieDto } from './movie.dto'
 
-export const create = async (actor: CreateActorDTO): Promise<Actor> => {
+export const create = async (
+	movie: CreateFormMovieDto
+): Promise<CreateResponseMovieDto> => {
 	try {
-		const response = await axios.post('/actors', actor, {
+		const response = await axios.post('/movies', movie, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
@@ -28,9 +30,9 @@ export const create = async (actor: CreateActorDTO): Promise<Actor> => {
 	}
 }
 
-export const getAll = async (): Promise<Actor[]> => {
+export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
 	try {
-		const response = await axios.get('/actors')
+		const response = await axios.get('/movies')
 		return response.data
 	} catch (error) {
 		if (isAxiosError(error)) {

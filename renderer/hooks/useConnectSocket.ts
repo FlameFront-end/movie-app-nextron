@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Socket from '../api/socket'
+import Socket from '../api/socket/socket'
 
 export const useConnectSocket = () => {
 	const [messages, setMessages] = useState([])

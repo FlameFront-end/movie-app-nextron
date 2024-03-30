@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios'
 import { destroyCookie } from 'nookies'
-import axios from '../utils/axios'
+import axios from '../../utils/axios'
 import {
 	LoginFormDTO,
 	LoginResponseDTO,
@@ -8,7 +8,7 @@ import {
 	RegisterResponseDTO,
 	ResetPasswordDto,
 	User
-} from './dto/auth.dto'
+} from './auth.dto'
 
 export const login = async (
 	values: LoginFormDTO

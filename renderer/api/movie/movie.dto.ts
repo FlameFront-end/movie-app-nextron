@@ -1,4 +1,4 @@
-import { Actor } from './actor.dto'
+import { Actor } from '../actor/actor.dto'
 
 export interface CreateFormMovieDto {
 	title: string

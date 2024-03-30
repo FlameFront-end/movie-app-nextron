@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { CreateResponseMovieDto } from '../../../api/dto/movie.dto'
+import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
 import { formatDate } from '../../../utils/formatDate'
 import s from './MovieTableItem.module.scss'
 

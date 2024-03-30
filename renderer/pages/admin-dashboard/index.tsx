@@ -4,7 +4,7 @@ import ActorsTable from '../../components/Admin/ActorsTable/ActorsTable'
 import CreateMovie from '../../components/Admin/CreateMovie/CreateMovie'
 import MoviesTable from '../../components/Admin/MoviesTable/MoviesTable'
 import Tabs from '../../components/Tabs/Tabs'
-import { CreateFormMovieDto } from '../../api/dto/movie.dto'
+import { CreateFormMovieDto } from '../../api/movie/movie.dto'
 import Curve from '../../layouts/Curve'
 import s from './AdminDashboard.module.scss'
 

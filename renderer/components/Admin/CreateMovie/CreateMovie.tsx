@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useEffect, useState } from 'react'
 import * as Api from '../../../api'
-import { Actor } from '../../../api/dto/actor.dto'
+import { Actor } from '../../../api/actor/actor.dto'
 import { showErrorSnackbar } from '../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../utils/successSnackbar'
 import Input from '../../Form/Input/Input'
