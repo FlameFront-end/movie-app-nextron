@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
-import tmovie from '../../public/images/tmovie.png'
-import { state } from '../../state'
+import tmovie from '../../../public/images/tmovie.png'
+import { state } from '../../../state'
 import s from './Header.module.scss'
 
 const Header = () => {
@@ -95,7 +95,7 @@ const Header = () => {
 			<div className={s.header__wrap}>
 				<div className={s.logo}>
 					<Image src={tmovie} width={40} height={40} alt='logo' />
-					<Link href='/'>MovieHub</Link>
+					<Link href='/renderer/public'>MovieHub</Link>
 				</div>
 				<ul className={s.header__nav}>
 					{snap.user ? (

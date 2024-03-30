@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-
-import MyButton, { OutlineButton } from '../ui/MyButton/MyButton'
-
+import Button, { OutlineButton } from '../../ui/Button/Button'
 import s from './HeroSlide.module.scss'
 
 interface HeroSlideProps {
@@ -31,7 +29,7 @@ export const HeroSlide: FC<HeroSlideProps> = ({ isActive }) => {
 					<h2 className={s.title}>{item.title}</h2>
 					<div className={s.overview}>{item.overview}</div>
 					<div className={s.btns}>
-						<MyButton>{t('Watch now')}</MyButton>
+						<Button>{t('Watch now')}</Button>
 						<OutlineButton>{t('Watch trailer')}</OutlineButton>
 					</div>
 				</div>

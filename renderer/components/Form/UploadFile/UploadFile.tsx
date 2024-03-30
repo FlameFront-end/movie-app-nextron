@@ -20,7 +20,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
 	id,
 	type = 'image'
 }) => {
-	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
 		if (file) {
 			const reader = new FileReader()
@@ -35,7 +35,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
 		<div className={s.uploadImageContainer}>
 			<label htmlFor={id} className={s.uploadInputLabel}>
 				{file ? (
-					<div className={s.imageWrapper}>
+					<div className={s.fileWrapper}>
 						{type === 'image' ? (
 							<img
 								style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
@@ -55,8 +55,8 @@ const UploadFile: React.FC<UploadFileProps> = ({
 			<input
 				id={id}
 				type='file'
-				accept='image/*'
-				onChange={handleImageChange}
+				accept={type === 'image' ? 'image/*' : 'video/*'}
+				onChange={handleFileChange}
 				className={s.uploadInput}
 			/>
 		</div>

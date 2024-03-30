@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
-
-import MyButton from '../ui/MyButton/MyButton'
-
+import Button from '../../ui/Button/Button'
 import s from './MovieCard.module.scss'
 
 interface MovieCardProps {
@@ -21,9 +19,9 @@ const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, name, title }) => {
 					className={s.movieCard}
 					style={{ backgroundImage: `url(${backgroundImgUrl})` }}
 				>
-					<MyButton className={s.btn}>
+					<Button className={s.btn}>
 						<i className='bx bx-play'></i>
-					</MyButton>
+					</Button>
 				</div>
 				<h3 className={s.cardTitle}>{title || name}</h3>
 			</>

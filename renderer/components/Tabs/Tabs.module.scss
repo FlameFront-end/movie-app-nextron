@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  li {
+    margin-right: 30px;
+    cursor: pointer;
+    background: transparent;
+    padding: 9px 0;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    img {
+      margin-right: 10px;
+    }
+    &.active {
+      border-bottom: 3px solid #3f53d8;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

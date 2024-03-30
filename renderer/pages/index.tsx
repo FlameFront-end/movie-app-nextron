@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import HeroSlider from '../components/HeroSlider/HeroSlider'
-import MovieList from '../components/MovieList/MovieList'
-import { OutlineButton } from '../components/ui/MyButton/MyButton'
+import MovieList from '../components/Movie/MovieList/MovieList'
+import HeroSlider from '../components/Slider/HeroSlider/HeroSlider'
+import { OutlineButton } from '../components/ui/Button/Button'
 import Curve from '../layouts/Curve'
 
 const HomePage: NextPage = () => {

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import s from './MyButton.module.scss'
+import s from './Button.module.scss'
 
 interface MyButtonProps {
 	children?: React.ReactNode
@@ -9,7 +8,7 @@ interface MyButtonProps {
 	type?: 'submit' | 'reset' | undefined
 }
 
-const MyButton: React.FC<MyButtonProps> = ({
+const Button: React.FC<MyButtonProps> = ({
 	children,
 	className,
 	onClick,
@@ -33,14 +32,14 @@ export const OutlineButton: React.FC<MyButtonProps> = ({
 	type
 }) => {
 	return (
-		<MyButton
+		<Button
 			type={type}
 			className={`${s.btnOutline} ${className || ''}`}
 			onClick={onClick}
 		>
 			{children}
-		</MyButton>
+		</Button>
 	)
 }
 
-export default MyButton
+export default Button

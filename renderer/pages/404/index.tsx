@@ -1,8 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-
-import MyButton from '../../components/ui/MyButton/MyButton'
-
+import Button from '../../components/ui/Button/Button'
 import s from './ErrorPage.module.scss'
 
 const ErrorPage: NextPage = () => {
@@ -57,7 +55,7 @@ const ErrorPage: NextPage = () => {
 			<div className={s.text}>
 				<h2>Page Not Found</h2>
 				<Link href='/'>
-					<MyButton>Go To Home</MyButton>
+					<Button>Go To Home</Button>
 				</Link>
 			</div>
 		</div>

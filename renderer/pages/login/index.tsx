@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
-import MyButton from '../../components/ui/MyButton/MyButton'
-import MyInput from '../../components/ui/MyInput/MyInput'
+import Input from '../../components/Form/Input/Input'
+import Button from '../../components/ui/Button/Button'
 import * as Api from '../../api'
 import { LoginFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
@@ -75,7 +75,7 @@ const LoginPage: NextPage = () => {
 				<div className={s.container}>
 					<h1 className={s.title}>Авторизация</h1>
 					<form onSubmit={handleSubmit} className={s.form}>
-						<MyInput
+						<Input
 							label='Email'
 							type='text'
 							id='email'
@@ -84,7 +84,7 @@ const LoginPage: NextPage = () => {
 							value={data.email}
 							className={s.input}
 						/>
-						<MyInput
+						<Input
 							label='Пароль'
 							type='password'
 							id='password'
@@ -93,7 +93,7 @@ const LoginPage: NextPage = () => {
 							value={data.password}
 							className={s.input}
 						/>
-						<MyButton type='submit'>Войти</MyButton>
+						<Button type='submit'>Войти</Button>
 					</form>
 				</div>
 				<ToastContainer position='bottom-left' autoClose={2000} />

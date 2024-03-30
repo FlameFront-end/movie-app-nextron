@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import PageHeader from '../../components/PageHeader/PageHeader'
+import PageHeader from '../../components/ui/PageHeader/PageHeader'
 import Curve from '../../layouts/Curve'
 
 const CatalogPage: NextPage = () => {

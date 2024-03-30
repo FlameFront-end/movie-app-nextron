@@ -1,13 +1,10 @@
 import { NextPage } from 'next'
-import React, { FormEvent, useState } from 'react'
-import MyButton from '../../components/ui/MyButton/MyButton'
-import MyInput from '../../components/ui/MyInput/MyInput'
-import TextArea from '../../components/ui/TextArea/TextArea'
-import UploadFile from '../../components/UploadFile/UploadFile'
-import * as Api from '../../api'
+import React, { useState } from 'react'
+import CreateMovie from '../../components/Admin/CreateMovie/CreateMovie'
+import MoviesTable from '../../components/Admin/MoviesTable/MoviesTable'
+import Tabs from '../../components/Tabs/Tabs'
 import { CreateFormMovieDto } from '../../api/dto/movie.dto'
 import Curve from '../../layouts/Curve'
-import { showErrorSnackbar } from '../../utils/errorSnackBar'
 import s from './AdminDashboard.module.scss'
 
 const AdminDashboard: NextPage = () => {
@@ -20,149 +17,32 @@ const AdminDashboard: NextPage = () => {
 		posterImage: null,
 		trailerVideo: null
 	})
+	const [active, setActive] = useState(0)
 
-	const handleSubmit = async (e: FormEvent) => {
-		e.preventDefault()
-
-		const preparedData = {
-			...data,
-			title: data.title?.trim(),
-			description: data.title?.trim()
+	const renderBlock = (active: number) => {
+		switch (active) {
+			case 0:
+				return <CreateMovie data={data} setData={setData} />
+			case 1:
+				return <MoviesTable />
+			case 2:
+				return <CreateMovie data={data} setData={setData} />
 		}
-
-		const {
-			title,
-			description,
-			actors,
-			trailerVideo,
-			mainVideo,
-			mainImage,
-			posterImage
-		} = preparedData
-
-		if (!title.trim()) {
-			return showErrorSnackbar({
-				message: 'Название не указано'
-			})
-		}
-
-		if (!description.trim()) {
-			return showErrorSnackbar({
-				message: 'Описание не указано'
-			})
-		}
-
-		if (!actors.length) {
-			return showErrorSnackbar({
-				message: 'Актёры не указаны'
-			})
-		}
-
-		if (!trailerVideo) {
-			return showErrorSnackbar({
-				message: 'Трейлер не загружен'
-			})
-		}
-
-		if (!mainVideo) {
-			return showErrorSnackbar({
-				message: 'Фильм не загружен'
-			})
-		}
-
-		if (!mainImage) {
-			return showErrorSnackbar({
-				message: 'Главное изображение не загружено'
-			})
-		}
-
-		if (!posterImage) {
-			return showErrorSnackbar({
-				message: 'Постер не загружен'
-			})
-		}
-
-		await Api.movie.create(data)
 	}
 
-	const onHandleChange = (value: File | string, key: string) => {
-		console.log('key', key)
-		setData(prevData => ({
-			...prevData,
-			[key]: value
-		}))
-	}
-
-	console.log('data', data)
+	const tabs = ['Создать фильм', 'Все фильмы', 'Аккаунты']
 
 	return (
 		<Curve>
 			<div className={s.wrapper}>
 				<div className={s.container}>
-					<h1 className={s.title}>Панель администратора</h1>
-					<form onSubmit={handleSubmit} className={s.form}>
-						<div className={s.content}>
-							<div className={s.column}>
-								<MyInput
-									label='Название'
-									type='text'
-									id='title'
-									name='title'
-									placeholder='Название фильма'
-									onChange={e => onHandleChange(e.target.value, 'title')}
-									value={data.title}
-									className={s.input}
-								/>
-							</div>
-							<div className={s.column}>
-								<TextArea
-									placeholder='Описание фильма'
-									label='Описание'
-									onChange={e => onHandleChange(e, 'description')}
-									value={data.description}
-								/>
-							</div>
-							<div className={s.row}>
-								<UploadFile
-									setValue={(value: File) => onHandleChange(value, 'mainImage')}
-									file={data.mainImage}
-									placeholder='Главное изображение'
-									id='mainImage'
-								/>
-								<UploadFile
-									setValue={(value: File) =>
-										onHandleChange(value, 'posterImage')
-									}
-									file={data.posterImage}
-									placeholder='Постер'
-									id='posterImage'
-								/>
-							</div>
-							<div className={s.row}>
-								<UploadFile
-									key={1}
-									setValue={(value: File) => onHandleChange(value, 'mainVideo')}
-									file={data.mainVideo}
-									placeholder='Главное видео'
-									type='video'
-									id='mainVideo'
-								/>
-								<UploadFile
-									key={2}
-									setValue={(value: File) =>
-										onHandleChange(value, 'trailerVideo')
-									}
-									type='video'
-									file={data.trailerVideo}
-									placeholder='Трейлер'
-									id='trailerVideo'
-								/>
-							</div>
-						</div>
-						<MyButton className={s.btn} type='submit'>
-							Создать фильм
-						</MyButton>
-					</form>
+					<Tabs
+						array={tabs}
+						active={active}
+						onChange={setActive}
+						className={s.admin_tabs}
+					/>
+					{renderBlock(active)}
 				</div>
 			</div>
 		</Curve>

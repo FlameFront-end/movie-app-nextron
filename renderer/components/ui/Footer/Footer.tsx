@@ -10,23 +10,23 @@ const Footer = () => {
 			<footer className={s.footer}>
 				<div className={s.menus}>
 					<div className={s.menu}>
-						<Link href='/' className='accent-red-500'>
+						<Link href='/renderer/public' className='accent-red-500'>
 							{t('Home')}
 						</Link>
-						<Link href='/'>{t('Contact us')}</Link>
-						<Link href='/'>{t('Term of services')}</Link>
-						<Link href='/'>{t('About us')}</Link>
+						<Link href='/renderer/public'>{t('Contact us')}</Link>
+						<Link href='/renderer/public'>{t('Term of services')}</Link>
+						<Link href='/renderer/public'>{t('About us')}</Link>
 					</div>
 					<div className={s.menu}>
-						<Link href='/'>{t('Live')}</Link>
-						<Link href='/'>{t('FAQ')}</Link>
-						<Link href='/'>{t('Premium')}</Link>
-						<Link href='/'>{t('Term of services')}</Link>
-						<Link href='/'>{t('Privacy policy')}</Link>
+						<Link href='/renderer/public'>{t('Live')}</Link>
+						<Link href='/renderer/public'>{t('FAQ')}</Link>
+						<Link href='/renderer/public'>{t('Premium')}</Link>
+						<Link href='/renderer/public'>{t('Term of services')}</Link>
+						<Link href='/renderer/public'>{t('Privacy policy')}</Link>
 					</div>
 					<div className={s.menu}>
-						<Link href='/'>{t('You must watch')}</Link>
-						<Link href='/'>{t('Recent release')}</Link>
+						<Link href='/renderer/public'>{t('You must watch')}</Link>
+						<Link href='/renderer/public'>{t('Recent release')}</Link>
 						<Link
 							target='_blank'
 							href='https://flamefront-end.github.io/kaliganov-frontend/'

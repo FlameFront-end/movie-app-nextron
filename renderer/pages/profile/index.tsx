@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSnapshot } from 'valtio'
+import Input from '../../components/Form/Input/Input'
 import Modal from '../../components/ui/Modal/Modal'
-import MyInput from '../../components/ui/MyInput/MyInput'
 import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
@@ -119,14 +119,14 @@ const Profile: NextPage = () => {
 					<div className={s.edit_password}>
 						<h2 className={s.title_edit}>Edit password</h2>
 						<div className={s.row}>
-							<MyInput
+							<Input
 								onChange={e => setOldPassword(e.target.value)}
 								name='old_password'
 								type='password'
 								value={oldPassword}
 								label='Old password'
 							/>
-							<MyInput
+							<Input
 								onChange={e => setNewPassword(e.target.value)}
 								name='new_password'
 								type='password'

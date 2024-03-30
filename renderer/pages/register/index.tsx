@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import MyButton from '../../components/ui/MyButton/MyButton'
-import MyInput from '../../components/ui/MyInput/MyInput'
-import UploadFile from '../../components/UploadFile/UploadFile'
+import Input from '../../components/Form/Input/Input'
+import UploadFile from '../../components/Form/UploadFile/UploadFile'
+import Button from '../../components/ui/Button/Button'
 import * as Api from '../../api'
 import { RegisterFormDTO } from '../../api/dto/auth.dto'
 import Curve from '../../layouts/Curve'
@@ -91,7 +91,7 @@ const RegisterPage: NextPage = () => {
 					<h1 className={s.title}>Регистрация</h1>
 					<form onSubmit={handleSubmit} className={s.form}>
 						<div className={s.row}>
-							<MyInput
+							<Input
 								width='100%'
 								label='Email'
 								type='text'
@@ -101,7 +101,7 @@ const RegisterPage: NextPage = () => {
 								value={data.email}
 								className={s.input}
 							/>
-							<MyInput
+							<Input
 								width='100%'
 								label='Никнейм'
 								type='nick'
@@ -113,7 +113,7 @@ const RegisterPage: NextPage = () => {
 							/>
 						</div>
 						<div className={s.row}>
-							<MyInput
+							<Input
 								width='100%'
 								label='Пароль'
 								type='password'
@@ -123,7 +123,7 @@ const RegisterPage: NextPage = () => {
 								value={data.password}
 								className={s.input}
 							/>
-							<MyInput
+							<Input
 								width='100%'
 								label='Подтверждение пароля'
 								type='password'
@@ -142,7 +142,7 @@ const RegisterPage: NextPage = () => {
 							id='ava'
 							placeholder='Аватарка'
 						/>
-						<MyButton type='submit'>Зарегистрироваться</MyButton>
+						<Button type='submit'>Зарегистрироваться</Button>
 					</form>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import s from './MyInput.module.scss'
+import s from './Input.module.scss'
 
 interface MyInputProps {
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -14,7 +14,7 @@ interface MyInputProps {
 	width?: string
 }
 
-const MyInput: React.FC<MyInputProps> = ({
+const Input: React.FC<MyInputProps> = ({
 	onChange,
 	onBlur,
 	placeholder,
@@ -48,4 +48,4 @@ const MyInput: React.FC<MyInputProps> = ({
 	)
 }
 
-export default MyInput
+export default Input
