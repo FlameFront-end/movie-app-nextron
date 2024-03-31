@@ -1,8 +1,9 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import ActorsTable from '../../components/Admin/ActorsTable/ActorsTable'
-import CreateMovie from '../../components/Admin/CreateMovie/CreateMovie'
-import MoviesTable from '../../components/Admin/MoviesTable/MoviesTable'
+import ActorsTable from '../../components/Admin/Actors/ActorsTable/ActorsTable'
+import CreateMovie from '../../components/Admin/Movies/CreateMovie/CreateMovie'
+import MoviesTable from '../../components/Admin/Movies/MoviesTable/MoviesTable'
+import UsersTable from '../../components/Admin/Users/UsersTable/UsersTable'
 import Tabs from '../../components/Tabs/Tabs'
 import { CreateFormMovieDto } from '../../api/movie/movie.dto'
 import Curve from '../../layouts/Curve'
@@ -29,8 +30,8 @@ const AdminDashboard: NextPage = () => {
 				return <MoviesTable />
 			case 2:
 				return <ActorsTable />
-			case 4:
-				return <ActorsTable />
+			case 3:
+				return <UsersTable />
 		}
 	}
 

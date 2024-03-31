@@ -29,4 +29,5 @@ export interface User {
 	ava: string
 	password: string
 	isAdmin: boolean
+	createdAt: string
 }

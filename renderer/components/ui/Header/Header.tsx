@@ -59,11 +59,7 @@ const Header = () => {
 		{
 			display: (
 				<div className={s.profile}>
-					<Image
-						src={`http://localhost:4000/uploads/ava/${snap.user?.ava}`}
-						width={50}
-						height={50}
-					/>
+					<Image src={snap.user?.ava} width={50} height={50} />
 					<div>{snap.user?.nick}</div>
 				</div>
 			),

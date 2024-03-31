@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { Actor } from '../../../api/actor/actor.dto'
-import { formatDate } from '../../../utils/formatDate'
+import { Actor } from '../../../../api/actor/actor.dto'
+import { formatDate } from '../../../../utils/formatDate'
 import s from './ActorTableItem.module.scss'
 
 interface MovieTableItem {
