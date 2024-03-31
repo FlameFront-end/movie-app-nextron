@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import { ToastContainer } from 'react-toastify'
 import Input from '../../components/Form/Input/Input'
 import Button from '../../components/ui/Button/Button'
 import * as Api from '../../api'
@@ -96,7 +95,6 @@ const LoginPage: NextPage = () => {
 						<Button type='submit'>Войти</Button>
 					</form>
 				</div>
-				<ToastContainer position='bottom-left' autoClose={2000} />
 			</div>
 		</Curve>
 	)
