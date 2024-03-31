@@ -107,10 +107,10 @@
   @include flex(center, flex-start);
 
   img {
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
 
     max-height: 500px;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
 
     transform: scale(0);
     transition: transform 0.7s ease;

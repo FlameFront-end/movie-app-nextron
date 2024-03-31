@@ -2,20 +2,20 @@
 
 
 .uploadImageContainer {
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 .uploadInputLabel {
-  width: 100%;
   display: inline-block;
+  width: 100%;
   cursor: pointer;
 }
 
 .fileWrapper {
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
 
   img, video {
     width: auto;
@@ -27,11 +27,11 @@
 
 
 .uploadImagePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: $txt-color;
   background-color: $black;
   border-radius: $border-radius;

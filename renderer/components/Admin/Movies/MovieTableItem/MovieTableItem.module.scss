@@ -16,27 +16,26 @@
 
   .actors {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
     gap: 5px;
+    align-items: center;
+    justify-content: center;
   }
 
   .actor {
     width: 110px;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-
     font-weight: 600;
     font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .actions_block {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 10px;
+    justify-content: center;
     a,
     button {
       padding: 10px;

@@ -1,11 +1,11 @@
 @use '../../../../styles/variables' as *;
 
 .wrapper {
-  margin-top: 20px;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
