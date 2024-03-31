@@ -1,6 +1,7 @@
-import React, { FC, FormEvent, useEffect, useState } from 'react'
+import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react'
 import * as Api from '../../../api'
 import { Actor } from '../../../api/actor/actor.dto'
+import { CreateFormMovieDto } from '../../../api/movie/movie.dto'
 import { showErrorSnackbar } from '../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../utils/successSnackbar'
 import Input from '../../Form/Input/Input'
@@ -10,7 +11,7 @@ import Button from '../../ui/Button/Button'
 import s from './CreateMovie.module.scss'
 
 interface CreateMovieProps {
-	data: any
+	data: CreateFormMovieDto
 	setData: Function
 }
 
@@ -19,12 +20,7 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 
 	const [selectedActorsId, setSelectedActorsId] = useState<number[]>([])
 	const [selectedActors, setSelectedActors] = useState<Actor[]>([])
-
-	useEffect(() => {
-		Api.actor.getAll().then(res => {
-			setAllActors(res)
-		})
-	}, [])
+	const [tag, setTag] = useState('')
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
@@ -109,18 +105,25 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 			})
 	}
 
-	const onHandleChange = (value: any, key: string) => {
-		setData(prevData => ({
-			...prevData,
-			[key]: value
-		}))
+	const onHandleChange = useCallback(
+		(value: any, key: string) => {
+			setData((prevData: CreateFormMovieDto) => ({
+				...prevData,
+				[key]: value
+			}))
+		},
+		[setData]
+	)
+
+	const handleAddTag = () => {
+		if (tag.trim() !== '') {
+			setData((prevData: CreateFormMovieDto) => ({
+				...prevData,
+				tags: [...data.tags, tag]
+			}))
+			setTag('')
+		}
 	}
-
-	useEffect(() => {
-		onHandleChange(selectedActorsId, 'actors')
-	}, [selectedActorsId])
-
-	console.log('data', data)
 
 	const handleActorSelection = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -136,28 +139,19 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 		}
 	}
 
+	useEffect(() => {
+		Api.actor.getAll().then(res => {
+			setAllActors(res)
+		})
+	}, [])
+
+	useEffect(() => {
+		onHandleChange(selectedActorsId, 'actors')
+	}, [onHandleChange, selectedActorsId])
+
 	return (
 		<form onSubmit={handleSubmit} className={s.form}>
 			<div className={s.content}>
-				<div className={s.column}>
-					<label>Выберите актера:</label>
-					<select onChange={handleActorSelection}>
-						<option value=''>Выберите актера</option>
-						{allActors.map(actor => (
-							<option key={actor.id} value={actor.id}>
-								{actor.fullName}
-							</option>
-						))}
-					</select>
-					<div>
-						<label>Выбранные актеры:</label>
-						<ul>
-							{selectedActors.map(actor => (
-								<li key={actor.id}>{actor.fullName}</li>
-							))}
-						</ul>
-					</div>
-				</div>
 				<div className={s.column}>
 					<Input
 						label='Название'
@@ -169,6 +163,53 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 						value={data.title}
 						className={s.input}
 					/>
+				</div>
+				<div className={s.column}>
+					<div className={s.row}>
+						<div className={s.row_item}>
+							<select onChange={handleActorSelection}>
+								<option value='' className={s.test}>
+									Выберите актера
+								</option>
+								{allActors.map(actor => (
+									<option key={actor.id} value={actor.id}>
+										{actor.fullName}
+									</option>
+								))}
+							</select>
+							<div>
+								<ul className={s.list}>
+									{selectedActors.map(actor => (
+										<li key={actor.id}>{actor.fullName}</li>
+									))}
+								</ul>
+							</div>
+						</div>
+						<div className={s.row_item}>
+							<div className={s.row}>
+								<Input
+									type='text'
+									value={tag}
+									onChange={e => setTag(e.target.value)}
+									placeholder='Добавить тег'
+									name='tag'
+									width='100%'
+								/>
+								<button
+									type='button'
+									className={s.add_tag}
+									onClick={handleAddTag}
+								>
+									Добавить тег
+								</button>
+							</div>
+							<div>
+								<ul className={s.list}>
+									{data.tags?.map((tag, index) => <li key={index}>{tag}</li>)}
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className={s.column}>
 					<TextArea

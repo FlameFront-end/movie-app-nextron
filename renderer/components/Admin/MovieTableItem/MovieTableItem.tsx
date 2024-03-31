@@ -20,6 +20,15 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 			<td>{movie.description}</td>
 			<td>
 				<div className={s.actors}>
+					{movie.tags?.map((tag, index) => (
+						<div className={s.actor} key={index}>
+							{tag}
+						</div>
+					))}
+				</div>
+			</td>
+			<td>
+				<div className={s.actors}>
 					{movie.actors?.map((actor, index) => (
 						<div className={s.actor} key={index}>
 							{actor.fullName}
@@ -30,8 +39,8 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 			<td>{formatDate(movie.createdAt)}</td>
 			<td>
 				<div className={s.actions_block}>
-					<button onClick={() => handleDelete(movie.id)}>Удалить</button>
 					<button>Редактировать</button>
+					<button onClick={() => handleDelete(movie.id)}>Удалить</button>
 				</div>
 			</td>
 		</tr>

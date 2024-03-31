@@ -34,6 +34,7 @@
 
   .actions_block {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 10px;
     a,

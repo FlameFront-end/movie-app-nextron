@@ -16,6 +16,8 @@ const MoviesTable: FC = () => {
 		})
 	}, [])
 
+	console.log('movies', movies)
+
 	const handleDelete = (id: number) => {
 		Api.movie
 			.remove(id)
@@ -38,6 +40,7 @@ const MoviesTable: FC = () => {
 					{ title: 'Главное изображение' },
 					{ title: 'Название' },
 					{ title: 'Описание' },
+					{ title: 'Теги' },
 					{ title: 'Актёры' },
 					{ title: 'Дата создания' },
 					{ title: 'Действия' }

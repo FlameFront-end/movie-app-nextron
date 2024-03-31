@@ -12,7 +12,8 @@ const AdminDashboard: NextPage = () => {
 	const [data, setData] = useState<CreateFormMovieDto>({
 		title: '',
 		description: '',
-		actors: null,
+		tags: [],
+		actors: [],
 		mainImage: null,
 		mainVideo: null,
 		posterImage: null,
