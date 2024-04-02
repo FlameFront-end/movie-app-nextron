@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Input from '../../components/Form/Input/Input'
 import UploadFile from '../../components/Form/UploadFile/UploadFile'
@@ -18,6 +19,8 @@ const RegisterPage: NextPage = () => {
 		password_confir: '',
 		ava: null
 	})
+
+	const router = useRouter()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -71,6 +74,7 @@ const RegisterPage: NextPage = () => {
 			.register(data)
 			.then(() => {
 				showSuccessSnackbar('Аккаунт зарегистрован успешно')
+				router.push('/login')
 			})
 			.catch(() => {
 				showErrorSnackbar({ message: 'Что-то пошло не так' })
