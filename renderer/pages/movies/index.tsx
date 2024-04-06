@@ -4,7 +4,9 @@ import Curve from '../../layouts/Curve'
 const MoviesPage: NextPage = () => {
 	return (
 		<Curve>
-			<div>MoviesPage</div>
+			<div className='wrapper'>
+				<div>MoviesPage</div>
+			</div>
 		</Curve>
 	)
 }

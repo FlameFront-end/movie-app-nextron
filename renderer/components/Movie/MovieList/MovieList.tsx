@@ -1,22 +1,29 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import * as Api from '../../../api'
+import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
 import MovieCard from '../MovieCard/MovieCard'
-
 import s from './MovieList.module.scss'
 
 const MovieList: FC = () => {
-	const items = [1, 2, 3, 4, 5, 6, 7, 8]
+	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
+
+	useEffect(() => {
+		Api.movie.getAll().then(res => {
+			setMovies(res)
+		})
+	}, [])
+
 	return (
 		<div className={s.movieList}>
 			<Swiper grabCursor={true} slidesPerView={'auto'} spaceBetween={10}>
-				{items.map(i => (
-					<SwiperSlide key={i} className={s.swiperSlide}>
+				{movies.map((item, index) => (
+					<SwiperSlide key={index} className={s.swiperSlide}>
 						<MovieCard
-							backgroundImgUrl='https://w.forfun.com/fetch/03/03f8cd3f6796daaacc1fe43ffb7704b7.jpeg'
+							backgroundImgUrl={item.posterImage}
 							category='test'
-							id={i}
-							name='sdfsd'
+							id={item.id}
+							title={item.title}
 						/>
 					</SwiperSlide>
 				))}

@@ -17,8 +17,6 @@ const HeroSlider: FC = () => {
 		})
 	}, [])
 
-	console.log('activeModal', activeModal)
-
 	return (
 		<div className={s.heroSlider}>
 			<Swiper

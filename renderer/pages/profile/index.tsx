@@ -60,85 +60,90 @@ const Profile: NextPage = () => {
 	}
 	return (
 		<Curve>
-			<div className={s.container}>
-				<div className={s.wrapper}>
-					<div className={s.column}>
-						<Image
-							className={s.ava}
-							src={`http://localhost:4000/uploads/ava/${snap.user?.ava}`}
-							alt='ava'
-							width={200}
-							height={200}
-						/>
-						<button
-							onClick={() => setIsEditAva(prevState => !prevState)}
-							className={s.edit}
-						>
-							Edit avatar
-						</button>
-					</div>
-					<div className={s.column}>
-						<div className={s.row}>
-							<div className={s.item}>
-								<div className={s.label}>Nickname</div>
-								<div className={s.content}>{snap.user?.nick}</div>
+			<div className='wrapper'>
+				<div className={s.container}>
+					<div className={s.wrapper}>
+						<div className={s.column}>
+							<Image
+								className={s.ava}
+								src={snap.user?.ava}
+								alt='ava'
+								width={200}
+								height={200}
+							/>
+							<button
+								onClick={() => setIsEditAva(prevState => !prevState)}
+								className={s.edit}
+							>
+								Edit avatar
+							</button>
+						</div>
+						<div className={s.column}>
+							<div className={s.row}>
+								<div className={s.item}>
+									<div className={s.label}>Nickname</div>
+									<div className={s.content}>{snap.user?.nick}</div>
+								</div>
+								<div className={s.item}>
+									<div className={s.label}>Admin</div>
+									<div
+										className={`${s.content} ${
+											snap.user?.isAdmin ? 'green' : 'red'
+										}`}
+									>
+										{snap.user?.isAdmin ? 'Yes' : 'No'}
+									</div>
+								</div>
 							</div>
 							<div className={s.item}>
-								<div className={s.label}>Admin</div>
-								<div
-									className={`${s.content} ${
-										snap.user?.isAdmin ? 'green' : 'red'
-									}`}
-								>
-									{snap.user?.isAdmin ? 'Yes' : 'No'}
+								<div className={s.label}>Email</div>
+								<div className={s.content}>{snap.user?.email}</div>
+							</div>
+							<div className={s.item}>
+								<div className={s.row}>
+									<button
+										onClick={() => setIsEditPassword(prevState => !prevState)}
+										className={s.edit}
+									>
+										Edit password
+									</button>
+
+									<button onClick={handleLogout} className={s.edit}>
+										Logout
+									</button>
 								</div>
 							</div>
 						</div>
-						<div className={s.item}>
-							<div className={s.label}>Email</div>
-							<div className={s.content}>{snap.user?.email}</div>
-						</div>
-						<div className={s.item}>
+					</div>
+
+					<Modal
+						isOpen={isEditPassword}
+						onClose={() => setIsEditPassword(false)}
+					>
+						<div className={s.edit_password}>
+							<h2 className={s.title_edit}>Edit password</h2>
 							<div className={s.row}>
-								<button
-									onClick={() => setIsEditPassword(prevState => !prevState)}
-									className={s.edit}
-								>
-									Edit password
-								</button>
-
-								<button onClick={handleLogout} className={s.edit}>
-									Logout
-								</button>
+								<Input
+									onChange={e => setOldPassword(e.target.value)}
+									name='old_password'
+									type='password'
+									value={oldPassword}
+									label='Old password'
+								/>
+								<Input
+									onChange={e => setNewPassword(e.target.value)}
+									name='new_password'
+									type='password'
+									value={newPassword}
+									label='New password'
+								/>
 							</div>
+							<button onClick={handleEditPassword} className={s.edit}>
+								Edit password
+							</button>
 						</div>
-					</div>
+					</Modal>
 				</div>
-
-				<Modal isOpen={isEditPassword} onClose={() => setIsEditPassword(false)}>
-					<div className={s.edit_password}>
-						<h2 className={s.title_edit}>Edit password</h2>
-						<div className={s.row}>
-							<Input
-								onChange={e => setOldPassword(e.target.value)}
-								name='old_password'
-								type='password'
-								value={oldPassword}
-								label='Old password'
-							/>
-							<Input
-								onChange={e => setNewPassword(e.target.value)}
-								name='new_password'
-								type='password'
-								value={newPassword}
-								label='New password'
-							/>
-						</div>
-						<button onClick={handleEditPassword} className={s.edit}>
-							Edit password
-						</button>
-					</div>
-				</Modal>
 			</div>
 		</Curve>
 	)

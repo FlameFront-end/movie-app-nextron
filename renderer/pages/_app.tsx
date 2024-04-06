@@ -24,7 +24,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 	}, [])
 
 	return (
-		<div className='main'>
+		<div>
 			<Header />
 			<SnackbarProvider
 				anchorOrigin={{

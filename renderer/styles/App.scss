@@ -30,10 +30,6 @@ html {
 
 .main {
   min-height: 100vh;
-
-  padding-top: 150px;
-  padding-right: 30px;
-  padding-left: 30px;
 }
 
 body {
@@ -83,6 +79,12 @@ iframe {
 .container {
   max-width: 1660px;
   margin: auto;
+}
+
+.wrapper {
+  padding-top: 150px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .mb-3 {
