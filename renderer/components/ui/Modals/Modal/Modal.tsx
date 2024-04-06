@@ -6,8 +6,8 @@ import React, {
 	useRef,
 	useState
 } from 'react'
-import { classNames } from '../../../utils/classNames'
-import Portal from '../../Portal/Portal'
+import { classNames } from '../../../../utils/classNames'
+import Portal from '../../../Portal/Portal'
 import s from './Modal.module.scss'
 
 interface ModalProps {

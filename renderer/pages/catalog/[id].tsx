@@ -41,14 +41,16 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 						</div>
 						<div className={s.info}>
 							<h1 className={s.title}>{item.title}</h1>
-							{/*<div className={s.genres}>*/}
-							{/*	{item.genres &&*/}
-							{/*		item.genres.slice(0, 5).map((genre, i) => (*/}
-							{/*			<span key={i} className={s.genres__item}>*/}
-							{/*				{genre.name}*/}
-							{/*			</span>*/}
-							{/*		))}*/}
-							{/*</div>*/}
+							{item.tags?.length ? (
+								<div className={s.genres}>
+									{item.tags.map((tag, index) => (
+										<span key={index} className={s.genres__item}>
+											{tag}
+										</span>
+									))}
+								</div>
+							) : null}
+
 							<p className='overview'>{item.description}</p>
 							<div className='cast'>
 								<div className='section__header'>

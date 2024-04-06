@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
@@ -16,6 +17,11 @@ export const HeroSlide: FC<HeroSlideProps> = ({
 	setActiveModal
 }) => {
 	const { t } = useTranslation()
+	const router = useRouter()
+
+	const handleClick = () => {
+		router.push(`/catalog/${movie.id}`)
+	}
 
 	return (
 		<div
@@ -29,7 +35,7 @@ export const HeroSlide: FC<HeroSlideProps> = ({
 					<h2 className={s.title}>{movie.title}</h2>
 					<div className={s.overview}>{movie.description}</div>
 					<div className={s.btns}>
-						<Button>{t('Watch now')}</Button>
+						<Button onClick={handleClick}>{t('Watch now')}</Button>
 						<OutlineButton onClick={() => setActiveModal(true)}>
 							{t('Watch trailer')}
 						</OutlineButton>

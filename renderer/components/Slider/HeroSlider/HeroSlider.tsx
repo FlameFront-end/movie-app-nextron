@@ -3,7 +3,7 @@ import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import * as Api from '../../../api'
 import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
-import Modal from '../../ui/Modal/Modal'
+import ModalTrailer from '../../ui/Modals/ModalTrailer/ModalTrailer'
 import HeroSlide from '../HeroSlide/HeroSlide'
 import s from './HeroSlider.module.scss'
 
@@ -43,19 +43,13 @@ const HeroSlider: FC = () => {
 			</Swiper>
 
 			{movies.map((item, index) => (
-				<Modal
+				<ModalTrailer
 					key={index}
 					isOpen={activeModal}
 					className={s.modal}
 					onClose={() => setActiveModal(false)}
-				>
-					<iframe
-						height='500px'
-						title='trailer'
-						width='100%'
-						src={item.trailerVideo}
-					></iframe>
-				</Modal>
+					trailerSrc={item.trailerVideo}
+				/>
 			))}
 		</div>
 	)
