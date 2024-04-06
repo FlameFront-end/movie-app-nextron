@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import CastList from '../../components/CastList/CastList'
 import * as Api from '../../api'
@@ -17,7 +18,7 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 		Api.movie.getMovieById(movieId).then(res => {
 			setItem(res)
 		})
-	}, [])
+	}, [movieId])
 
 	return (
 		<Curve>
@@ -26,7 +27,7 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 					<div
 						className={s.banner}
 						style={{
-							backgroundImage: `url(${item.posterImage})`
+							backgroundImage: `url(${item.mainImage})`
 						}}
 					></div>
 					<div className={`container ${s.movie_content}`}>
@@ -34,7 +35,7 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 							<div
 								className={s.img}
 								style={{
-									backgroundImage: `url(${item.mainImage})`
+									backgroundImage: `url(${item.posterImage})`
 								}}
 							></div>
 						</div>
@@ -70,6 +71,10 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 			)}
 		</Curve>
 	)
+}
+
+Detail.propTypes = {
+	movieId: PropTypes.number.isRequired
 }
 
 export default Detail
