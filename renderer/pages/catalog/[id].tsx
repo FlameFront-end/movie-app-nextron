@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import CastList from '../../components/CastList/CastList'
+import MovieList from '../../components/Movie/MovieList/MovieList'
 import * as Api from '../../api'
 import { CreateResponseMovieDto } from '../../api/movie/movie.dto'
 import Curve from '../../layouts/Curve'
@@ -54,20 +55,44 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 							<p className='overview'>{item.description}</p>
 							<div className='cast'>
 								<div className='section__header'>
-									<h2>Casts</h2>
+									<h2>Актёры</h2>
 								</div>
 								<CastList actors={item.actors} />
 							</div>
 						</div>
 					</div>
 					<div className='container'>
-						<div className='section mb-3'>видео</div>
-					</div>
-					<div className='section mb-3'>
-						<div className='section__header mb-2'>
-							<h2>Similar</h2>
+						<div className='section mb-3'>
+							<div className={s.video}>
+								<div className={s.video__title}>
+									<h2>Трейлер</h2>
+								</div>
+								<video
+									src={item.trailerVideo}
+									controls
+									width='100%'
+									title='video'
+								></video>
+							</div>
+							<div className={s.video}>
+								<div className={s.video__title}>
+									<h2>Фильм</h2>
+								</div>
+								<video
+									controls
+									src={item.mainVideo}
+									width='100%'
+									title='video'
+								></video>
+							</div>
 						</div>
-						{/*<MovieList category={category} type='similar' id={item.id} />*/}
+
+						<div className='section mb-3'>
+							<div className='section__header mb-2'>
+								<h2>Смотрите так же</h2>
+							</div>
+							<MovieList />
+						</div>
 					</div>
 				</>
 			)}

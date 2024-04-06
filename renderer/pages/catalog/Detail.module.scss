@@ -110,9 +110,11 @@
 }
 
 .video {
-  margin-bottom: 3rem;
+  margin: 3rem 0;
 
   &__title {
     margin-bottom: 1.5rem;
+    font-size: 30px;
+    text-align: center;
   }
 }
