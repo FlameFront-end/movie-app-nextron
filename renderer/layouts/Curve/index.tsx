@@ -5,13 +5,13 @@ import { curve, text, translate } from './anim'
 import s from './Curve.module.scss'
 
 const routes = {
-	'/': 'Home',
-	'/movies': 'Movies',
-	'/tv': 'TV Series',
-	'/login': 'Login',
-	'/profile': 'Profile',
-	'/register': 'Registration',
-	'/admin-dashboard': 'Admin Dashboard'
+	'/': 'Главная',
+	'/movies': 'Фильмы',
+	'/tv': 'ТВ сериалы',
+	'/login': 'Вход',
+	'/register': 'Регистрация',
+	'/admin-dashboard': 'Админ панель',
+	'/profile': 'Профиль'
 }
 
 const anim = (variants: any) => {

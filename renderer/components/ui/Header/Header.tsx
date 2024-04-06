@@ -14,44 +14,44 @@ const Header = () => {
 
 	const headerNavNoAuth = [
 		{
-			display: t('Home'),
+			display: t('Главная'),
 			path: '/'
 		},
 		{
-			display: t('Movies'),
+			display: t('Фильмы'),
 			path: '/movies'
 		},
 		{
-			display: t('TV Series'),
+			display: t('ТВ сериалы'),
 			path: '/tv'
 		},
 		{
-			display: 'Login',
+			display: t('Вход'),
 			path: '/login'
 		},
 		{
-			display: 'Registration',
+			display: t('Регистрация'),
 			path: '/register'
 		}
 	]
 
 	const headerNavAuth = [
 		{
-			display: t('Home'),
+			display: t('Главная'),
 			path: '/'
 		},
 		{
-			display: t('Movies'),
+			display: t('Фильмы'),
 			path: '/movies'
 		},
 		{
-			display: t('TV Series'),
+			display: t('ТВ сериалы'),
 			path: '/tv'
 		},
 		...(snap.user?.isAdmin
 			? [
 					{
-						display: t('Admin Dashboard'),
+						display: t('Админ панель'),
 						path: '/admin-dashboard'
 					}
 				]

@@ -35,9 +35,9 @@ export const HeroSlide: FC<HeroSlideProps> = ({
 					<h2 className={s.title}>{movie.title}</h2>
 					<div className={s.overview}>{movie.description}</div>
 					<div className={s.btns}>
-						<Button onClick={handleClick}>{t('Watch now')}</Button>
+						<Button onClick={handleClick}>{t('Смотреть сейчас')}</Button>
 						<OutlineButton onClick={() => setActiveModal(true)}>
-							{t('Watch trailer')}
+							{t('Смотреть трейлер')}
 						</OutlineButton>
 					</div>
 				</div>

@@ -1,11 +1,14 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 import MovieList from '../components/Movie/MovieList/MovieList'
 import HeroSlider from '../components/Slider/HeroSlider/HeroSlider'
 import { OutlineButton } from '../components/ui/Button/Button'
 import Curve from '../layouts/Curve'
 
 const HomePage: NextPage = () => {
+	const { t } = useTranslation()
+
 	return (
 		<Curve>
 			<div className='main-page'>
@@ -15,9 +18,11 @@ const HomePage: NextPage = () => {
 						<div className='container'>
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
-									<h2>Trending Movies</h2>
+									<h2>{t('Популярные фильмы')}</h2>
 									<Link href='/'>
-										<OutlineButton className='small'>View more</OutlineButton>
+										<OutlineButton className='small'>
+											{t('Смотреть больше')}
+										</OutlineButton>
 									</Link>
 								</div>
 								<MovieList />
@@ -25,9 +30,11 @@ const HomePage: NextPage = () => {
 
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
-									<h2>Top Rated Movies</h2>
+									<h2>{t('Новые фильмы')}</h2>
 									<Link href='/'>
-										<OutlineButton className='small'>View more</OutlineButton>
+										<OutlineButton className='small'>
+											{t('Смотреть больше')}
+										</OutlineButton>
 									</Link>
 								</div>
 								<MovieList />
@@ -35,9 +42,11 @@ const HomePage: NextPage = () => {
 
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
-									<h2>Trending TV</h2>
+									<h2>{t('Популярные ТВ сериалы')}</h2>
 									<Link href='/'>
-										<OutlineButton className='small'>View more</OutlineButton>
+										<OutlineButton className='small'>
+											{t('Смотреть больше')}
+										</OutlineButton>
 									</Link>
 								</div>
 								<MovieList />
@@ -45,9 +54,11 @@ const HomePage: NextPage = () => {
 
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
-									<h2>Top Rated TV</h2>
+									<h2>{t('Новые ТВ сериалы')}</h2>
 									<Link href='/'>
-										<OutlineButton className='small'>View more</OutlineButton>
+										<OutlineButton className='small'>
+											{t('Смотреть больше')}
+										</OutlineButton>
 									</Link>
 								</div>
 								<MovieList />
