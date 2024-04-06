@@ -52,6 +52,30 @@ export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
 	}
 }
 
+export const getMovieById = async (
+	movieId: number
+): Promise<CreateResponseMovieDto> => {
+	try {
+		const response = await axios.get(`/movies/${movieId}`)
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
+}
+
 export const remove = async (id: number): Promise<CreateResponseMovieDto> => {
 	try {
 		const response = await axios.delete(`/movies/${id}`)

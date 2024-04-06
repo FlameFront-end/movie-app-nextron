@@ -1,36 +1,23 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import { Actor } from '../../api/actor/actor.dto'
 import s from './CastList.module.scss'
 
 interface CastListProps {
-	id: number
+	actors: Actor[]
 }
 
-const CastList: FC<CastListProps> = ({ id }) => {
-	const [casts, setCasts] = useState([
-		{
-			name: 'name'
-		},
-		{
-			name: 'name'
-		},
-		{
-			name: 'name'
-		}
-	])
-
-	console.log('id', id)
-
+const CastList: FC<CastListProps> = ({ actors }) => {
 	return (
 		<div className={s.casts}>
-			{casts.map((item, index) => (
+			{actors.map((actor, index) => (
 				<div className={s.item} key={index}>
 					<div
 						className={s.img}
 						style={{
-							backgroundImage: ``
+							backgroundImage: `url(${actor.ava})`
 						}}
 					></div>
-					<p className={s.name}>{item.name}</p>
+					<p className={s.name}>{actor.fullName}</p>
 				</div>
 			))}
 		</div>
