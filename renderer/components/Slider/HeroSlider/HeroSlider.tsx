@@ -12,7 +12,7 @@ const HeroSlider: FC = () => {
 	const [activeModal, setActiveModal] = useState(false)
 
 	useEffect(() => {
-		Api.movie.getAll().then(res => {
+		Api.movie.getAllPopular().then(res => {
 			setMovies(res)
 		})
 	}, [])
