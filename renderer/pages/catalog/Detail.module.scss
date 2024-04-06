@@ -118,3 +118,47 @@
     text-align: center;
   }
 }
+
+.comments_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .comment {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .user {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+
+    }
+
+    .date {
+      font-size: 10px;
+    }
+  }
+}
+
+
+.form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  input {
+    width: 100%;
+  }
+  .create_comment {
+    font-size: 15px;
+  }
+}

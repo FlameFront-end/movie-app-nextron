@@ -1,11 +1,18 @@
 import { NextPage } from 'next'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
+import { useSnapshot } from 'valtio'
 import CastList from '../../components/CastList/CastList'
+import TextArea from '../../components/Form/TextArea/TextArea'
 import MovieList from '../../components/Movie/MovieList/MovieList'
+import Button from '../../components/ui/Button/Button'
 import * as Api from '../../api'
+import { Comment } from '../../api/comment/comment.dto'
 import { CreateResponseMovieDto } from '../../api/movie/movie.dto'
 import Curve from '../../layouts/Curve'
+import { state } from '../../state'
+import { showErrorSnackbar } from '../../utils/errorSnackBar'
+import { formatDate } from '../../utils/formatDate'
 import s from './Detail.module.scss'
 
 interface DetailProps {
@@ -13,13 +20,38 @@ interface DetailProps {
 }
 
 const Detail: NextPage<DetailProps> = ({ movieId }) => {
+	const snap = useSnapshot(state)
+
 	const [item, setItem] = useState<CreateResponseMovieDto | null>(null)
+	const [comment, setComment] = useState('')
+	const [allComments, setAllComments] = useState<Comment[] | null>(null)
 
 	useEffect(() => {
 		Api.movie.getMovieById(movieId).then(res => {
 			setItem(res)
+			setAllComments(res.comments)
 		})
 	}, [movieId])
+
+	const handleCreateComment = async e => {
+		e.preventDefault()
+
+		if (!comment.trim()) {
+			return showErrorSnackbar({
+				message: 'Комментарий не указан'
+			})
+		}
+
+		Api.comment
+			.create({ movieId, text: comment, userId: snap.user.id })
+			.then(() => {
+				Api.comment.getAlL(movieId).then(res => {
+					setAllComments(res)
+				})
+			})
+
+		setComment('')
+	}
 
 	return (
 		<Curve>
@@ -86,7 +118,43 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 								></video>
 							</div>
 						</div>
-
+						<div className='section mb-3'>
+							<div className='section__header mb-2'>
+								<h2>Комментарии</h2>
+							</div>
+							<form className={s.form} onSubmit={handleCreateComment}>
+								<TextArea
+									onChange={e => setComment(e)}
+									value={comment}
+									placeholder={`Ваш комментарий к фильму ${item.title}`}
+								/>
+								<Button type='submit' className={s.create_comment}>
+									Отправить
+								</Button>
+							</form>
+							{allComments?.length ? (
+								<div className={s.comments_wrapper}>
+									{allComments?.map((comment, index) => (
+										<div key={index} className={s.comment}>
+											<div className={s.user}>
+												<img src={comment.user.ava} alt='ava' />
+												<div
+													className={`${s.author} ${
+														snap.user?.id === comment.user.id ? 'green' : ''
+													}`}
+												>
+													{comment.user.nick}:
+												</div>
+											</div>
+											<div className={s.text}>{comment.text}</div>
+											<div className={s.date}>
+												{formatDate(comment.createdAt)}
+											</div>
+										</div>
+									))}
+								</div>
+							) : null}
+						</div>
 						<div className='section mb-3'>
 							<div className='section__header mb-2'>
 								<h2>Смотрите так же</h2>
