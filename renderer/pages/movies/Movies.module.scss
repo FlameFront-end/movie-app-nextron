@@ -1,0 +1,19 @@
+
+.movie_search {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+
+  input {
+    width: 100%;
+    padding-right: 8rem;
+  }
+
+  .btn {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    padding: 5px;
+    font-size: 15px;
+  }
+}
