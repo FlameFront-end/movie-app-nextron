@@ -52,6 +52,28 @@ export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
 	}
 }
 
+export const getAllPopular = async (): Promise<CreateResponseMovieDto[]> => {
+	try {
+		const response = await axios.get('/movies/popular')
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
+}
+
 export const getMovieById = async (
 	movieId: number
 ): Promise<CreateResponseMovieDto> => {

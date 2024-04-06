@@ -19,25 +19,25 @@ const HomePage: NextPage = () => {
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
 									<h2>{t('Популярные фильмы')}</h2>
-									<Link href='/'>
+									<Link href='/movies'>
 										<OutlineButton className='small'>
 											{t('Смотреть больше')}
 										</OutlineButton>
 									</Link>
 								</div>
-								<MovieList />
+								<MovieList sort='popular' />
 							</div>
 
 							<div className='section mb-3'>
 								<div className='section__header mb-2'>
 									<h2>{t('Новые фильмы')}</h2>
-									<Link href='/'>
+									<Link href='/movies'>
 										<OutlineButton className='small'>
 											{t('Смотреть больше')}
 										</OutlineButton>
 									</Link>
 								</div>
-								<MovieList />
+								<MovieList sort='createdAt' />
 							</div>
 
 							<div className='section mb-3'>

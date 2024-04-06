@@ -6,16 +6,31 @@ import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton'
 import MovieCard from '../MovieCard/MovieCard'
 import s from './MovieList.module.scss'
 
-const MovieList: FC = () => {
+type Sort = 'createdAt' | 'popular'
+
+interface MovieListProps {
+	sort?: Sort
+}
+
+const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
-		Api.movie.getAll().then(res => {
-			setMovies(res)
-			setIsLoading(false)
-		})
-	}, [])
+		if (sort === 'createdAt') {
+			Api.movie.getAll().then(res => {
+				setMovies(res)
+				setIsLoading(false)
+			})
+		}
+
+		if (sort === 'popular') {
+			Api.movie.getAllPopular().then(res => {
+				setMovies(res)
+				setIsLoading(false)
+			})
+		}
+	}, [sort])
 
 	return (
 		<div className={s.movieList}>
