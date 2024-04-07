@@ -26,6 +26,13 @@
   img {
     border-radius: 50%;
   }
+
+  @media (hover: hover) {
+    &:hover {
+      color: $main-color
+    }
+  }
+
 }
 
 
