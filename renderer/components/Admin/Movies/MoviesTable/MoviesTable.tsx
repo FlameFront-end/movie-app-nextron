@@ -3,20 +3,21 @@ import * as Api from '../../../../api'
 import { CreateResponseMovieDto } from '../../../../api/movie/movie.dto'
 import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
+import MovieTableItemSkeleton from '../../../Skeletons/MovieTableItemSkeleton/MovieTableItemSkeleton'
 import Table from '../../../ui/Table/Table'
 import MovieTableItem from '../MovieTableItem/MovieTableItem'
 import s from './MoviesTable.module.scss'
 
 const MoviesTable: FC = () => {
+	const [isLoading, setIsLoading] = useState(true)
 	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
 
 	useEffect(() => {
 		Api.movie.getAll().then(res => {
 			setMovies(res)
+			setIsLoading(false)
 		})
 	}, [])
-
-	console.log('movies', movies)
 
 	const handleDelete = (id: number) => {
 		Api.movie
@@ -33,27 +34,35 @@ const MoviesTable: FC = () => {
 			})
 	}
 
+	const arr = [null, null]
+
 	return (
 		<div className={s.wrapper}>
-			<Table
-				thead={[
-					{ title: 'Главное изображение' },
-					{ title: 'Название' },
-					{ title: 'Описание' },
-					{ title: 'Теги' },
-					{ title: 'Актёры' },
-					{ title: 'Дата создания' },
-					{ title: 'Действия' }
-				]}
-			>
-				{movies.map((item, index) => (
-					<MovieTableItem
-						handleDelete={handleDelete}
-						movie={item}
-						key={index}
-					/>
-				))}
-			</Table>
+			{isLoading ? (
+				arr.map((item, index) => (
+					<MovieTableItemSkeleton key={index} items={1} />
+				))
+			) : (
+				<Table
+					thead={[
+						{ title: 'Главное изображение' },
+						{ title: 'Название' },
+						{ title: 'Описание' },
+						{ title: 'Теги' },
+						{ title: 'Актёры' },
+						{ title: 'Дата создания' },
+						{ title: 'Действия' }
+					]}
+				>
+					{movies.map((item, index) => (
+						<MovieTableItem
+							handleDelete={handleDelete}
+							movie={item}
+							key={index}
+						/>
+					))}
+				</Table>
+			)}
 		</div>
 	)
 }

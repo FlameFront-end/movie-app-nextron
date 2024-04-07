@@ -4,7 +4,7 @@ import { useSnapshot } from 'valtio'
 import * as Api from '../../../api'
 import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
 import { state } from '../../../state'
-import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton'
+import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton/MovieCardSkeleton'
 import MovieCard from '../MovieCard/MovieCard'
 import s from './MovieList.module.scss'
 
