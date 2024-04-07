@@ -85,17 +85,17 @@ const Profile: NextPage = () => {
 						<div className={s.column}>
 							<div className={s.row}>
 								<div className={s.item}>
-									<div className={s.label}>Nickname</div>
+									<div className={s.label}>Никнейм</div>
 									<div className={s.content}>{snap.user?.nick}</div>
 								</div>
 								<div className={s.item}>
-									<div className={s.label}>Admin</div>
+									<div className={s.label}>Админ</div>
 									<div
 										className={`${s.content} ${
 											snap.user?.isAdmin ? 'green' : 'red'
 										}`}
 									>
-										{snap.user?.isAdmin ? 'Yes' : 'No'}
+										{snap.user?.isAdmin ? 'Да' : 'Нет'}
 									</div>
 								</div>
 							</div>
@@ -125,7 +125,7 @@ const Profile: NextPage = () => {
 						onClose={() => setIsEditPassword(false)}
 					>
 						<div className={s.edit_password}>
-							<h2 className={s.title_edit}>Edit password</h2>
+							<h2 className={s.title_edit}>Изменить пароль</h2>
 							<form onSubmit={handleEditPassword}>
 								<div className={s.row}>
 									<Input
