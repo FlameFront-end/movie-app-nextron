@@ -1,3 +1,5 @@
+import { CreateResponseMovieDto } from '../movie/movie.dto'
+
 export interface LoginFormDTO {
 	email: string
 	password: string
@@ -30,4 +32,5 @@ export interface User {
 	password: string
 	isAdmin: boolean
 	createdAt: string
+	favorites: CreateResponseMovieDto[]
 }

@@ -21,10 +21,10 @@ const Header = () => {
 			display: t('Фильмы'),
 			path: '/movies'
 		},
-		{
-			display: t('ТВ сериалы'),
-			path: '/tv'
-		},
+		// {
+		// 	display: t('ТВ сериалы'),
+		// 	path: '/tv'
+		// },
 		{
 			display: t('Вход'),
 			path: '/login'
@@ -44,10 +44,10 @@ const Header = () => {
 			display: t('Фильмы'),
 			path: '/movies'
 		},
-		{
-			display: t('ТВ сериалы'),
-			path: '/tv'
-		},
+		// {
+		// 	display: t('ТВ сериалы'),
+		// 	path: '/tv'
+		// },
 		...(snap.user?.isAdmin
 			? [
 					{

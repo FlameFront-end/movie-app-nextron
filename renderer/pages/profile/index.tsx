@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSnapshot } from 'valtio'
 import Input from '../../components/Form/Input/Input'
+import MovieList from '../../components/Movie/MovieList/MovieList'
 import Modal from '../../components/ui/Modals/Modal/Modal'
 import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
@@ -58,6 +59,9 @@ const Profile: NextPage = () => {
 			state.user = null
 		}, 500)
 	}
+
+	console.log('snap.user', snap.user)
+
 	return (
 		<Curve>
 			<div className='wrapper'>
@@ -75,7 +79,7 @@ const Profile: NextPage = () => {
 								onClick={() => setIsEditAva(prevState => !prevState)}
 								className={s.edit}
 							>
-								Edit avatar
+								Изменить аватарку
 							</button>
 						</div>
 						<div className={s.column}>
@@ -105,11 +109,11 @@ const Profile: NextPage = () => {
 										onClick={() => setIsEditPassword(prevState => !prevState)}
 										className={s.edit}
 									>
-										Edit password
+										Изменить пароль
 									</button>
 
-									<button onClick={handleLogout} className={s.edit}>
-										Logout
+									<button onClick={handleLogout} className={s.logout}>
+										Выход
 									</button>
 								</div>
 							</div>
@@ -122,27 +126,33 @@ const Profile: NextPage = () => {
 					>
 						<div className={s.edit_password}>
 							<h2 className={s.title_edit}>Edit password</h2>
-							<div className={s.row}>
-								<Input
-									onChange={e => setOldPassword(e.target.value)}
-									name='old_password'
-									type='password'
-									value={oldPassword}
-									label='Old password'
-								/>
-								<Input
-									onChange={e => setNewPassword(e.target.value)}
-									name='new_password'
-									type='password'
-									value={newPassword}
-									label='New password'
-								/>
-							</div>
-							<button onClick={handleEditPassword} className={s.edit}>
-								Edit password
-							</button>
+							<form onSubmit={handleEditPassword}>
+								<div className={s.row}>
+									<Input
+										onChange={e => setOldPassword(e.target.value)}
+										name='old_password'
+										type='password'
+										value={oldPassword}
+										label='Старый пароль'
+									/>
+									<Input
+										onChange={e => setNewPassword(e.target.value)}
+										name='new_password'
+										type='password'
+										value={newPassword}
+										label='Новый пароль'
+									/>
+								</div>
+								<button type='submit' className={s.edit}>
+									Изменить пароль
+								</button>
+							</form>
 						</div>
 					</Modal>
+				</div>
+				<div className={s.list}>
+					<h3 className={s.heading_list}>Вам понравились:</h3>
+					<MovieList sort='favorites' />
 				</div>
 			</div>
 		</Curve>

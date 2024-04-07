@@ -40,29 +40,29 @@ const HomePage: NextPage = () => {
 								<MovieList sort='createdAt' />
 							</div>
 
-							<div className='section mb-3'>
-								<div className='section__header mb-2'>
-									<h2>{t('Популярные ТВ сериалы')}</h2>
-									<Link href='/'>
-										<OutlineButton className='small'>
-											{t('Смотреть больше')}
-										</OutlineButton>
-									</Link>
-								</div>
-								<MovieList />
-							</div>
+							{/*<div className='section mb-3'>*/}
+							{/*	<div className='section__header mb-2'>*/}
+							{/*		<h2>{t('Популярные ТВ сериалы')}</h2>*/}
+							{/*		<Link href='/'>*/}
+							{/*			<OutlineButton className='small'>*/}
+							{/*				{t('Смотреть больше')}*/}
+							{/*			</OutlineButton>*/}
+							{/*		</Link>*/}
+							{/*	</div>*/}
+							{/*	<MovieList />*/}
+							{/*</div>*/}
 
-							<div className='section mb-3'>
-								<div className='section__header mb-2'>
-									<h2>{t('Новые ТВ сериалы')}</h2>
-									<Link href='/'>
-										<OutlineButton className='small'>
-											{t('Смотреть больше')}
-										</OutlineButton>
-									</Link>
-								</div>
-								<MovieList />
-							</div>
+							{/*<div className='section mb-3'>*/}
+							{/*	<div className='section__header mb-2'>*/}
+							{/*		<h2>{t('Новые ТВ сериалы')}</h2>*/}
+							{/*		<Link href='/'>*/}
+							{/*			<OutlineButton className='small'>*/}
+							{/*				{t('Смотреть больше')}*/}
+							{/*			</OutlineButton>*/}
+							{/*		</Link>*/}
+							{/*	</div>*/}
+							{/*	<MovieList />*/}
+							{/*</div>*/}
 						</div>
 					</main>
 				</div>
