@@ -7,7 +7,7 @@ import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton/MovieCardSkelet
 import MovieCard from '../MovieCard/MovieCard'
 import s from './MovieList.module.scss'
 
-type Sort = 'createdAt' | 'popular' | 'favorites'
+type Sort = 'createdAt' | 'popular' | 'favorites' | 'search'
 
 interface MovieListProps {
 	sort?: Sort
@@ -30,12 +30,25 @@ const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 			setMovies(snap.popularMovies)
 			setIsLoading(false)
 		}
+
 		if (sort === 'favorites') {
 			// @ts-ignore
 			setMovies(snap.user?.favorites)
 			setIsLoading(false)
 		}
-	}, [snap.movies, snap.popularMovies, snap.user?.favorites, sort])
+
+		if (sort === 'search') {
+			// @ts-ignore
+			setMovies(snap.searchMovies)
+			setIsLoading(false)
+		}
+	}, [
+		snap.movies,
+		snap.popularMovies,
+		snap.searchMovies,
+		snap.user?.favorites,
+		sort
+	])
 
 	return (
 		<div className={s.movieList}>

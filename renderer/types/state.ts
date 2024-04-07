@@ -6,6 +6,7 @@ export interface StateProps {
 	user: User
 	movies: CreateResponseMovieDto[] | null
 	popularMovies: CreateResponseMovieDto[] | null
+	searchMovies: CreateResponseMovieDto[] | null
 	users: User[] | null
 	actors: Actor[] | null
 }

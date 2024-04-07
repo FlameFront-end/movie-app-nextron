@@ -49,7 +49,7 @@ const HomePage: NextPage = () => {
 							{/*			</OutlineButton>*/}
 							{/*		</Link>*/}
 							{/*	</div>*/}
-							{/*	<MovieList />*/}
+							{/*	<MovieGrid />*/}
 							{/*</div>*/}
 
 							{/*<div className='section mb-3'>*/}
@@ -61,7 +61,7 @@ const HomePage: NextPage = () => {
 							{/*			</OutlineButton>*/}
 							{/*		</Link>*/}
 							{/*	</div>*/}
-							{/*	<MovieList />*/}
+							{/*	<MovieGrid />*/}
 							{/*</div>*/}
 						</div>
 					</main>

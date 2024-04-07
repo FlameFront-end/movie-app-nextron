@@ -1,17 +1,24 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
 import Input from '../../components/Form/Input/Input'
-import MovieList from '../../components/Movie/MovieList/MovieList'
+import MovieGrid from '../../components/Movie/MovieGrid/MovieGrid'
 import Button from '../../components/ui/Button/Button'
 import PageHeader from '../../components/ui/PageHeader/PageHeader'
+import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
+import { state } from '../../state'
 import s from './Movies.module.scss'
 
 const MoviesPage: NextPage = () => {
 	const [keyword, setKeyword] = useState('')
+	const [isSearch, setIsSearch] = useState(false)
 
 	const onHandleSearch = () => {
-		console.log('onHandleSearch')
+		Api.movie.getMovieByTitle(keyword).then(movies => {
+			state.searchMovies = movies
+			setKeyword('')
+			setIsSearch(true)
+		})
 	}
 
 	return (
@@ -33,7 +40,7 @@ const MoviesPage: NextPage = () => {
 							</Button>
 						</div>
 					</div>
-					<MovieList />
+					<MovieGrid sort={isSearch ? 'search' : 'createdAt'} />
 				</div>
 			</div>
 		</Curve>

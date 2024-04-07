@@ -1,0 +1,26 @@
+@use '../../../styles/breakpoint' as *;
+
+.movieList {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.no_res {
+  color: red;
+  font-size: 25px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  width: 15%;
+
+  @include tablet {
+    width: 30%;
+  }
+
+  @include mobile {
+    width: 40%;
+  }
+}
