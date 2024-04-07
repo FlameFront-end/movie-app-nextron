@@ -150,10 +150,18 @@ const Profile: NextPage = () => {
 						</div>
 					</Modal>
 				</div>
-				<div className={s.list}>
-					<h3 className={s.heading_list}>Вам понравились:</h3>
-					<MovieList sort='favorites' />
-				</div>
+				{snap.user.favorites.length ? (
+					<div className={s.list}>
+						<h3 className={s.heading_list}>Вам понравились:</h3>
+						<MovieList sort='favorites' />
+					</div>
+				) : (
+					<div className={s.list}>
+						<h3 className={s.heading_list}>
+							У вас пока что нету избранных фильмов :(
+						</h3>
+					</div>
+				)}
 			</div>
 		</Curve>
 	)
