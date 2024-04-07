@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
 import * as Api from '../../../api'
 import { state } from '../../../state'
@@ -15,32 +15,36 @@ interface MovieCardProps {
 }
 
 const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
+	const [favorites, setFavorites] = useState(null)
 	const snap = useSnapshot(state)
 	const router = useRouter()
+
+	useEffect(() => {
+		setFavorites(snap.user.favorites)
+	}, [snap.user.favorites])
+
 	const handleClick = () => {
 		router.push(`/catalog/${id}`)
 	}
 
 	const handleAddToFavorite = () => {
-		Api.user.addToFavorites(id).then(() => {
-			Api.auth.getMe().then(user => {
-				state.user = user
-			})
+		Api.user.addToFavorites(id).then(movie => {
+			setFavorites(prevState => [...prevState, movie])
 		})
 	}
 
 	const handleDeleteFavorite = () => {
-		Api.user.deleteFavorites(id).then(() => {
-			Api.auth.getMe().then(user => {
-				state.user = user
-			})
+		Api.user.deleteFavorites(id).then(movie => {
+			setFavorites(
+				favorites.filter(obj => {
+					obj.id !== movie.id
+				})
+			)
 		})
 	}
 
 	const checkFavorite = (id: number): boolean => {
-		const favoritesArr = snap.user.favorites
-
-		return favoritesArr.some(favorite => favorite.id === id)
+		return favorites?.some(favorite => favorite.id === id)
 	}
 
 	return (

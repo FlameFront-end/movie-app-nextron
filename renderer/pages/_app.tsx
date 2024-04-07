@@ -17,19 +17,19 @@ export default function App({ Component, pageProps, router }: AppProps) {
 	useEffect(() => {
 		const token = getCookie('_token')
 
-		if (token && token !== 'undefined') {
-			Api.auth.getMe().then(user => {
-				state.user = user
-			})
-		}
+		Api.movie.getAllPopular().then(res => {
+			state.popularMovies = res
+		})
 
 		Api.movie.getAll().then(res => {
 			state.movies = res
 		})
 
-		Api.movie.getAllPopular().then(res => {
-			state.popularMovies = res
-		})
+		if (token && token !== 'undefined') {
+			Api.auth.getMe().then(user => {
+				state.user = user
+			})
+		}
 
 		Api.user.getAll().then(res => {
 			state.users = res
