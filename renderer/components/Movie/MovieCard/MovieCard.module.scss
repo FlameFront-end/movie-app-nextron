@@ -19,6 +19,17 @@
       box-shadow 0.3s ease;
   }
 
+  .favorite {
+    z-index: 1000;
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    transform: translate(-50%, -50%) scale(0);
+    transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+  }
+
   &::before {
     position: absolute;
     top: 0;
@@ -38,6 +49,10 @@
     }
 
     &:hover .btn {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:hover .favorite {
       transform: translate(-50%, -50%) scale(1);
     }
   }

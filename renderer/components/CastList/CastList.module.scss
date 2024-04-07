@@ -5,15 +5,15 @@
 
   .item {
     .img {
+      margin-bottom: 0.5rem;
       padding-top: 160px;
       background-size: cover;
-      margin-bottom: 0.5rem;
       border-radius: 10px;
     }
 
     .name {
-      text-align: center;
       font-size: 0.8rem;
+      text-align: center;
     }
   }
 }
