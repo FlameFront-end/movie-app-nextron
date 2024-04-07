@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useSnapshot } from 'valtio'
-import * as Api from '../../../api'
 import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
 import { state } from '../../../state'
 import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton/MovieCardSkeleton'

@@ -1,6 +1,8 @@
 import { FC, FormEvent, useEffect, useState } from 'react'
+import { useSnapshot } from 'valtio'
 import * as Api from '../../../../api'
 import { Actor, CreateActorDTO } from '../../../../api/actor/actor.dto'
+import { state } from '../../../../state'
 import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
 import Input from '../../../Form/Input/Input'
@@ -10,25 +12,19 @@ import ActorTableItem from '../ActorTableItem/ActorTableItem'
 import s from './ActorsTable.module.scss'
 
 const ActorsTable: FC = () => {
-	const [allActors, setAllActors] = useState<Actor[]>([])
+	const snap = useSnapshot(state)
 
 	const [data, setData] = useState<CreateActorDTO>({
 		fullName: '',
 		ava: null
 	})
 
-	useEffect(() => {
-		Api.actor.getAll().then(res => {
-			setAllActors(res)
-		})
-	}, [])
-
 	const handleDelete = (id: number) => {
 		Api.actor
 			.remove(id)
 			.then(() => {
 				Api.actor.getAll().then(res => {
-					setAllActors(res)
+					state.actors = res
 				})
 				showSuccessSnackbar(`Актёр был успешно удалён`)
 			})
@@ -69,7 +65,7 @@ const ActorsTable: FC = () => {
 					ava: null
 				})
 				Api.actor.getAll().then(res => {
-					setAllActors(res)
+					state.actors = res
 				})
 			})
 			.catch(err => {
@@ -112,7 +108,7 @@ const ActorsTable: FC = () => {
 					{ title: 'Действия' }
 				]}
 			>
-				{allActors.map((item, index) => (
+				{snap.actors.map((item, index) => (
 					<ActorTableItem
 						handleDelete={handleDelete}
 						actor={item}

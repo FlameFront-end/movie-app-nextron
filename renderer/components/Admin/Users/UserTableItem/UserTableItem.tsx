@@ -1,10 +1,9 @@
 import { FC } from 'react'
-import { User } from '../../../../api/auth/auth.dto'
 import { formatDate } from '../../../../utils/formatDate'
 import s from './UserTableItem.module.scss'
 
 interface MovieTableItem {
-	user: User
+	user: any
 }
 
 const UserTableItem: FC<MovieTableItem> = ({ user }) => {

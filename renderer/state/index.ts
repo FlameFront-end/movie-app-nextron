@@ -4,7 +4,9 @@ import { StateProps } from '../types/state'
 const state = proxy<StateProps>({
 	user: null,
 	movies: null,
-	popularMovies: null
+	popularMovies: null,
+	users: null,
+	actors: null
 })
 
 export { state }
