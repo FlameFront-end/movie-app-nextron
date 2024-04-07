@@ -1,21 +1,15 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import * as Api from '../../../api'
-import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
+import { useSnapshot } from 'valtio'
+import { state } from '../../../state'
 import ModalTrailer from '../../ui/Modals/ModalTrailer/ModalTrailer'
 import HeroSlide from '../HeroSlide/HeroSlide'
 import s from './HeroSlider.module.scss'
 
 const HeroSlider: FC = () => {
-	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
 	const [activeModal, setActiveModal] = useState(false)
-
-	useEffect(() => {
-		Api.movie.getAllPopular().then(res => {
-			setMovies(res)
-		})
-	}, [])
+	const snap = useSnapshot(state)
 
 	return (
 		<div className={s.heroSlider}>
@@ -29,7 +23,7 @@ const HeroSlider: FC = () => {
 				slidesPerView={1}
 				modules={[Autoplay]}
 			>
-				{movies.map((movie, index) => (
+				{snap.popularMovies?.map((movie, index) => (
 					<SwiperSlide key={index} className={s.slide}>
 						{({ isActive }) => (
 							<HeroSlide
@@ -42,7 +36,7 @@ const HeroSlider: FC = () => {
 				))}
 			</Swiper>
 
-			{movies.map((item, index) => (
+			{snap.popularMovies?.map((item, index) => (
 				<ModalTrailer
 					key={index}
 					isOpen={activeModal}

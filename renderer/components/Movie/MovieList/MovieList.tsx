@@ -21,25 +21,22 @@ const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 
 	useEffect(() => {
 		if (sort === 'createdAt') {
-			Api.movie.getAll().then(res => {
-				setMovies(res)
-				setIsLoading(false)
-			})
+			// @ts-ignore
+			setMovies(snap.movies)
+			setIsLoading(false)
 		}
 
 		if (sort === 'popular') {
-			Api.movie.getAllPopular().then(res => {
-				setMovies(res)
-				setIsLoading(false)
-			})
+			// @ts-ignore
+			setMovies(snap.popularMovies)
+			setIsLoading(false)
 		}
-
 		if (sort === 'favorites') {
 			// @ts-ignore
 			setMovies(snap.user?.favorites)
 			setIsLoading(false)
 		}
-	}, [snap.user?.favorites, sort])
+	}, [snap.movies, snap.popularMovies, snap.user?.favorites, sort])
 
 	return (
 		<div className={s.movieList}>
@@ -64,7 +61,7 @@ const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 					</>
 				) : (
 					<>
-						{movies.map((item, index) => (
+						{movies?.map((item, index) => (
 							<SwiperSlide key={index} className={s.swiperSlide}>
 								<MovieCard
 									backgroundImgUrl={item.posterImage}

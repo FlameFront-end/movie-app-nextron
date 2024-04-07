@@ -21,6 +21,14 @@ export default function App({ Component, pageProps, router }: AppProps) {
 				state.user = user
 			})
 		}
+
+		Api.movie.getAll().then(res => {
+			state.movies = res
+		})
+
+		Api.movie.getAllPopular().then(res => {
+			state.popularMovies = res
+		})
 	}, [])
 
 	return (

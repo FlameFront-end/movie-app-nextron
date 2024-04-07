@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
+import { useSnapshot } from 'valtio'
 import * as Api from '../../../../api'
-import { CreateResponseMovieDto } from '../../../../api/movie/movie.dto'
+import { state } from '../../../../state'
 import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
 import MovieTableItemSkeleton from '../../../Skeletons/MovieTableItemSkeleton/MovieTableItemSkeleton'
@@ -9,22 +10,15 @@ import MovieTableItem from '../MovieTableItem/MovieTableItem'
 import s from './MoviesTable.module.scss'
 
 const MoviesTable: FC = () => {
-	const [isLoading, setIsLoading] = useState(true)
-	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
-
-	useEffect(() => {
-		Api.movie.getAll().then(res => {
-			setMovies(res)
-			setIsLoading(false)
-		})
-	}, [])
+	const [isLoading, setIsLoading] = useState(false)
+	const snap = useSnapshot(state)
 
 	const handleDelete = (id: number) => {
 		Api.movie
 			.remove(id)
 			.then(() => {
 				Api.movie.getAll().then(res => {
-					setMovies(res)
+					state.movies = res
 				})
 				showSuccessSnackbar(`Фильм был успешно удалён`)
 			})
@@ -54,7 +48,7 @@ const MoviesTable: FC = () => {
 						{ title: 'Действия' }
 					]}
 				>
-					{movies.map((item, index) => (
+					{snap.movies.map((item, index) => (
 						<MovieTableItem
 							handleDelete={handleDelete}
 							movie={item}

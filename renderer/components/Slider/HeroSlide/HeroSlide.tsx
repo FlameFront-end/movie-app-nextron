@@ -7,7 +7,7 @@ import s from './HeroSlide.module.scss'
 
 interface HeroSlideProps {
 	isActive: boolean
-	movie: CreateResponseMovieDto
+	movie: any
 	setActiveModal: Function
 }
 

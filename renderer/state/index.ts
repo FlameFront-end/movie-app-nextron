@@ -2,7 +2,9 @@ import { proxy } from 'valtio'
 import { StateProps } from '../types/state'
 
 const state = proxy<StateProps>({
-	user: null
+	user: null,
+	movies: null,
+	popularMovies: null
 })
 
 export { state }

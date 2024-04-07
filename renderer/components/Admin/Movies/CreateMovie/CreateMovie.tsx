@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react'
 import * as Api from '../../../../api'
 import { Actor } from '../../../../api/actor/actor.dto'
 import { CreateFormMovieDto } from '../../../../api/movie/movie.dto'
+import { state } from '../../../../state'
 import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
 import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
 import Input from '../../../Form/Input/Input'
@@ -98,6 +99,12 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 				})
 				setSelectedActors([])
 				setSelectedActorsId([])
+				Api.movie.getAll().then(res => {
+					state.movies = res
+				})
+				Api.movie.getAllPopular().then(res => {
+					state.movies = res
+				})
 			})
 			.catch(err => {
 				showErrorSnackbar({ message: 'Что-то пошло не так' })

@@ -4,7 +4,7 @@ import { formatDate } from '../../../../utils/formatDate'
 import s from './MovieTableItem.module.scss'
 
 interface MovieTableItem {
-	movie: CreateResponseMovieDto
+	movie: any
 	handleDelete: (id: number) => void
 }
 
