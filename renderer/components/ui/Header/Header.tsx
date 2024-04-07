@@ -21,10 +21,6 @@ const Header = () => {
 			display: t('Фильмы'),
 			path: '/movies'
 		},
-		// {
-		// 	display: t('ТВ сериалы'),
-		// 	path: '/tv'
-		// },
 		{
 			display: t('Вход'),
 			path: '/login'
@@ -44,10 +40,6 @@ const Header = () => {
 			display: t('Фильмы'),
 			path: '/movies'
 		},
-		// {
-		// 	display: t('ТВ сериалы'),
-		// 	path: '/tv'
-		// },
 		...(snap.user?.isAdmin
 			? [
 					{
@@ -91,7 +83,7 @@ const Header = () => {
 			<div className={s.header__wrap}>
 				<div className={s.logo}>
 					<Image src={tmovie} width={40} height={40} alt='logo' />
-					<Link href='/renderer/public'>MovieHub</Link>
+					<Link href='/'>MovieHub</Link>
 				</div>
 				<ul className={s.header__nav}>
 					{snap.user ? (
