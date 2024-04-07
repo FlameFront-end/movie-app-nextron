@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
@@ -122,16 +123,26 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 							<div className='section__header mb-2'>
 								<h2>Комментарии</h2>
 							</div>
-							<form className={s.form} onSubmit={handleCreateComment}>
-								<TextArea
-									onChange={e => setComment(e)}
-									value={comment}
-									placeholder={`Ваш комментарий к фильму ${item.title}`}
-								/>
-								<Button type='submit' className={s.create_comment}>
-									Отправить
-								</Button>
-							</form>
+							{snap.user ? (
+								<form className={s.form} onSubmit={handleCreateComment}>
+									<TextArea
+										onChange={e => setComment(e)}
+										value={comment}
+										placeholder={`Ваш комментарий к фильму ${item.title}`}
+									/>
+									<Button type='submit' className={s.create_comment}>
+										Отправить
+									</Button>
+								</form>
+							) : (
+								<div className={s.no_account}>
+									Чтобы оставлять комментарии, пожалуйста,{' '}
+									<Link href='/login' style={{ color: 'red' }}>
+										войдите в аккаунт
+									</Link>
+								</div>
+							)}
+
 							{allComments?.length ? (
 								<div className={s.comments_wrapper}>
 									{allComments?.map((comment, index) => (

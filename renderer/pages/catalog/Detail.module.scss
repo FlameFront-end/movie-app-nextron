@@ -28,6 +28,16 @@
   }
 }
 
+.no_account {
+  a {
+   color: red;
+
+    &:hover {
+      border-bottom: 1px solid red;
+    }
+  }
+}
+
 .movie_content {
   @include flex(flex-start, flex-start);
   max-width: 1260px;
@@ -118,6 +128,8 @@
     text-align: center;
   }
 }
+
+
 
 .comments_wrapper {
   display: flex;
