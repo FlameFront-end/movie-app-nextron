@@ -1,10 +1,8 @@
 import { isAxiosError } from 'axios'
 import axios from '../../utils/axios'
-import { CreateFormMovieDto, CreateResponseMovieDto } from './movie.dto'
+import { CreateFormMovieDto, Movie } from '../index'
 
-export const create = async (
-	movie: CreateFormMovieDto
-): Promise<CreateResponseMovieDto> => {
+export const create = async (movie: CreateFormMovieDto): Promise<Movie> => {
 	try {
 		const response = await axios.post('/movies', movie, {
 			headers: {
@@ -30,7 +28,7 @@ export const create = async (
 	}
 }
 
-export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
+export const getAll = async (): Promise<Movie[]> => {
 	try {
 		const response = await axios.get('/movies')
 		return response.data
@@ -52,7 +50,7 @@ export const getAll = async (): Promise<CreateResponseMovieDto[]> => {
 	}
 }
 
-export const getAllPopular = async (): Promise<CreateResponseMovieDto[]> => {
+export const getAllPopular = async (): Promise<Movie[]> => {
 	try {
 		const response = await axios.get('/movies/popular')
 		return response.data
@@ -74,9 +72,7 @@ export const getAllPopular = async (): Promise<CreateResponseMovieDto[]> => {
 	}
 }
 
-export const getMovieById = async (
-	movieId: number
-): Promise<CreateResponseMovieDto> => {
+export const getMovieById = async (movieId: number): Promise<Movie> => {
 	try {
 		const response = await axios.get(`/movies/${movieId}`)
 		return response.data
@@ -98,9 +94,7 @@ export const getMovieById = async (
 	}
 }
 
-export const getMovieByTitle = async (
-	title: string
-): Promise<CreateResponseMovieDto[]> => {
+export const getMovieByTitle = async (title: string): Promise<Movie[]> => {
 	try {
 		const response = await axios.get(`/movies/search?title=${title}`)
 		return response.data
@@ -122,7 +116,7 @@ export const getMovieByTitle = async (
 	}
 }
 
-export const remove = async (id: number): Promise<CreateResponseMovieDto> => {
+export const remove = async (id: number): Promise<Movie> => {
 	try {
 		const response = await axios.delete(`/movies/${id}`)
 		return response.data

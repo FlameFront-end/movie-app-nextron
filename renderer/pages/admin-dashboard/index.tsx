@@ -1,12 +1,17 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import ActorsTable from '../../components/Admin/Actors/ActorsTable/ActorsTable'
-import CreateMovie from '../../components/Admin/Movies/CreateMovie/CreateMovie'
-import MoviesTable from '../../components/Admin/Movies/MoviesTable/MoviesTable'
-import UsersTable from '../../components/Admin/Users/UsersTable/UsersTable'
-import Tabs from '../../components/Tabs/Tabs'
-import { CreateFormMovieDto } from '../../api/movie/movie.dto'
+
+import {
+	ActorsTable,
+	CreateMovie,
+	MoviesTable,
+	Tabs,
+	UsersTable
+} from '../../components/'
+
+import { CreateFormMovieDto } from '../../api'
 import Curve from '../../layouts/Curve'
+
 import s from './AdminDashboard.module.scss'
 
 const AdminDashboard: NextPage = () => {

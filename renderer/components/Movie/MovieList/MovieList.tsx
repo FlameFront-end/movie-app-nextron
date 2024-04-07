@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useSnapshot } from 'valtio'
-import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
+
+import { Movie } from '../../../api'
 import { state } from '../../../state'
-import MovieCardSkeleton from '../../Skeletons/MovieCardSkeleton/MovieCardSkeleton'
-import MovieCard from '../MovieCard/MovieCard'
+import { MovieCard, MovieCardSkeleton } from '../../index'
+
 import s from './MovieList.module.scss'
 
 type Sort = 'createdAt' | 'popular' | 'favorites' | 'search'
@@ -15,7 +16,7 @@ interface MovieListProps {
 
 const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 	const snap = useSnapshot(state)
-	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
+	const [movies, setMovies] = useState<Movie[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {

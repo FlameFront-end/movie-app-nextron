@@ -3,14 +3,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSnapshot } from 'valtio'
-import Input from '../../components/Form/Input/Input'
-import MovieList from '../../components/Movie/MovieList/MovieList'
-import Modal from '../../components/ui/Modals/Modal/Modal'
+
 import * as Api from '../../api'
+import { Input, Modal, MovieList } from '../../components'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
-import { showErrorSnackbar } from '../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../utils/successSnackbar'
+import { showErrorSnackbar, showSuccessSnackbar } from '../../utils'
+
 import s from './Profile.module.scss'
 
 const Profile: NextPage = () => {
@@ -59,8 +58,6 @@ const Profile: NextPage = () => {
 			state.user = null
 		}, 500)
 	}
-
-	console.log('snap.user', snap.user)
 
 	return (
 		<Curve>

@@ -12,7 +12,7 @@ export interface CreateFormMovieDto {
 	mainVideo: File
 }
 
-export interface CreateResponseMovieDto {
+export interface Movie {
 	id: number
 	title: string
 	description: string

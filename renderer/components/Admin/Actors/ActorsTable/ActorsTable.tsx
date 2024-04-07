@@ -1,14 +1,12 @@
-import { FC, FormEvent, useEffect, useState } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import { useSnapshot } from 'valtio'
+
 import * as Api from '../../../../api'
-import { Actor, CreateActorDTO } from '../../../../api/actor/actor.dto'
+import { CreateActorDTO } from '../../../../api'
 import { state } from '../../../../state'
-import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
-import Input from '../../../Form/Input/Input'
-import UploadFile from '../../../Form/UploadFile/UploadFile'
-import Table from '../../../ui/Table/Table'
-import ActorTableItem from '../ActorTableItem/ActorTableItem'
+import { showErrorSnackbar, showSuccessSnackbar } from '../../../../utils'
+import { ActorTableItem, Input, Table, UploadFile } from '../../../index'
+
 import s from './ActorsTable.module.scss'
 
 const ActorsTable: FC = () => {

@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { useSnapshot } from 'valtio'
+
 import { state } from '../../../../state'
-import Table from '../../../ui/Table/Table'
-import UserTableItem from '../UserTableItem/UserTableItem'
+import { Table, UserTableItem } from '../../../index'
+
 import s from './UsersTable.module.scss'
 
 const UsersTable: FC = () => {

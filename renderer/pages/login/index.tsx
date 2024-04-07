@@ -1,13 +1,16 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import Input from '../../components/Form/Input/Input'
-import Button from '../../components/ui/Button/Button'
+
 import * as Api from '../../api'
-import { LoginFormDTO } from '../../api/auth/auth.dto'
+import { LoginFormDTO } from '../../api'
+import { Button, Input } from '../../components'
 import Curve from '../../layouts/Curve'
-import { handleSuccessLogin } from '../../utils/authHandlers'
-import { showErrorSnackbar } from '../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../utils/successSnackbar'
+import {
+	handleSuccessLogin,
+	showErrorSnackbar,
+	showSuccessSnackbar
+} from '../../utils'
+
 import s from './Login.module.scss'
 
 const LoginPage: NextPage = () => {

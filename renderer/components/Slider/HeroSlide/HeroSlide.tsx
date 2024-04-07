@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
+
 import Button, { OutlineButton } from '../../ui/Button/Button'
+
 import s from './HeroSlide.module.scss'
 
 interface HeroSlideProps {

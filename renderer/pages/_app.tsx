@@ -1,16 +1,19 @@
 import { AnimatePresence } from 'framer-motion'
 import { SnackbarProvider } from 'notistack'
 import React, { useEffect } from 'react'
+
 import type { AppProps } from 'next/app'
+
 import '../components/ui/FavoriteBtn/FavoriteBtn.scss'
-import Footer from '../components/ui/Footer/Footer'
-import Header from '../components/ui/Header/Header'
+
 import * as Api from '../api'
 import '../assets/boxicons-2.0.7/css/boxicons.min.css'
+import { Footer, Header } from '../components'
 import { state } from '../state'
 import '../styles/App.scss'
 import '../styles/index.scss'
-import { getCookie } from '../utils/getCookie'
+import { getCookie } from '../utils'
+
 import 'swiper/css'
 
 export default function App({ Component, pageProps, router }: AppProps) {

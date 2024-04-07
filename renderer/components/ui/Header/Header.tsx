@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
+
 import tmovie from '../../../public/images/tmovie.png'
 import { state } from '../../../state'
+
 import s from './Header.module.scss'
 
 const Header = () => {

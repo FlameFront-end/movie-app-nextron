@@ -3,17 +3,14 @@ import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
-import CastList from '../../components/CastList/CastList'
-import TextArea from '../../components/Form/TextArea/TextArea'
-import MovieList from '../../components/Movie/MovieList/MovieList'
-import Button from '../../components/ui/Button/Button'
+
 import * as Api from '../../api'
-import { Comment } from '../../api/comment/comment.dto'
-import { CreateResponseMovieDto } from '../../api/movie/movie.dto'
+import { Comment, Movie } from '../../api'
+import { Button, CastList, MovieList, TextArea } from '../../components'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
-import { showErrorSnackbar } from '../../utils/errorSnackBar'
-import { formatDate } from '../../utils/formatDate'
+import { formatDate, showErrorSnackbar } from '../../utils'
+
 import s from './Detail.module.scss'
 
 interface DetailProps {
@@ -23,7 +20,7 @@ interface DetailProps {
 const Detail: NextPage<DetailProps> = ({ movieId }) => {
 	const snap = useSnapshot(state)
 
-	const [item, setItem] = useState<CreateResponseMovieDto | null>(null)
+	const [item, setItem] = useState<Movie | null>(null)
 	const [comment, setComment] = useState('')
 	const [allComments, setAllComments] = useState<Comment[] | null>(null)
 

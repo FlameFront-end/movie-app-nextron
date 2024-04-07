@@ -9,8 +9,8 @@
 	"importOrder": [
 		"<THIRD_PARTY_MODULES>",
 		"app",
-		"redux/",
-		"hooks/",
+		"/state/",
+		"/api/",
 		"pages/",
 		"entities/*",
 		"shared/lib",
@@ -25,5 +25,6 @@
 	],
 	"plugins": ["@trivago/prettier-plugin-sort-imports"],
 	"importOrderSortSpecifiers": true,
+	"importOrderSeparation": true,
 	"importOrderCaseInsensitive": true
 }

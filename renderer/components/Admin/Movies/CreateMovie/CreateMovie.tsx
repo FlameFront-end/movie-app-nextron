@@ -1,14 +1,18 @@
-import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react'
+import {
+	ChangeEvent,
+	FC,
+	FormEvent,
+	useCallback,
+	useEffect,
+	useState
+} from 'react'
+
 import * as Api from '../../../../api'
-import { Actor } from '../../../../api/actor/actor.dto'
-import { CreateFormMovieDto } from '../../../../api/movie/movie.dto'
+import { Actor, CreateFormMovieDto } from '../../../../api'
 import { state } from '../../../../state'
-import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
-import Input from '../../../Form/Input/Input'
-import TextArea from '../../../Form/TextArea/TextArea'
-import UploadFile from '../../../Form/UploadFile/UploadFile'
-import Button from '../../../ui/Button/Button'
+import { showErrorSnackbar, showSuccessSnackbar } from '../../../../utils'
+import { Button, Input, TextArea, UploadFile } from '../../../index'
+
 import s from './CreateMovie.module.scss'
 
 interface CreateMovieProps {
@@ -132,9 +136,7 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 		}
 	}
 
-	const handleActorSelection = (
-		event: React.ChangeEvent<HTMLSelectElement>
-	) => {
+	const handleActorSelection = (event: ChangeEvent<HTMLSelectElement>) => {
 		const selectedActorId = parseInt(event.target.value)
 		const selectedActor = allActors.find(actor => actor.id === selectedActorId)
 		if (selectedActor) {

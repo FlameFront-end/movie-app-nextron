@@ -1,9 +1,11 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import MovieList from '../components/Movie/MovieList/MovieList'
-import HeroSlider from '../components/Slider/HeroSlider/HeroSlider'
+
 import { OutlineButton } from '../components/ui/Button/Button'
+
+import { HeroSlider, MovieList } from '../components'
 import Curve from '../layouts/Curve'
 
 const HomePage: NextPage = () => {
@@ -39,30 +41,6 @@ const HomePage: NextPage = () => {
 								</div>
 								<MovieList sort='createdAt' />
 							</div>
-
-							{/*<div className='section mb-3'>*/}
-							{/*	<div className='section__header mb-2'>*/}
-							{/*		<h2>{t('Популярные ТВ сериалы')}</h2>*/}
-							{/*		<Link href='/'>*/}
-							{/*			<OutlineButton className='small'>*/}
-							{/*				{t('Смотреть больше')}*/}
-							{/*			</OutlineButton>*/}
-							{/*		</Link>*/}
-							{/*	</div>*/}
-							{/*	<MovieGrid />*/}
-							{/*</div>*/}
-
-							{/*<div className='section mb-3'>*/}
-							{/*	<div className='section__header mb-2'>*/}
-							{/*		<h2>{t('Новые ТВ сериалы')}</h2>*/}
-							{/*		<Link href='/'>*/}
-							{/*			<OutlineButton className='small'>*/}
-							{/*				{t('Смотреть больше')}*/}
-							{/*			</OutlineButton>*/}
-							{/*		</Link>*/}
-							{/*	</div>*/}
-							{/*	<MovieGrid />*/}
-							{/*</div>*/}
 						</div>
 					</main>
 				</div>

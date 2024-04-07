@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+
 import s from './MovieCardSkeleton.module.scss'
+
 import 'react-loading-skeleton/dist/skeleton.css'
 
 interface MovieCardSkeletonProps {

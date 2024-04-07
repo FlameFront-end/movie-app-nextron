@@ -1,4 +1,4 @@
-import { CreateResponseMovieDto } from '../movie/movie.dto'
+import { Movie } from '../index'
 
 export interface LoginFormDTO {
 	email: string
@@ -32,5 +32,5 @@ export interface User {
 	password: string
 	isAdmin: boolean
 	createdAt: string
-	favorites: CreateResponseMovieDto[]
+	favorites: Movie[]
 }

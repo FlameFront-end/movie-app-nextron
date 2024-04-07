@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { Actor } from '../../api/actor/actor.dto'
+
+import { Actor } from '../../api'
+
 import s from './CastList.module.scss'
 
 interface CastListProps {

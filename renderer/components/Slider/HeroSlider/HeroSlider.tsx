@@ -2,9 +2,10 @@ import { FC, useState } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useSnapshot } from 'valtio'
+
 import { state } from '../../../state'
-import ModalTrailer from '../../ui/Modals/ModalTrailer/ModalTrailer'
-import HeroSlide from '../HeroSlide/HeroSlide'
+import { HeroSlide, ModalTrailer } from '../../index'
+
 import s from './HeroSlider.module.scss'
 
 const HeroSlider: FC = () => {

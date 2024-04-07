@@ -1,14 +1,15 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Input from '../../components/Form/Input/Input'
-import UploadFile from '../../components/Form/UploadFile/UploadFile'
+
 import Button from '../../components/ui/Button/Button'
+
+import { RegisterFormDTO } from '../../api'
 import * as Api from '../../api'
-import { RegisterFormDTO } from '../../api/auth/auth.dto'
+import { Input, UploadFile } from '../../components'
 import Curve from '../../layouts/Curve'
-import { showErrorSnackbar } from '../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../utils/successSnackbar'
+import { showErrorSnackbar, showSuccessSnackbar } from '../../utils'
+
 import s from './Register.module.scss'
 
 const RegisterPage: NextPage = () => {

@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { formatDate } from '../../../../utils/formatDate'
+
+import { formatDate } from '../../../../utils'
+
 import s from './UserTableItem.module.scss'
 
 interface MovieTableItem {

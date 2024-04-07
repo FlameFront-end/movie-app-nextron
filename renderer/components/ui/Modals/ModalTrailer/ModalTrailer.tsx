@@ -5,8 +5,10 @@ import React, {
 	useRef,
 	useState
 } from 'react'
-import { classNames } from '../../../../utils/classNames'
+
+import { classNames } from '../../../../utils'
 import Portal from '../../../Portal/Portal'
+
 import s from './ModalTrailer.module.scss'
 
 interface ModalTrailerProps {

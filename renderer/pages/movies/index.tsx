@@ -1,12 +1,11 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
-import Input from '../../components/Form/Input/Input'
-import MovieGrid from '../../components/Movie/MovieGrid/MovieGrid'
-import Button from '../../components/ui/Button/Button'
-import PageHeader from '../../components/ui/PageHeader/PageHeader'
+
 import * as Api from '../../api'
+import { Button, Input, MovieGrid, PageHeader } from '../../components'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
+
 import s from './Movies.module.scss'
 
 const MoviesPage: NextPage = () => {

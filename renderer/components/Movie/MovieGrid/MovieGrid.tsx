@@ -1,8 +1,10 @@
 import { FC, useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
-import { CreateResponseMovieDto } from '../../../api/movie/movie.dto'
+
+import { Movie } from '../../../api'
 import { state } from '../../../state'
-import MovieCard from '../MovieCard/MovieCard'
+import { MovieCard } from '../../index'
+
 import s from './MovieGrid.module.scss'
 
 type Sort = 'createdAt' | 'popular' | 'favorites' | 'search'
@@ -13,7 +15,7 @@ interface MovieGridProps {
 
 const MovieGrid: FC<MovieGridProps> = ({ sort = 'createdAt' }) => {
 	const snap = useSnapshot(state)
-	const [movies, setMovies] = useState<CreateResponseMovieDto[]>([])
+	const [movies, setMovies] = useState<Movie[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {

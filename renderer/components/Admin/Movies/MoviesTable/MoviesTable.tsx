@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { useSnapshot } from 'valtio'
+
 import * as Api from '../../../../api'
 import { state } from '../../../../state'
-import { showErrorSnackbar } from '../../../../utils/errorSnackBar'
-import { showSuccessSnackbar } from '../../../../utils/successSnackbar'
-import Table from '../../../ui/Table/Table'
-import MovieTableItem from '../MovieTableItem/MovieTableItem'
+import { showErrorSnackbar, showSuccessSnackbar } from '../../../../utils'
+import { MovieTableItem, Table } from '../../../index'
+
 import s from './MoviesTable.module.scss'
 
 const MoviesTable: FC = () => {

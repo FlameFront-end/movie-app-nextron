@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
+
 import * as Api from '../../../api'
 import { state } from '../../../state'
-import Button from '../../ui/Button/Button'
-import FavoriteBtn from '../../ui/FavoriteBtn/FavoriteBtn'
+import { Button, FavoriteBtn } from '../../index'
+
 import s from './MovieCard.module.scss'
 
 interface MovieCardProps {
