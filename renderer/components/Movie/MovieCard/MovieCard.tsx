@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { useSnapshot } from 'valtio'
+import * as Api from '../../../api'
 import { state } from '../../../state'
 import Button from '../../ui/Button/Button'
 import FavoriteBtn from '../../ui/FavoriteBtn/FavoriteBtn'
@@ -20,6 +21,28 @@ const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
 		router.push(`/catalog/${id}`)
 	}
 
+	const handleAddToFavorite = () => {
+		Api.user.addToFavorites(id).then(() => {
+			Api.auth.getMe().then(user => {
+				state.user = user
+			})
+		})
+	}
+
+	const handleDeleteFavorite = () => {
+		Api.user.deleteFavorites(id).then(() => {
+			Api.auth.getMe().then(user => {
+				state.user = user
+			})
+		})
+	}
+
+	const checkFavorite = (id: number): boolean => {
+		const favoritesArr = snap.user.favorites
+
+		return favoritesArr.some(favorite => favorite.id === id)
+	}
+
 	return (
 		<>
 			<div
@@ -27,7 +50,14 @@ const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
 				style={{ backgroundImage: `url(${backgroundImgUrl})` }}
 			>
 				{snap.user ? (
-					<FavoriteBtn id={id.toString()} className={s.favorite} />
+					<FavoriteBtn
+						onChange={
+							checkFavorite(id) ? handleDeleteFavorite : handleAddToFavorite
+						}
+						id={id.toString()}
+						className={s.favorite}
+						checked={checkFavorite(id)}
+					/>
 				) : null}
 				<Button className={s.btn} onClick={handleClick}>
 					<i className='bx bx-play'></i>

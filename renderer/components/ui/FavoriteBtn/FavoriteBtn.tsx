@@ -3,14 +3,27 @@ import { FC } from 'react'
 interface FavoriteBtnProps {
 	className?: string
 	id: string
+	onChange: () => void
+	checked: boolean
 }
 
-const FavoriteBtn: FC<FavoriteBtnProps> = ({ className, id }) => {
+const FavoriteBtn: FC<FavoriteBtnProps> = ({
+	className,
+	id,
+	onChange,
+	checked
+}) => {
 	return (
 		<div className={`wrapper-favorite ${className}`}>
 			<div id='main-content'>
 				<div>
-					<input type='checkbox' id={id} className='checkbox' />
+					<input
+						type='checkbox'
+						id={id}
+						className='checkbox'
+						onChange={onChange}
+						checked={checked}
+					/>
 					<label htmlFor={id}>
 						<svg
 							id='heart-svg'
