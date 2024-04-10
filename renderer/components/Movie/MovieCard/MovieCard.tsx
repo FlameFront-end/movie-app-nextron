@@ -21,8 +21,8 @@ const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
 	const router = useRouter()
 
 	useEffect(() => {
-		setFavorites(snap.user.favorites)
-	}, [snap.user.favorites])
+		setFavorites(snap.user?.favorites)
+	}, [snap.user?.favorites])
 
 	const handleClick = () => {
 		router.push(`/catalog/${id}`)

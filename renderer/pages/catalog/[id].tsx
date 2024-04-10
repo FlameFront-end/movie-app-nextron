@@ -25,11 +25,14 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 	const [allComments, setAllComments] = useState<Comment[] | null>(null)
 
 	useEffect(() => {
-		Api.movie.getMovieById(movieId).then(res => {
-			setItem(res)
-			setAllComments(res.comments)
+		setTimeout(() => {
+			setItem(snap.movies.find(movie => movie.id === movieId))
+		}, 700)
+
+		Api.comment.getAlL(movieId).then(res => {
+			setAllComments(res)
 		})
-	}, [movieId])
+	}, [movieId, snap.movies])
 
 	const handleCreateComment = async e => {
 		e.preventDefault()
