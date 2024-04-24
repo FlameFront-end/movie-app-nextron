@@ -23,8 +23,8 @@ interface CreateMovieProps {
 const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 	const [allActors, setAllActors] = useState<Actor[]>([])
 
-	const [selectedActorsId, setSelectedActorsId] = useState<number[]>([])
-	const [selectedActors, setSelectedActors] = useState<Actor[]>([])
+	const [selectedActorsId, setSelectedActorsId] = useState<number[] | []>([])
+	const [selectedActors, setSelectedActors] = useState<Actor[] | []>([])
 	const [tag, setTag] = useState('')
 
 	const handleSubmit = async (e: FormEvent) => {
@@ -108,6 +108,9 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 				})
 				Api.movie.getAllPopular().then(res => {
 					state.popularMovies = res
+				})
+				Api.actor.getAll().then(res => {
+					setAllActors(res)
 				})
 			})
 			.catch(err => {

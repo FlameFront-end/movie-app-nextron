@@ -13,6 +13,8 @@ interface MovieTableItem {
 const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 	const { push } = useRouter()
 
+	console.log('movie.onlySubscribe', movie.onlySubscribe)
+
 	return (
 		<tr className={s.wrapper}>
 			<td>
@@ -39,6 +41,13 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 						</div>
 					))}
 				</div>
+			</td>
+			<td>
+				{movie.onlySubscribe ? (
+					<span className='green'>Да</span>
+				) : (
+					<span className='red'>Нет</span>
+				)}
 			</td>
 			<td>{formatDate(movie.createdAt)}</td>
 			<td>

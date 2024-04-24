@@ -18,6 +18,9 @@ const MoviesTable: FC = () => {
 				Api.movie.getAll().then(res => {
 					state.movies = res
 				})
+				Api.movie.getAllPopular().then(res => {
+					state.popularMovies = res
+				})
 				showSuccessSnackbar(`Фильм был успешно удалён`)
 			})
 			.catch(err => {
@@ -35,6 +38,7 @@ const MoviesTable: FC = () => {
 					{ title: 'Описание' },
 					{ title: 'Теги' },
 					{ title: 'Актёры' },
+					{ title: 'По подписке' },
 					{ title: 'Дата создания' },
 					{ title: 'Действия' }
 				]}
