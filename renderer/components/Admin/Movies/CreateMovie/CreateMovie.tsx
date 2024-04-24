@@ -158,6 +158,10 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 		onHandleChange(selectedActorsId, 'actors')
 	}, [onHandleChange, selectedActorsId])
 
+	const handleChange = isCheck => {
+		setData(prevState => ({ ...prevState, onlySubscribe: isCheck }))
+	}
+
 	return (
 		<form onSubmit={handleSubmit} className={s.form}>
 			<div className={s.content}>
@@ -220,6 +224,18 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 						</div>
 					</div>
 				</div>
+				<div className={s.row}>
+					<label className={s.label_only} htmlFor='onlySubscribe'>
+						<input
+							id='onlySubscribe'
+							type='checkbox'
+							checked={data.onlySubscribe}
+							onChange={e => handleChange(e.target.checked)}
+						/>
+						<span>Только по подписке</span>
+					</label>
+				</div>
+
 				<div className={s.column}>
 					<TextArea
 						placeholder='Описание фильма'

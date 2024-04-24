@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useState } from 'react'
+
 import { curve, text, translate } from './anim'
 import s from './Curve.module.scss'
 
@@ -11,7 +12,8 @@ const routes = {
 	'/login': 'Вход',
 	'/register': 'Регистрация',
 	'/admin-dashboard': 'Админ панель',
-	'/profile': 'Профиль'
+	'/profile': 'Профиль',
+	'/buy': 'MovieHub Premium'
 }
 
 const anim = (variants: any) => {

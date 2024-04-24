@@ -23,7 +23,8 @@ const AdminDashboard: NextPage = () => {
 		mainImage: null,
 		mainVideo: null,
 		posterImage: null,
-		trailerVideo: null
+		trailerVideo: null,
+		onlySubscribe: false
 	})
 	const [active, setActive] = useState(0)
 

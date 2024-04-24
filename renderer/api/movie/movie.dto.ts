@@ -10,6 +10,7 @@ export interface CreateFormMovieDto {
 	mainImage: File
 	trailerVideo: File
 	mainVideo: File
+	onlySubscribe: boolean
 }
 
 export interface Movie {
@@ -26,4 +27,5 @@ export interface Movie {
 	deleteAt: string | null
 	createdAt: string
 	updateAt: string
+	onlySubscribe: boolean
 }
