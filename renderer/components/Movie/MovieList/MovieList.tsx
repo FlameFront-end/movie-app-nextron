@@ -63,6 +63,7 @@ const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 									category='test'
 									id={item.id}
 									title={item.title}
+									item={item}
 								/>
 							</SwiperSlide>
 						))}
@@ -81,6 +82,7 @@ const MovieList: FC<MovieListProps> = ({ sort = 'createdAt' }) => {
 									category='test'
 									id={item.id}
 									title={item.title}
+									item={item}
 								/>
 							</SwiperSlide>
 						))}

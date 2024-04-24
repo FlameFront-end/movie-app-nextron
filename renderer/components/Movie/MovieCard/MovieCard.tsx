@@ -1,8 +1,11 @@
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
 
 import * as Api from '../../../api'
+import { Movie } from '../../../api'
+import only from '../../../public/images/only.png'
 import { state } from '../../../state'
 import { Button, FavoriteBtn } from '../../index'
 
@@ -13,9 +16,15 @@ interface MovieCardProps {
 	category: string
 	id: number
 	title?: string
+	item: Movie
 }
 
-const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
+const MovieCard: FC<MovieCardProps> = ({
+	backgroundImgUrl,
+	title,
+	id,
+	item
+}) => {
 	const [favorites, setFavorites] = useState(null)
 	const snap = useSnapshot(state)
 	const router = useRouter()
@@ -48,22 +57,32 @@ const MovieCard: FC<MovieCardProps> = ({ backgroundImgUrl, title, id }) => {
 		return favorites?.some(favorite => favorite.id === id)
 	}
 
+	console.log('item.onlySubscribe', item.onlySubscribe)
 	return (
 		<>
 			<div
 				className={s.movieCard}
 				style={{ backgroundImage: `url(${backgroundImgUrl})` }}
 			>
-				{snap.user ? (
-					<FavoriteBtn
-						onChange={
-							checkFavorite(id) ? handleDeleteFavorite : handleAddToFavorite
-						}
-						id={id.toString()}
-						className={s.favorite}
-						checked={checkFavorite(id)}
-					/>
-				) : null}
+				<div className={s.top}>
+					{item.onlySubscribe ? (
+						<div className={s.only}>
+							<Image src={only} width={60} height={60} />
+						</div>
+					) : null}
+
+					{snap.user ? (
+						<FavoriteBtn
+							onChange={
+								checkFavorite(id) ? handleDeleteFavorite : handleAddToFavorite
+							}
+							id={id.toString()}
+							className={s.favorite}
+							checked={checkFavorite(id)}
+						/>
+					) : null}
+				</div>
+
 				<Button className={s.btn} onClick={handleClick}>
 					<i className='bx bx-play'></i>
 				</Button>

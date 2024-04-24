@@ -65,6 +65,7 @@ const MovieGrid: FC<MovieGridProps> = ({ sort = 'createdAt' }) => {
 								category='test'
 								id={item.id}
 								title={item.title}
+								item={item}
 							/>
 						</div>
 					))}
