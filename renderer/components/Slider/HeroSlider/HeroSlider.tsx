@@ -18,6 +18,7 @@ const HeroSlider: FC = () => {
 				autoplay={{
 					delay: 4000
 				}}
+				speed={500}
 				loop={true}
 				grabCursor={true}
 				spaceBetween={0}

@@ -53,6 +53,14 @@ const Header = () => {
 		{
 			display: (
 				<div className={s.profile}>
+					<div>MovieHub Premium</div>
+				</div>
+			),
+			path: '/buy'
+		},
+		{
+			display: (
+				<div className={s.profile}>
 					<Image src={snap.user?.ava} width={50} height={50} />
 					<div>{snap.user?.nick}</div>
 				</div>

@@ -1,10 +1,40 @@
 import { isAxiosError } from 'axios'
+
 import axios from '../../utils/axios'
 import { CreateFormMovieDto, Movie } from '../index'
 
 export const create = async (movie: CreateFormMovieDto): Promise<Movie> => {
 	try {
 		const response = await axios.post('/movies', movie, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		})
+		return response.data
+	} catch (error) {
+		if (isAxiosError(error)) {
+			if (
+				error.response &&
+				error.response.data &&
+				error.response.data.message
+			) {
+				const errorMessage = error.response.data.message
+				throw new Error(errorMessage)
+			} else {
+				throw error
+			}
+		} else {
+			throw error
+		}
+	}
+}
+
+export const update = async (
+	id: number | string,
+	movie: CreateFormMovieDto
+): Promise<Movie> => {
+	try {
+		const response = await axios.put(`/movies/${id}`, movie, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}

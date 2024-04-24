@@ -42,7 +42,7 @@ const MoviesTable: FC = () => {
 					{ title: 'Действия' }
 				]}
 			>
-				{snap.movies.map((item, index) => (
+				{snap?.movies?.map((item, index) => (
 					<MovieTableItem
 						handleDelete={handleDelete}
 						movie={item}

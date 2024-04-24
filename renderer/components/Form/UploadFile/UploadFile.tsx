@@ -11,6 +11,7 @@ interface UploadFileProps {
 	id: string
 	type?: 'image' | 'video'
 	className?: string
+	fileLink?: string
 }
 
 const UploadFile: React.FC<UploadFileProps> = ({
@@ -21,7 +22,8 @@ const UploadFile: React.FC<UploadFileProps> = ({
 	maxHeight,
 	id,
 	type = 'image',
-	className
+	className,
+	fileLink
 }) => {
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files && e.target.files[0]
@@ -37,7 +39,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
 	return (
 		<div className={s.uploadImageContainer}>
 			<label htmlFor={id} className={s.uploadInputLabel}>
-				{file ? (
+				{file || fileLink ? (
 					<div
 						className={`${s.fileWrapper}`}
 						style={{ maxHeight: maxHeight, maxWidth: maxWidth }}
@@ -45,11 +47,11 @@ const UploadFile: React.FC<UploadFileProps> = ({
 						{type === 'image' ? (
 							<img
 								className={className}
-								src={URL.createObjectURL(file)}
+								src={file ? URL.createObjectURL(file) : fileLink}
 								alt='Uploaded'
 							/>
 						) : (
-							<video src={URL.createObjectURL(file)}></video>
+							<video src={file ? URL.createObjectURL(file) : fileLink}></video>
 						)}
 					</div>
 				) : (

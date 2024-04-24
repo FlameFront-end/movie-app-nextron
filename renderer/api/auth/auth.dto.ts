@@ -33,4 +33,5 @@ export interface User {
 	isAdmin: boolean
 	createdAt: string
 	favorites: Movie[]
+	subscribe: boolean
 }

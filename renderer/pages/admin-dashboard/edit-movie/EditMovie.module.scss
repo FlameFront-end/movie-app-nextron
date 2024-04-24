@@ -1,0 +1,131 @@
+@use '../../../styles/variables' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto;
+
+  select {
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    color: $txt-color;
+    font-size: 1rem;
+    font-family: $font-family;
+    background-color: $black;
+    border: 0;
+    border-radius: $border-radius;
+
+    option {
+      color: $txt-color;
+    }
+
+    &::placeholder {
+      color: $txt-color;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+
+  .row_item {
+    width: 100%;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  width: 100%;
+  color: white;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  color: white;
+  background: black;
+  border-radius: 5px;
+}
+
+.error {
+  margin-top: 5px;
+  color: red;
+}
+
+.btn {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+
+}
+
+.add_tag {
+  width: 200px;
+  padding: 10px;
+  color: $txt-color;
+  background: $black;
+  border: none;
+  border-radius: 8px;
+}
+
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  padding-top: 150px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+
+.title {
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+.error {
+  margin-top: 5px;
+  color: red;
+}
+
+.btn {
+  max-width: 300px;
+  margin: 0 auto;
+}

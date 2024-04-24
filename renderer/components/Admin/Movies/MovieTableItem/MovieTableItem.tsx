@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { FC } from 'react'
 
 import { formatDate } from '../../../../utils'
@@ -10,6 +11,8 @@ interface MovieTableItem {
 }
 
 const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
+	const { push } = useRouter()
+
 	return (
 		<tr className={s.wrapper}>
 			<td>
@@ -40,7 +43,11 @@ const MovieTableItem: FC<MovieTableItem> = ({ movie, handleDelete }) => {
 			<td>{formatDate(movie.createdAt)}</td>
 			<td>
 				<div className={s.actions_block}>
-					<button>Редактировать</button>
+					<button
+						onClick={() => push(`/admin-dashboard/edit-movie/${movie.id}`)}
+					>
+						Редактировать
+					</button>
 					<button onClick={() => handleDelete(movie.id)}>Удалить</button>
 				</div>
 			</td>

@@ -107,7 +107,7 @@ const CreateMovie: FC<CreateMovieProps> = ({ data, setData }) => {
 					state.movies = res
 				})
 				Api.movie.getAllPopular().then(res => {
-					state.movies = res
+					state.popularMovies = res
 				})
 			})
 			.catch(err => {
