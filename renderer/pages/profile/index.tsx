@@ -15,7 +15,6 @@ import s from './Profile.module.scss'
 const Profile: NextPage = () => {
 	const { push } = useRouter()
 	const snap = useSnapshot(state)
-	const [isEditAva, setIsEditAva] = useState(false)
 	const [isEditPassword, setIsEditPassword] = useState(false)
 
 	const [oldPassword, setOldPassword] = useState('')
@@ -72,12 +71,6 @@ const Profile: NextPage = () => {
 								width={200}
 								height={200}
 							/>
-							<button
-								onClick={() => setIsEditAva(prevState => !prevState)}
-								className={s.edit}
-							>
-								Изменить аватарку
-							</button>
 						</div>
 						<div className={s.column}>
 							<div className={s.row}>

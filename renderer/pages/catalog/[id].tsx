@@ -107,17 +107,24 @@ const Detail: NextPage<DetailProps> = ({ movieId }) => {
 									title='video'
 								></video>
 							</div>
-							<div className={s.video}>
-								<div className={s.video__title}>
-									<h2>Фильм</h2>
+							{item.onlySubscribe && !snap.user.subscribe ? (
+								<div className={s.no_subscribe}>
+									Просмотр этого фильма доступен только с подпиской MovieHub
+									Premium
 								</div>
-								<video
-									controls
-									src={item.mainVideo}
-									width='100%'
-									title='video'
-								></video>
-							</div>
+							) : (
+								<div className={s.video}>
+									<div className={s.video__title}>
+										<h2>Фильм</h2>
+									</div>
+									<video
+										controls
+										src={item.mainVideo}
+										width='100%'
+										title='video'
+									></video>
+								</div>
+							)}
 						</div>
 						<div className='section mb-3'>
 							<div className='section__header mb-2'>

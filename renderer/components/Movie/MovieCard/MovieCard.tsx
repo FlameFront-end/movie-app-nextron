@@ -1,11 +1,9 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
 
 import * as Api from '../../../api'
 import { Movie } from '../../../api'
-import only from '../../../public/images/only.png'
 import { state } from '../../../state'
 import { Button, FavoriteBtn } from '../../index'
 
@@ -57,7 +55,6 @@ const MovieCard: FC<MovieCardProps> = ({
 		return favorites?.some(favorite => favorite.id === id)
 	}
 
-	console.log('item.onlySubscribe', item.onlySubscribe)
 	return (
 		<>
 			<div
@@ -65,11 +62,7 @@ const MovieCard: FC<MovieCardProps> = ({
 				style={{ backgroundImage: `url(${backgroundImgUrl})` }}
 			>
 				<div className={s.top}>
-					{item.onlySubscribe ? (
-						<div className={s.only}>
-							<Image src={only} width={60} height={60} />
-						</div>
-					) : null}
+					{item.onlySubscribe ? <div className={s.only}>Премиум</div> : null}
 
 					{snap.user ? (
 						<FavoriteBtn

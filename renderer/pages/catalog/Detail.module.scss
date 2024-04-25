@@ -1,5 +1,11 @@
 @use "../../styles" as *;
 
+.no_subscribe {
+  font-size: 25px;
+  text-align: center;
+  color: red;
+}
+
 .banner {
   position: relative;
   height: 50vh;
