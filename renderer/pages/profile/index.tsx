@@ -140,7 +140,7 @@ const Profile: NextPage = () => {
 						</div>
 					</Modal>
 				</div>
-				{snap.user.favorites.length ? (
+				{snap.user?.favorites.length ? (
 					<div className={s.list}>
 						<h3 className={s.heading_list}>Вам понравились:</h3>
 						<MovieList sort='favorites' />

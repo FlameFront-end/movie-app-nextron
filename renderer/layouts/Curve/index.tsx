@@ -12,8 +12,8 @@ const routes = {
 	'/login': 'Вход',
 	'/register': 'Регистрация',
 	'/admin-dashboard': 'Админ панель',
-	'/profile': 'Профиль',
-	'/buy': 'MovieHub Premium'
+	'/profile': 'Профиль'
+	// '/buy': 'MovieHub Premium'
 }
 
 const anim = (variants: any) => {

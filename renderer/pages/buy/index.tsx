@@ -5,6 +5,7 @@ import * as Api from '../../api'
 import Curve from '../../layouts/Curve'
 import { state } from '../../state'
 import { showErrorSnackbar, showSuccessSnackbar } from '../../utils'
+import axios from '../../utils/axios'
 
 const Buy: FC = () => {
 	const snap = useSnapshot(state)
@@ -63,6 +64,7 @@ const Buy: FC = () => {
 
 			Api.user.byuSubscribe().then(res => {
 				showSuccessSnackbar('Вы успешно купили подписку MovieHub Premium')
+				createFile()
 				state.user = res
 			})
 		} catch (err) {
@@ -83,6 +85,81 @@ const Buy: FC = () => {
 			...prevData,
 			[key]: value
 		}))
+	}
+
+	const createFile = async () => {
+		try {
+			const currentDate = new Date()
+
+			const months = [
+				'января',
+				'февраля',
+				'марта',
+				'апреля',
+				'мая',
+				'июня',
+				'июля',
+				'августа',
+				'сентября',
+				'октября',
+				'ноября',
+				'декабря'
+			]
+
+			const day = currentDate.getDate()
+			const month = months[currentDate.getMonth()]
+			const year = currentDate.getFullYear()
+
+			const formattedDate = `${day} ${month} ${year} г.`
+			const randomNumber = Math.floor(Math.random() * 900000000) + 100000000
+
+			const content = `
+╔════════════════════════════════════╗
+║               MovieHub Премиум               \t   ║
+╟────────────────────────────────────╢
+║ Дата:              ${formattedDate}             ║
+║ Номер транзакции:  ${randomNumber}                     ║
+║                                                  ║
+║ Подписка:          Премиум                       ║
+║ Цена:              1000 рублей                   ║
+║                                                  ║
+║                                                  ║
+║                                                  ║
+║                                                  ║
+║ Способ оплаты:     Мир **** ${data.number_card_4}                 ║
+║                                                  ║
+║ Адрес выставления счета:                         ║
+║ Калиганов Артём Александрвич                     ║
+║ ул. Тельмана, д. 123                             ║
+║ Калуга, Россия                                   ║
+║                                                  ║
+║ Спасибо за подписку на MovieHub Премиум!         ║
+║                                                  ║
+║ Наслаждайтесь неограниченным просмотром фильмов  ║
+║ и эксклюзивным контентом!                        ║
+║                                                  ║
+║ По всем вопросам обращайтесь в поддержку по      ║
+║ адресу flame,kaliganov@gmail.com                 ║
+║                                                  ║
+╚════════════════════════════════════╝
+			`
+
+			const response = await axios.post(
+				'/file',
+				{ content: content },
+				{ responseType: 'blob' }
+			)
+			const blob = new Blob([response.data])
+			const downloadLink = window.URL.createObjectURL(blob)
+			const link = document.createElement('a')
+			link.href = downloadLink
+			link.setAttribute('download', 'чек.txt')
+			document.body.appendChild(link)
+			link.click()
+			link.remove()
+		} catch (error) {
+			console.error('Error creating file:', error)
+		}
 	}
 
 	return (

@@ -137,6 +137,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #area {
+  z-index: 1000;
   .top {
     margin-bottom: 10px;
 
